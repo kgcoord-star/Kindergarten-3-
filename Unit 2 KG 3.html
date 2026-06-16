@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>KG3 Unit 2 – Weekly Lesson Plans · I Play, I Learn, I Share · Pan Asia International School</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Open Sans',sans-serif;background:#ECECEC;color:#333;font-size:13px;}
+
+.selector{position:sticky;top:0;z-index:100;background:#fff;
+  border-bottom:3px solid #2E7D32;padding:8px 16px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:8px;}
+.selector .lbl{font-weight:700;color:#2E7D32;font-size:12px;}
+.selector button{border:2px solid #2E7D32;background:#fff;color:#2E7D32;
+  padding:6px 14px;border-radius:20px;cursor:pointer;font-size:11.5px;
+  font-weight:600;transition:all .2s;}
+.selector button:hover,.selector button.active{background:#2E7D32;color:#fff;}
+.selector .print-btn{margin-left:auto;background:#555;border-color:#555;color:#fff;}
+.selector .print-btn:hover{background:#333;border-color:#333;}
+
+.week{display:none;max-width:1180px;margin:20px auto;padding:0 12px 40px;}
+.week.show{display:block;}
+
+.school-header{background:linear-gradient(135deg,#2E7D32,#43A047);
+  color:#fff;padding:18px 24px;border-radius:10px 10px 0 0;}
+.school-header h1{font-size:20px;font-weight:700;letter-spacing:.5px;}
+.school-header h2{font-size:14px;font-weight:400;margin-top:4px;opacity:.9;}
+
+.meta-bar{background:#fff;border-left:5px solid #2E7D32;padding:10px 22px;
+  display:flex;flex-wrap:wrap;gap:18px;font-size:12px;color:#444;}
+.meta-bar span strong{color:#2E7D32;}
+
+.value-banner{background:#F1F8E9;border-left:5px solid #2E7D32;
+  padding:12px 22px;margin-top:2px;}
+.vt{font-weight:700;font-size:13.5px;color:#2E7D32;margin-bottom:4px;}
+.vs{font-size:12px;color:#555;line-height:1.7;}
+
+.inquiry-banner{background:#fff;border-left:5px solid #43A047;
+  padding:14px 22px;margin-top:2px;}
+.iq-label{font-size:11px;font-weight:700;color:#43A047;text-transform:uppercase;
+  letter-spacing:.8px;margin-bottom:6px;}
+.iq-q{font-size:16px;font-style:italic;color:#1B5E20;line-height:1.5;}
+
+.goals-container{background:#fff;border-left:5px solid #2E7D32;
+  padding:16px 22px;margin-top:2px;}
+.goals-container h3{font-size:13px;font-weight:700;color:#2E7D32;
+  margin-bottom:10px;border-bottom:1px solid #C8E6C9;padding-bottom:6px;}
+.goal-subhead{color:#fff;padding:4px 10px;border-radius:4px;
+  font-size:11.5px;font-weight:700;margin:8px 0 4px;display:inline-block;}
+.goals-container ul{margin:0 0 4px 18px;}
+.goals-container li{font-size:12px;line-height:1.6;color:#444;}
+
+.gs-read {background:#E65100;} .gs-write{background:#6A1B9A;}
+.gs-speak{background:#00838F;} .gs-math {background:#283593;}
+.gs-sci  {background:#2E7D32;} .gs-ss   {background:#5D4037;}
+.gs-sel  {background:#880E4F;} .gs-arts {background:#AD1457;}
+.gs-music{background:#D84315;} .gs-pe   {background:#00695C;}
+.gs-comp {background:#006064;} .gs-wl   {background:#00695C;}
+.gs-atl  {background:#2E7D32;}
+
+.tt-title{background:#2E7D32;color:#fff;padding:8px 22px;
+  font-size:13px;font-weight:700;margin-top:2px;}
+.tt{width:100%;border-collapse:collapse;background:#fff;font-size:11.5px;}
+.tt th{background:#1B5E20;color:#fff;padding:7px 8px;text-align:left;font-size:11px;}
+.tt td{padding:6px 8px;border:1px solid #ddd;vertical-align:top;line-height:1.5;}
+.tt tr:nth-child(even) td{background:#F9FBE7;}
+.tt .all-day{text-align:center;font-style:italic;color:#555;}
+em.ph{color:#aaa;font-style:italic;}
+
+.row-arrival td:first-child{border-left:5px solid #2E7D32;}
+.row-circle  td:first-child{border-left:5px solid #FFA000;}
+.row-thai    td:first-child{border-left:5px solid #B71C1C;}
+.row-snack   td:first-child{border-left:5px solid #F57F17;}
+.row-ela1    td:first-child{border-left:5px solid #E65100;}
+.row-mind    td:first-child{border-left:5px solid #00838F;}
+.row-math    td:first-child{border-left:5px solid #283593;}
+.row-lunch   td:first-child{border-left:5px solid #558B2F;}
+.row-ctr     td:first-child{border-left:5px solid #00695C;}
+.row-ela2    td:first-child{border-left:5px solid #6A1B9A;}
+.row-spec    td:first-child{border-left:5px solid #880E4F;}
+.row-snack2  td:first-child{border-left:5px solid #F57F17;}
+.row-aft     td:first-child{border-left:5px solid #AD1457;}
+.row-close   td:first-child{border-left:5px solid #37474F;}
+
+.note{background:#fff;border-left:5px solid #2E7D32;padding:10px 22px;
+  font-size:12px;color:#444;line-height:1.9;margin-top:2px;}
+.note-green{background:#F1F8E9;border-left-color:#558B2F;color:#33691E;}
+
+.footer{background:#E8F5E9;border-top:3px solid #2E7D32;padding:10px 22px;
+  font-size:12px;text-align:center;color:#1B5E20;margin-top:2px;
+  border-radius:0 0 10px 10px;}
+
+@media print{
+  .selector{display:none!important;}
+  .week{display:none!important;margin:0;padding:0;}
+  .week.show{display:block!important;}
+  body{background:#fff;}
+}
+</style>
+</head>
+<body>
+<div class="selector">
+  <span class="lbl">📅 View Week:</span>
+  <button onclick="showWeek(6,this)" class="active">Week 6 · Exploring the Seasons</button>
+  <button onclick="showWeek(7,this)" class="">Week 7 · Wind &amp; Rain</button>
+  <button onclick="showWeek(8,this)" class="">Week 8 · Hot and Cold</button>
+  <button onclick="showWeek(9,this)" class="">Week 9 · Seasons Around the World</button>
+  <button onclick="showWeek(10,this)" class="">Week 10 · Sharing Joy</button>
+  <button class="print-btn" onclick="window.print()">🖨 Print This Week</button>
+</div>
+
+<div class="week show" id="week6">
+
+  <div class="school-header">
+    <h1>🌍 Pan Asia International School</h1>
+    <h2>KG3 (Age 5) — Unit 2 Week 6 &nbsp;·&nbsp; "I Play, I Learn, I Share"</h2>
+  </div>
+  <div class="meta-bar">
+    <span>📅 <strong>Week 6:</strong> Exploring the Seasons</span>
+    <span>👧 <strong>Grade:</strong> KG3 (Age 5)</span>
+    <span>🌐 <strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Seasonal Awareness &amp; Curiosity</span>
+    <span>🌍 <strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vt">🌱 Curiosity &amp; Collaboration — I wonder about the world and explore it together with others</div>
+    <div class="vs">CASEL: Social Awareness · Self-Awareness &nbsp;·&nbsp; Phonics: <strong>Review</strong> — blend &amp; segment all taught sounds &nbsp;·&nbsp; Sight Words: <strong>my, are</strong> &nbsp;·&nbsp; 🧘 Mindfulness: Weather Breathing (slow inhale = breeze; long exhale = wind fading) &nbsp;·&nbsp; 🎯 Approach: Inquiry-Play Based Learning</div>
+  </div>
+  <div class="inquiry-banner">
+    <div class="iq-label">🔎 What I Wonder — Weekly Inquiry Question</div>
+    <div class="iq-q">"What changes in our world when the seasons change?"</div>
+  </div>
+  <div class="goals-container">
+    <h3>🎯 Week 6 Learning Goals — By the End of This Week Students Will:</h3>
+    <div class="goal-subhead gs-read">📖 ELA 1 — Reading &amp; Phonics</div><ul><li>Blend and segment all previously taught GPC sounds using letter tiles and Elkonin boxes</li><li>Match letters to initial sounds in seasonal and weather vocabulary words</li><li>Read decodable CVC words and simple sentences in a seasonal reading context</li><li>Read and use sight words <em>my</em> and <em>are</em> in independent and shared reading</li></ul>
+    <div class="goal-subhead gs-write">✏️ ELA 2 — Language, Literature &amp; Grammar</div><ul><li>Write 1–2 sentences about a favourite season using invented and conventional spelling</li><li>Label seasonal drawings with weather vocabulary words</li><li>Use <em>my</em> and <em>are</em> correctly in written sentences</li><li>Contribute a page to the shared class book "In ___ season, I see…"</li></ul>
+    <div class="goal-subhead gs-speak">🗣 Speaking &amp; Listening (Circle Time)</div><ul><li>Describe seasonal changes using weather vocabulary in complete sentences</li><li>Share observations about seasons and weather during morning meeting</li><li>Ask and answer "What season?" and "What is the weather?" questions with a partner</li><li>Practise the weekly inquiry question using think-pair-share</li></ul>
+    <div class="goal-subhead gs-math">🔢 Math — Place Value to 100</div><ul><li>Identify tens and ones in two-digit numbers using base-ten blocks</li><li>Build two-digit numbers to 20 using physical and visual materials</li><li>Count groups of ten objects and write the corresponding numeral</li><li>Explain how many tens and ones are in a given two-digit number</li></ul>
+    <div class="goal-subhead gs-sci">🔬 Science / STEM</div><ul><li>Use the five senses to observe and describe seasonal natural objects</li><li>Sort natural items (leaves, ice, flowers, soil) by season and observable properties</li><li>Record observations through drawings in a personal science journal</li><li>Identify one way a plant or animal changes with each season</li></ul>
+    <div class="goal-subhead gs-ss">🌍 Social Studies</div><ul><li>Name the four seasons and describe a key feature of each</li><li>Locate and discuss seasonal differences on a world map or globe</li><li>Identify seasonal celebrations and activities from two or more cultures</li><li>Connect personal experiences to seasonal changes in the local environment</li></ul>
+    <div class="goal-subhead gs-sel">❤️ SEL (CASEL)</div><ul><li>Identify and express feelings of curiosity and wonder when exploring new topics</li><li>Practise turn-taking and active listening during seasonal group discussions</li><li>Share opinions about favourite seasons respectfully, acknowledging others' views</li><li>Recognise how curiosity and observation help us understand the world (CASEL: Social Awareness)</li></ul>
+    <div class="goal-subhead gs-arts">🎨 Arts &amp; Crafts</div><ul><li>🎨 <strong>Four Seasons Tree</strong> — Represent seasonal changes through painting</li><li>Add seasonal elements in four quadrants: spring blossoms · summer leaves · autumn colours · winter snow</li><li>VA.K.Cr2.1 Represent observations and experiences through drawing and painting</li><li>VA.K.Cn11.1 Connect personal artwork to observations of the natural world</li></ul>
+    <div class="goal-subhead gs-music">🎵 Music</div><ul><li><em class="ph">Weekly activities — see specialist teacher</em></li></ul>
+    <div class="goal-subhead gs-pe">🏃 PHE &amp; Movement</div><ul><li><em class="ph">Weekly activities — see specialist teacher</em></li></ul>
+    <div class="goal-subhead gs-comp">💻 Computer</div><ul><li><em class="ph">Weekly activities — see specialist teacher</em></li></ul>
+    <div class="goal-subhead gs-wl">🌐 World Language</div><ul><li>Practise weather vocabulary greetings in a second language (Chinese or Arabic) during World Language time</li></ul>
+    <div class="goal-subhead gs-atl">🧠 ATL &amp; Play-Based Learning</div><ul><li>Thinking: make predictions and ask questions about seasonal changes</li><li>Research: observe and record findings from nature walks using drawings and labels</li><li>Communication: share seasonal discoveries using words, drawings, and gestures</li><li>Self-management: transition independently between season activity centres</li></ul>
+  </div>
+  <div class="tt-title">🗓 Week 6 — Exploring the Seasons — Daily Schedule</div>
+  <table class="tt">
+    <thead><tr>
+      <th style="width:13%">Time &amp; Block</th>
+      <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th>
+    </tr></thead>
+    <tbody><tr class="row-arrival"><td>7:30–8:00<br>☀️ Arrival</td><td colspan="5" class="all-day">🌤️ Good morning! Weather board check, coat hooks, breakfast club, free reading corners</td></tr>
+<tr class="row-circle"><td>8:00–8:10<br>🌅 Circle Time</td><td>Season wheel intro — sort 4 seasons photo cards; class votes for favourite season; create season tally</td><td>Weather chart day 2 — add vocabulary wall: sunny ☀️ cloudy ⛅ rainy 🌧️ windy 💨 snowy ❄️</td><td>Seasons chant — "What's the weather? Who can tell?" clap-and-move class rhyme</td><td>🏫 Whole-School Assembly — join hall at 8:10</td><td>"My favourite season" vote — standing bar chart with sticky notes; count and compare</td></tr>
+<tr class="row-thai"><td>8:10–9:00<br>🇹🇭 Thai / Assembly</td><td><em class="ph">Thai language lesson — see Thai teacher</em></td><td><em class="ph">Thai language lesson — see Thai teacher</em></td><td><em class="ph">Thai language lesson — see Thai teacher</em></td><td>🏫 Whole-School Assembly — join hall at 8:10</td><td><em class="ph">Thai language lesson — see Thai teacher</em></td></tr>
+<tr class="row-snack"><td>9:00–9:20<br>🍎 Snack Break</td><td colspan="5" class="all-day">🍎 Snack time — wash hands, eat, tidy up, free quiet conversation</td></tr>
+<tr class="row-ela1"><td>9:20–10:00<br>🔡 ELA 1 / World Lang</td><td>Phonics review — CVC blending with letter tiles; sort all taught sounds on sound wall</td><td>Segmenting practice — Elkonin boxes; tap-and-say with seasonal picture words</td><td>Sight word <strong>my</strong> — read, trace, stamp, write in "This is my ___" sentence</td><td><em class="ph">World Language (Chinese / Arabic) — specialist</em></td><td>Sight word <strong>are</strong> — "We are ___" sentence starters; add to word wall</td></tr>
+<tr class="row-mind"><td>10:00–10:15<br>🧘 Mindfulness Break</td><td>🌬️ Weather Breathing — inhale slowly like a gentle breeze; exhale as wind gently fades away</td><td>👁️ 5 Senses Observation — eyes closed; name one thing you can hear, feel, smell right now</td><td>☁️ Cloud Visualization — imagine floating on a soft white cloud; breathe slowly and rest</td><td>🙏 Gratitude Body Scan — notice warmth and safety in your body; smile softly inside</td><td>🍂 Seasonal Movement — sway like falling leaves; stretch up tall like spring sunflowers</td></tr>
+<tr class="row-math"><td>10:15–11:00<br>🔢 Math / ELA</td><td>🔢 Math: Tens &amp; Ones intro — base-ten blocks; count 10s and 1s; build numbers 10–19</td><td>✏️ ELA 2: Shared writing — "In ___ season, I see…" class book page; guided sentences</td><td>🔢 Math: Group by 10s — counters in tens towers; "How many tens? How many ones?"</td><td>🔡 ELA 1: Alphabet arc review; beginning-sound matching games; phonics partner centres</td><td>🔢 Math: Build two-digit numbers — make 24, 31, 18 with base-ten blocks; who is fastest?</td></tr>
+<tr class="row-lunch"><td>11:00–11:50<br>🍱 Lunch Break</td><td colspan="5" class="all-day">🍱 Lunch 11:00–11:30 · 11:30–11:50 Self-Directed Centres (puzzles, drawing, free reading)</td></tr>
+<tr class="row-ctr"><td>11:50–12:20<br>🏡 Centres / 🌳 Outdoor</td><td>🏡 Centres: Season sensory sorting table · seasons vocab matching cards · playdough scenes</td><td>🏡 Centres: Leaf rubbings activity · season collage tray · weather reader books corner</td><td>🌳 Outdoor: Nature walk — collect leaves, seeds, twigs; observe seasonal clues</td><td>🌳 Outdoor: Seasonal movement — move like falling leaves; hop like spring frogs</td><td>🏡 Centres: Season sticker chart · four seasons puzzle · dramatic play weather station</td></tr>
+<tr class="row-ela2"><td>12:20–13:00<br>📖 ELA 2 / SS / Math</td><td>📖 ELA 2: Readers Workshop — independent decodable books with seasons vocabulary</td><td>🌍 SS: Four Seasons globe map — where do seasons happen? discuss Earth's tilt and sunlight</td><td>📖 ELA 2: Phonics review games — word family sorting in seasons contexts</td><td>🔢 Math: Place value warm-up — number card games; tens and ones sort with counters</td><td>📖 ELA 2: Readers Theatre — "The Four Seasons" simple class script; practise fluency</td></tr>
+<tr class="row-spec"><td>13:00–13:45<br>🌟 Specials</td><td>🎵 Music<br><em class="ph">Weekly activities — see specialist teacher</em></td><td>🎨 Arts &amp; Crafts<br>🎨 <strong>Four Seasons Tree</strong> — paint a tree trunk and add seasonal elements in each quadrant (blossoms / leaves / autumn colours / snow). <em>Learning Goal: Represent seasonal changes through art.</em> <span style="font-size:10.5px;color:#888;">VA.K.Cr2.1 · VA.K.Cn11.1</span></td><td>💻 Computer<br><em class="ph">Weekly activities — see specialist teacher</em></td><td>🔬 Science/STEM<br>🔬 5 Senses Seasons Lab — explore season items (pinecones, soil, ice, spring flowers) using senses; sort by season; record observations through drawing in science journals</td><td>🏃 PHE<br><em class="ph">Weekly activities — see specialist teacher</em></td></tr>
+<tr class="row-snack2"><td>13:45–14:00<br>🍊 Snack</td><td colspan="5" class="all-day">🍊 Afternoon snack — wash hands, eat, quiet conversation, tidy</td></tr>
+<tr class="row-aft"><td>14:00–14:35<br>🌱 Afternoon Block</td><td>🌳 Outdoor free play — seasonal garden observation walk</td><td>🌳 Outdoor exploration — playground</td><td>🏃 MOVEMENT PHE — seasons yoga flow; balance and stretch</td><td>🎤 Show &amp; Tell: "Something from my favourite season"</td><td>⛱️ Sand Play — create sand season scenes; measure and pour</td></tr>
+<tr class="row-close"><td>14:35–14:45<br>👋 Closing Circle</td><td colspan="5" class="all-day">👋 Pack bags · 3 things I learned today · gratitude share · goodbye song</td></tr>
+</tbody>
+  </table>
+  <div class="note">
+    <strong>📚 Key Concepts:</strong> seasons · weather · change · observation · adaptation · pattern · curiosity<br>
+    <strong>📖 Recommended Books:</strong> <em>Little Cloud</em> — Eric Carle &nbsp;·&nbsp; <em>When Spring Comes</em> — Kevin Henkes &nbsp;·&nbsp; <em>Goodbye Summer, Hello Autumn</em> — Kenard Pak<br>
+    <strong>🌍 Global Context Statement:</strong> Identities &amp; Relationships — Seasonal Awareness &amp; Curiosity: Noticing changes in the world around us builds wonder and an appreciation for how all living things adapt.
+  </div>
+  <div class="note note-green">
+    <strong>🇹🇭 Thai Teacher Note — Week 6:</strong> Unit 2 theme is Weather and Seasons. Thai lessons may include weather vocabulary (ฝน rain · แดด sun · ลม wind · หิมะ snow), a weather greeting song, and asking "วันนี้อากาศเป็นอย่างไร?" (How is the weather today?). Please coordinate on the weather word wall and share seasonal Thai vocabulary with the English teacher.
+  </div>
+  <div class="footer">
+    <strong>Week 6 — Exploring the Seasons</strong> &nbsp;·&nbsp; Pan Asia International School &nbsp;·&nbsp; KG3 (Age 5)
+    &nbsp;·&nbsp; Teacher: __________________ &nbsp;·&nbsp; Week of: __________________
+  </div>
+</div>
+<div class="week " id="week7">
+
+  <div class="school-header">
+    <h1>🌍 Pan Asia International School</h1>
+    <h2>KG3 (Age 5) — Unit 2 Week 7 &nbsp;·&nbsp; "I Play, I Learn, I Share"</h2>
+  </div>
+  <div class="meta-bar">
+    <span>📅 <strong>Week 7:</strong> Wind and Rain</span>
+    <span>👧 <strong>Grade:</strong> KG3 (Age 5)</span>
+    <span>🌐 <strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Adaptation &amp; Weather Patterns</span>
+    <span>🌍 <strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vt">🌀 Adaptability — I can change and adjust, just like the weather</div>
+    <div class="vs">CASEL: Self-Management · Resilience &nbsp;·&nbsp; Phonics: <strong>g, o</strong> — /g/ goat, garden · /o/ octopus, top &nbsp;·&nbsp; Sight Words: <strong>he, with</strong> &nbsp;·&nbsp; 🧘 Mindfulness: Wind Breath (inhale 4 · exhale 6 like a fading gust) &nbsp;·&nbsp; 🎯 Approach: Inquiry-Play Based Learning</div>
+  </div>
+  <div class="inquiry-banner">
+    <div class="iq-label">🔎 What I Wonder — Weekly Inquiry Question</div>
+    <div class="iq-q">"How do wind and rain change the way we dress, play, and live?"</div>
+  </div>
+  <div class="goals-container">
+    <h3>🎯 Week 7 Learning Goals — By the End of This Week Students Will:</h3>
+    <div class="goal-subhead gs-read">📖 ELA 1 — Reading &amp; Phonics</div><ul><li>Recognise and produce the /g/ sound in initial position (goat, game, gap)</li><li>Recognise and produce the /o/ short vowel sound (octopus, top, fog)</li><li>Blend CVC words containing g and o: got, fog, bog, log, god</li><li>Read and recognise sight words <em>he</em> and <em>with</em> in context</li></ul>
+    <div class="goal-subhead gs-write">✏️ ELA 2 — Language, Literature &amp; Grammar</div><ul><li>Write CVC words with g and o using letter formation on lined paper</li><li>Write 2 sentences about a rainy day using sight words <em>he</em> and <em>with</em></li><li>Draw and label a stormy weather scene with 3+ vocabulary words</li><li>Contribute a sentence to the class rainy-day journal</li></ul>
+    <div class="goal-subhead gs-speak">🗣 Speaking &amp; Listening (Circle Time)</div><ul><li>Describe wind and rain using adjectives: loud, soft, strong, gentle, cold</li><li>Retell the story "The Wind Blew" using sequence words: first, then, finally</li><li>Discuss how rainy or stormy weather makes them feel and what they do to adapt</li><li>Practise "he" and "with" in spoken sentences about weather and friends</li></ul>
+    <div class="goal-subhead gs-math">🔢 Math — Place Value to 100</div><ul><li>Represent two-digit numbers in expanded form (e.g. 34 = 30 + 4)</li><li>Write two-digit numbers in standard and expanded form</li><li>Explain place value: "My number has ___ tens and ___ ones"</li><li>Match base-ten block representations to written two-digit numbers</li></ul>
+    <div class="goal-subhead gs-sci">🔬 Science / STEM</div><ul><li>Predict and test which objects are moved by wind force</li><li>Record results using a simple table with pictures</li><li>Describe wind as a natural force that can move, push, and change things</li><li>Connect wind observations to real-world weather patterns (storms, kites, sails)</li></ul>
+    <div class="goal-subhead gs-ss">🌍 Social Studies</div><ul><li>Identify rainy and stormy climates on a simple world weather map</li><li>Discuss how people in rainy regions (e.g. Thailand, UK, rainforest) dress and live</li><li>Compare rainy season in one country with weather at school</li><li>Recognise that weather affects the activities and clothing choices of communities</li></ul>
+    <div class="goal-subhead gs-sel">❤️ SEL (CASEL)</div><ul><li>Identify feelings (nervous, excited, cosy) associated with stormy weather (Self-Awareness)</li><li>Discuss what it means to be brave like Brave Irene when facing difficulty</li><li>Practise self-calming strategies during the Storm-into-Calm mindfulness activity</li><li>Adapt behaviour for indoor rainy-day activities: calm voice, careful movements (Self-Management)</li></ul>
+    <div class="goal-subhead gs-arts">🎨 Arts &amp; Crafts</div><ul><li>🎨 <strong>Weather Texture Board</strong> — Explore weather through tactile mixed media</li><li>Select and apply materials that represent different weather textures (rough, smooth, soft, crinkly)</li><li>VA.K.Cr1.1 Explore and experiment with a variety of art-making materials</li><li>VA.K.Re7.1 Observe and describe texture and visual qualities in artwork and nature</li></ul>
+    <div class="goal-subhead gs-music">🎵 Music</div><ul><li><em class="ph">Weekly activities — see specialist teacher</em></li></ul>
+    <div class="goal-subhead gs-pe">🏃 PHE &amp; Movement</div><ul><li><em class="ph">Weekly activities — see specialist teacher</em></li></ul>
+    <div class="goal-subhead gs-comp">💻 Computer</div><ul><li><em class="ph">Weekly activities — see specialist teacher</em></li></ul>
+    <div class="goal-subhead gs-wl">🌐 World Language</div><ul><li>Practise weather-related vocabulary in a second language; storm and rain phrases</li></ul>
+    <div class="goal-subhead gs-atl">🧠 ATL &amp; Play-Based Learning</div><ul><li>Thinking: predict outcomes of wind experiments before testing</li><li>Research: observe and record which objects respond to wind using a simple table</li><li>Communication: describe stormy weather using adjectives and sensory details</li><li>Self-management: regulate emotions and stay safe during windy outdoor play</li></ul>
+  </div>
+  <div class="tt-title">🗓 Week 7 — Wind and Rain — Daily Schedule</div>
+  <table class="tt">
+    <thead><tr>
+      <th style="width:13%">Time &amp; Block</th>
+      <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th>
+    </tr></thead>
+    <tbody><tr class="row-arrival"><td>7:30–8:00<br>☀️ Arrival</td><td colspan="5" class="all-day">🌤️ Good morning! Weather board check, coat hooks, breakfast club, free reading corners</td></tr>
+<tr class="row-circle"><td>8:00–8:10<br>🌅 Circle Time</td><td>"Wind or Rain?" sorting game — weather photo cards; describe how each feels on your body</td><td>Rain drum circle — tap on desks to create raindrop sounds; vocabulary: drizzle, pour, storm</td><td>Class weather journal — record today's weather; compare to last week's chart</td><td>🏫 Whole-School Assembly — join hall at 8:10</td><td>"What do you do on a rainy day?" — sentence starters; partner share and report back</td></tr>
+<tr class="row-thai"><td>8:10–9:00<br>🇹🇭 Thai / Assembly</td><td><em class="ph">Thai language lesson — see Thai teacher</em></td><td><em class="ph">Thai language lesson — see Thai teacher</em></td><td><em class="ph">Thai language lesson — see Thai teacher</em></td><td>🏫 Whole-School Assembly — join hall at 8:10</td><td><em class="ph">Thai language lesson — see Thai teacher</em></td></tr>
+<tr class="row-snack"><td>9:00–9:20<br>🍎 Snack Break</td><td colspan="5" class="all-day">🍎 Snack time — wash hands, eat, tidy up, free quiet conversation</td></tr>
+<tr class="row-ela1"><td>9:20–10:00<br>🔡 ELA 1 / World Lang</td><td>Introduce /g/ — goat, game, garden; letter formation practice in rain sensory tray</td><td>Introduce /o/ — octopus, on, top; blend CVC: got, fog, bog; Elkonin boxes</td><td>Blend g and o words — read "The Fog" decodable; write g/o words on cloud-shaped paper</td><td><em class="ph">World Language (Chinese / Arabic) — specialist</em></td><td>Sight words <strong>he</strong> and <strong>with</strong> — "He plays with me." sentences; partner reading</td></tr>
+<tr class="row-mind"><td>10:00–10:15<br>🧘 Mindfulness Break</td><td>🌬️ Wind Breath — inhale for 4 counts; exhale for 6, slowly like a gust losing strength</td><td>🌧️ Rain Drum Scan — tap fingers on arms like raindrops; listen to the rhythmic sound</td><td>⚡ Storm into Calm — tense whole body like a storm; release into complete stillness</td><td>💧 Puddle Reflection — imagine a calm puddle mirror; look in and breathe slowly</td><td>🌈 Rainbow Breathing — trace a rainbow arc with finger; breathe in through nose, out through mouth</td></tr>
+<tr class="row-math"><td>10:15–11:00<br>🔢 Math / ELA</td><td>🔢 Math: Representing two-digit numbers — expanded form 34 = 30+4; tens and ones frames</td><td>✏️ ELA 2: Writing "On a rainy day, he/she/I ___" — use new sight words in sentences</td><td>🔢 Math: Standard and expanded form matching — number card games; write numbers two ways</td><td>🔡 ELA 1: Decode and read g/o words in context; weather sentence strips; oral reading</td><td>🔢 Math: Explain place value — "My number is ___. It has ___ tens and ___ ones."</td></tr>
+<tr class="row-lunch"><td>11:00–11:50<br>🍱 Lunch Break</td><td colspan="5" class="all-day">🍱 Lunch 11:00–11:30 · 11:30–11:50 Self-Directed Centres (puzzles, drawing, free reading)</td></tr>
+<tr class="row-ctr"><td>11:50–12:20<br>🏡 Centres / 🌳 Outdoor</td><td>🏡 Centres: Watercolour rain painting · cloud dough sensory · "Go Dog Go!" easy reader</td><td>🏡 Centres: Wind experiment — fans and tissue paper; record which items move; rain song puzzle</td><td>🌳 Outdoor: Puddle science — measure puddle size with rulers; observe water flow paths</td><td>🌳 Outdoor: Wind play — streamers and pinwheels; feel the wind; move like wind on the grass</td><td>🏡 Centres: Rainy day dramatic play — umbrellas, boots, raincoats in dress-up corner</td></tr>
+<tr class="row-ela2"><td>12:20–13:00<br>📖 ELA 2 / SS / Math</td><td>📖 ELA 2: Readers Workshop — "The Wind Blew" guided reading; sequence and retell</td><td>🌍 SS: Weather around the world — which places are rainy? explore simple world weather maps</td><td>📖 ELA 2: Word family work — -og, -ot, -op families; connect g and o to real weather words</td><td>🔢 Math: Two-digit number challenges — place value puzzles; tens and ones riddle cards</td><td>📖 ELA 2: Write a rainy day journal entry — draw and label with 2–3 weather sentences</td></tr>
+<tr class="row-spec"><td>13:00–13:45<br>🌟 Specials</td><td>🎵 Music<br><em class="ph">Weekly activities — see specialist teacher</em></td><td>🎨 Arts &amp; Crafts<br>🎨 <strong>Weather Texture Board</strong> — explore textures representing rain, clouds, wind, and sun using mixed media (foil, cotton, tissue, sandpaper). <em>Learning Goal: Explore weather concepts using textures and mixed media.</em> <span style="font-size:10.5px;color:#888;">VA.K.Cr1.1 · VA.K.Re7.1</span></td><td>💻 Computer<br><em class="ph">Weekly activities — see specialist teacher</em></td><td>🔬 Science/STEM<br>🔬 Wind Science Lab — test which objects a desk fan moves (feather, pebble, cotton, paper); predict, test, and record results; discuss how wind has power</td><td>🏃 PHE<br><em class="ph">Weekly activities — see specialist teacher</em></td></tr>
+<tr class="row-snack2"><td>13:45–14:00<br>🍊 Snack</td><td colspan="5" class="all-day">🍊 Afternoon snack — wash hands, eat, quiet conversation, tidy</td></tr>
+<tr class="row-aft"><td>14:00–14:35<br>🌱 Afternoon Block</td><td>🌳 Outdoor — rainy-day obstacle course under the covered walkway</td><td>🌳 Outdoor — playground</td><td>🏃 MOVEMENT PHE — dance like wind and rain; freeze-and-move weather game</td><td>🎤 Show &amp; Tell: "Something the wind or rain can change"</td><td>⛱️ Sand Play — make rivers and lakes; observe how water flows and pools</td></tr>
+<tr class="row-close"><td>14:35–14:45<br>👋 Closing Circle</td><td colspan="5" class="all-day">👋 Pack bags · 3 things I learned today · gratitude share · goodbye song</td></tr>
+</tbody>
+  </table>
+  <div class="note">
+    <strong>📚 Key Concepts:</strong> wind · rain · adaptation · storm · safety · courage · change<br>
+    <strong>📖 Recommended Books:</strong> <em>The Wind Blew</em> — Pat Hutchins &nbsp;·&nbsp; <em>Brave Irene</em> — William Steig &nbsp;·&nbsp; <em>Jump Into Science: Storms</em> — Rick Grayson<br>
+    <strong>🌍 Global Context Statement:</strong> Identities &amp; Relationships — Adaptation &amp; Weather Patterns: Exploring stormy and rainy weather helps children understand how living things adapt, stay safe, and find joy even in difficult conditions.
+  </div>
+  <div class="note note-green">
+    <strong>🇹🇭 Thai Teacher Note — Week 7:</strong> Theme is wind and rain. Thai lessons may include stormy weather vocabulary (ลม wind · ฝน rain · พายุ storm · เมฆ cloud), a rain song or rhyme, and safety phrases for bad weather. Please coordinate on the weather word wall and discuss how Thai culture responds to rainy season.
+  </div>
+  <div class="footer">
+    <strong>Week 7 — Wind and Rain</strong> &nbsp;·&nbsp; Pan Asia International School &nbsp;·&nbsp; KG3 (Age 5)
+    &nbsp;·&nbsp; Teacher: __________________ &nbsp;·&nbsp; Week of: __________________
+  </div>
+</div>
+<div class="week " id="week8">
+
+  <div class="school-header">
+    <h1>🌍 Pan Asia International School</h1>
+    <h2>KG3 (Age 5) — Unit 2 Week 8 &nbsp;·&nbsp; "I Play, I Learn, I Share"</h2>
+  </div>
+  <div class="meta-bar">
+    <span>📅 <strong>Week 8:</strong> Hot and Cold</span>
+    <span>👧 <strong>Grade:</strong> KG3 (Age 5)</span>
+    <span>🌐 <strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Temperature, Adaptation &amp; Resilience</span>
+    <span>🌍 <strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vt">❄️ Resilience — I am strong and adaptable in every kind of weather</div>
+    <div class="vs">CASEL: Self-Management · Growth Mindset &nbsp;·&nbsp; Phonics: <strong>c, k</strong> — /k/ cat, cap · kick, key (same sound!) &nbsp;·&nbsp; Sight Words: <strong>me, she</strong> &nbsp;·&nbsp; 🧘 Mindfulness: Sunshine Warmth Breathing (breathe in golden warmth; feel it spread through the body) &nbsp;·&nbsp; 🎯 Approach: Inquiry-Play Based Learning</div>
+  </div>
+  <div class="inquiry-banner">
+    <div class="iq-label">🔎 What I Wonder — Weekly Inquiry Question</div>
+    <div class="iq-q">"How do living things keep warm or cool when the weather changes?"</div>
+  </div>
+  <div class="goals-container">
+    <h3>🎯 Week 8 Learning Goals — By the End of This Week Students Will:</h3>
+    <div class="goal-subhead gs-read">📖 ELA 1 — Reading &amp; Phonics</div><ul><li>Recognise and produce the /c/ (hard c) sound: cat, cap, cut, cold</li><li>Recognise and produce the /k/ sound and understand c and k share the /k/ phoneme</li><li>Sort c and k words; read CVC words containing c and k in decodable texts</li><li>Read and recognise sight words <em>me</em> and <em>she</em> in context</li></ul>
+    <div class="goal-subhead gs-write">✏️ ELA 2 — Language, Literature &amp; Grammar</div><ul><li>Write CVC words with c and k using correct letter formation</li><li>Write 2 sentences comparing hot and cold weather using <em>me</em> and <em>she</em></li><li>Label a drawing of an animal adapting to a temperature (e.g. bear in snow)</li><li>Contribute to the class book "Cold, Cool, Crisp: A Weather ABC"</li></ul>
+    <div class="goal-subhead gs-speak">🗣 Speaking &amp; Listening (Circle Time)</div><ul><li>Describe temperature using adjectives: hot, warm, cool, cold, freezing, boiling</li><li>Retell key events from "The Snowy Day" using beginning, middle, and end</li><li>Discuss how animals and people adapt: hibernation, migration, clothing, shelter</li><li>Use <em>she</em> and <em>me</em> in spoken sentences about weather activities</li></ul>
+    <div class="goal-subhead gs-math">🔢 Math — Place Value to 100</div><ul><li>Compare two two-digit numbers using base-ten blocks and number lines</li><li>Use >, &lt;, and = symbols correctly when comparing pairs of numbers</li><li>Solve comparison word problems using seasonal temperature contexts</li><li>Order a set of three two-digit numbers from smallest to greatest</li></ul>
+    <div class="goal-subhead gs-sci">🔬 Science / STEM</div><ul><li>Predict and test how temperature affects the rate of melting of ice</li><li>Design a simple insulation solution using available materials</li><li>Explain how animals adapt to cold (fur, hibernation, migration) or hot (shade, burrowing)</li><li>Record experiment results using drawings and simple labels</li></ul>
+    <div class="goal-subhead gs-ss">🌍 Social Studies</div><ul><li>Identify hot and cold climate regions on a world map (Arctic, Sahara, tropics)</li><li>Describe how people in different climates dress and build their homes</li><li>Compare Thailand's hot season with cold regions; discuss similarities and differences</li><li>Recognise that people adapt their lifestyles to temperature and climate</li></ul>
+    <div class="goal-subhead gs-sel">❤️ SEL (CASEL)</div><ul><li>Identify what it feels like to be resilient when something is hard or uncomfortable</li><li>Discuss times they have adapted and shown strength (like animals in cold weather)</li><li>Practise staying calm during challenging activities using breathing strategies</li><li>Recognise that both hot and cold emotions are natural; choose how to respond (Self-Management)</li></ul>
+    <div class="goal-subhead gs-arts">🎨 Arts &amp; Crafts</div><ul><li>🎨 <strong>Rainy Day Print Patterns</strong> — create repeating weather-inspired patterns</li><li>Select printmaking tools (sponges, forks, caps) to represent rain, hail, and puddles</li><li>VA.K.Cr2.2 Use printmaking tools to create artwork</li><li>VA.K.Re7.1 Identify visual patterns and texture qualities in artwork</li></ul>
+    <div class="goal-subhead gs-music">🎵 Music</div><ul><li><em class="ph">Weekly activities — see specialist teacher</em></li></ul>
+    <div class="goal-subhead gs-pe">🏃 PHE &amp; Movement</div><ul><li><em class="ph">Weekly activities — see specialist teacher</em></li></ul>
+    <div class="goal-subhead gs-comp">💻 Computer</div><ul><li><em class="ph">Weekly activities — see specialist teacher</em></li></ul>
+    <div class="goal-subhead gs-wl">🌐 World Language</div><ul><li>Practise hot and cold vocabulary in a second language; temperature-related phrases</li></ul>
+    <div class="goal-subhead gs-atl">🧠 ATL &amp; Play-Based Learning</div><ul><li>Thinking: predict experimental outcomes and explain reasoning before testing</li><li>Research: collect temperature evidence using observations and simple instruments</li><li>Communication: report findings from temperature experiments using drawings and labels</li><li>Self-management: stay resilient when an experiment does not go as predicted</li></ul>
+  </div>
+  <div class="tt-title">🗓 Week 8 — Hot and Cold — Daily Schedule</div>
+  <table class="tt">
+    <thead><tr>
+      <th style="width:13%">Time &amp; Block</th>
+      <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th>
+    </tr></thead>
+    <tbody><tr class="row-arrival"><td>7:30–8:00<br>☀️ Arrival</td><td colspan="5" class="all-day">🌤️ Good morning! Weather board check, coat hooks, breakfast club, free reading corners</td></tr>
+<tr class="row-circle"><td>8:00–8:10<br>🌅 Circle Time</td><td>Temperature sensory intro — warm and cold water experiment; vocabulary: hot, warm, cool, cold, freezing</td><td>"Dress for the weather" — sort clothes into hot/cold weather bins; discuss choices</td><td>Temperature number line — arrange picture cards from coldest to hottest season or climate</td><td>🏫 Whole-School Assembly — join hall at 8:10</td><td>"How would you feel in ___?" — role-play dressing and acting in different temperatures</td></tr>
+<tr class="row-thai"><td>8:10–9:00<br>🇹🇭 Thai / Assembly</td><td><em class="ph">Thai language lesson — see Thai teacher</em></td><td><em class="ph">Thai language lesson — see Thai teacher</em></td><td><em class="ph">Thai language lesson — see Thai teacher</em></td><td>🏫 Whole-School Assembly — join hall at 8:10</td><td><em class="ph">Thai language lesson — see Thai teacher</em></td></tr>
+<tr class="row-snack"><td>9:00–9:20<br>🍎 Snack Break</td><td colspan="5" class="all-day">🍎 Snack time — wash hands, eat, tidy up, free quiet conversation</td></tr>
+<tr class="row-ela1"><td>9:20–10:00<br>🔡 ELA 1 / World Lang</td><td>Introduce /c/ — cat, cap, cut; whiteboard letter formation; c-words in weather context</td><td>Introduce /k/ — key, kit, kick; notice c and k make the same sound; word sort</td><td>C and K comparison — "When do we use c? When k?" decodable "The King" reading</td><td><em class="ph">World Language (Chinese / Arabic) — specialist</em></td><td>Sight words <strong>me</strong> and <strong>she</strong> — "She can see me." reading and writing</td></tr>
+<tr class="row-mind"><td>10:00–10:15<br>🧘 Mindfulness Break</td><td>☀️ Sunshine Warmth Breathing — inhale warm golden light; feel warmth spread slowly through body</td><td>❄️ Snow Globe Shake — shake imaginary snow globe; watch flakes settle as you breathe out</td><td>☕ Hot Chocolate Mindfulness — imagine holding a warm mug; breathe in the steam; feel warmth</td><td>🌬️ Cool Breeze Scan — imagine a gentle cool breeze; notice where you feel it on your skin</td><td>🌡️ Temperature Gratitude — thank the sun for warmth and water for keeping us cool</td></tr>
+<tr class="row-math"><td>10:15–11:00<br>🔢 Math / ELA</td><td>🔢 Math: Compare two-digit numbers — build number pairs with blocks; which has more? less?</td><td>✏️ ELA 2: "In hot weather I ___. In cold weather I ___." — 2-sentence comparison journal</td><td>🔢 Math: Use >, &lt;, = symbols — practice with number pairs written on whiteboards</td><td>🔡 ELA 1: C and K practice — guided reading; oral blending; c/k word hunt in decodables</td><td>🔢 Math: Story problems — "There are 32 hot days and 28 cold days. Which is more?"</td></tr>
+<tr class="row-lunch"><td>11:00–11:50<br>🍱 Lunch Break</td><td colspan="5" class="all-day">🍱 Lunch 11:00–11:30 · 11:30–11:50 Self-Directed Centres (puzzles, drawing, free reading)</td></tr>
+<tr class="row-ctr"><td>11:50–12:20<br>🏡 Centres / 🌳 Outdoor</td><td>🏡 Centres: Ice science — observe ice melting in warm vs cold water; predict and record</td><td>🏡 Centres: Hot/cold object sorting · c-k word matching cards · temperature picture pairs</td><td>🌳 Outdoor: Shadow science — trace shadows at different times; compare sun and shade temp</td><td>🌳 Outdoor: Temperature walk — feel surfaces in sun vs shade; observe steam or frost</td><td>🏡 Centres: Hot/cold dramatic play — seasons restaurant: hot soup or cold ice cream menu</td></tr>
+<tr class="row-ela2"><td>12:20–13:00<br>📖 ELA 2 / SS / Math</td><td>📖 ELA 2: Readers Workshop — "The Snowy Day" read-aloud and discussion; retell events</td><td>🌍 SS: How people dress around the world — explore photos from cold (Arctic) and hot (Sahara) climates</td><td>📖 ELA 2: C/K word family mini-books — write class book "Cold, Cool, Crisp: A Weather ABC"</td><td>🔢 Math: Compare numbers in context — temperature number line; order numbers to 99</td><td>📖 ELA 2: Write "My favourite weather" page — illustrate and share with class</td></tr>
+<tr class="row-spec"><td>13:00–13:45<br>🌟 Specials</td><td>🎵 Music<br><em class="ph">Weekly activities — see specialist teacher</em></td><td>🎨 Arts &amp; Crafts<br>���� <strong>Rainy Day Print Patterns</strong> — create repeating weather patterns using found objects (bottle caps, sponges, forks) dipped in paint to suggest rain, hail, and puddles. <em>Learning Goal: Create repeating weather-inspired patterns using printmaking.</em> <span style="font-size:10.5px;color:#888;">VA.K.Cr2.2 · VA.K.Re7.1</span></td><td>💻 Computer<br><em class="ph">Weekly activities — see specialist teacher</em></td><td>🔬 Science/STEM<br>🔬 Temperature Experiment — predict what melts faster (ice cube in sun vs shade); measure with stopwatch; discuss results; design a simple insulation wrapper using scrap materials</td><td>🏃 PHE<br><em class="ph">Weekly activities — see specialist teacher</em></td></tr>
+<tr class="row-snack2"><td>13:45–14:00<br>🍊 Snack</td><td colspan="5" class="all-day">🍊 Afternoon snack — wash hands, eat, quiet conversation, tidy</td></tr>
+<tr class="row-aft"><td>14:00–14:35<br>🌱 Afternoon Block</td><td>🌳 Outdoor — observe hot/cold differences in the school garden environment</td><td>���� Outdoor — playground</td><td>🏃 MOVEMENT PHE — freeze dance; jump to warm up; slow stretching to cool down</td><td>🎤 Show &amp; Tell: "Something that keeps you warm or cool"</td><td>⛱️ Sand Play — build an igloo (cold scene) and a desert scene in the sand trays</td></tr>
+<tr class="row-close"><td>14:35–14:45<br>👋 Closing Circle</td><td colspan="5" class="all-day">👋 Pack bags · 3 things I learned today · gratitude share · goodbye song</td></tr>
+</tbody>
+  </table>
+  <div class="note">
+    <strong>📚 Key Concepts:</strong> temperature · hot · cold · adaptation · shelter · hibernation · resilience<br>
+    <strong>📖 Recommended Books:</strong> <em>The Snowy Day</em> — Ezra Jack Keats &nbsp;·&nbsp; <em>Hot Day on Abbott Avenue</em> — Karen English &nbsp;·&nbsp; <em>Over and Under the Snow</em> — Kate Messner<br>
+    <strong>🌍 Global Context Statement:</strong> Identities &amp; Relationships — Temperature, Adaptation &amp; Resilience: Understanding how animals, plants, and people adapt to hot and cold temperatures builds empathy and a sense of our shared connection to the natural world.
+  </div>
+  <div class="note note-green">
+    <strong>🇹🇭 Thai Teacher Note — Week 8:</strong> Theme is hot and cold temperatures. Thai lessons may include temperature vocabulary (ร้อน hot · เย็น cold · อุ่น warm · หนาว chilly), clothing names in Thai, and discussing Thailand's hot season (ร้อน). Please coordinate on comparing Thai climate with global temperatures on the class world map.
+  </div>
+  <div class="footer">
+    <strong>Week 8 — Hot and Cold</strong> &nbsp;·&nbsp; Pan Asia International School &nbsp;·&nbsp; KG3 (Age 5)
+    &nbsp;·&nbsp; Teacher: __________________ &nbsp;·&nbsp; Week of: __________________
+  </div>
+</div>
+<div class="week " id="week9">
+
+  <div class="school-header">
+    <h1>🌍 Pan Asia International School</h1>
+    <h2>KG3 (Age 5) — Unit 2 Week 9 &nbsp;·&nbsp; "I Play, I Learn, I Share"</h2>
+  </div>
+  <div class="meta-bar">
+    <span>📅 <strong>Week 9:</strong> Seasons Around the World</span>
+    <span>👧 <strong>Grade:</strong> KG3 (Age 5)</span>
+    <span>🌐 <strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Global Seasons &amp; Cultural Diversity</span>
+    <span>🌍 <strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vt">🌍 Global Awareness — I know the world is big, diverse, and full of wonder</div>
+    <div class="vs">CASEL: Social Awareness · Perspective-Taking &nbsp;·&nbsp; Phonics: <strong>e, u</strong> — /e/ egg, web · /u/ umbrella, cup &nbsp;·&nbsp; Sight Words: <strong>of, what</strong> &nbsp;·&nbsp; 🧘 Mindfulness: Global Sky Meditation (watch the sky from five different countries) &nbsp;·&nbsp; 🎯 Approach: Inquiry-Play Based Learning</div>
+  </div>
+  <div class="inquiry-banner">
+    <div class="iq-label">🔎 What I Wonder — Weekly Inquiry Question</div>
+    <div class="iq-q">"Do all places on Earth have the same seasons — what is the same and what is different?"</div>
+  </div>
+  <div class="goals-container">
+    <h3>🎯 Week 9 Learning Goals — By the End of This Week Students Will:</h3>
+    <div class="goal-subhead gs-read">📖 ELA 1 — Reading &amp; Phonics</div><ul><li>Recognise and produce the /e/ short vowel sound: egg, end, web, bed</li><li>Recognise and produce the /u/ short vowel sound: up, umbrella, cup, mud</li><li>Blend and read CVC words with e and u in decodable texts about seasons</li><li>Read and recognise sight words <em>of</em> and <em>what</em> in context</li></ul>
+    <div class="goal-subhead gs-write">✏️ ELA 2 — Language, Literature &amp; Grammar</div><ul><li>Write CVC words with short e and short u using correct letter formation</li><li>Write 2–3 sentences about a country's season using <em>of</em> and <em>what</em></li><li>Draw and label a scene from a season in another country</li><li>Contribute a page to the class "Seasons Around the World" book</li></ul>
+    <div class="goal-subhead gs-speak">🗣 Speaking &amp; Listening (Circle Time)</div><ul><li>Describe how seasons differ in two different countries using comparison language</li><li>Ask "What season is it in ___?" and answer using globe and map evidence</li><li>Discuss and respond to "What kind of weather do you like and why?"</li><li>Practise perspective-taking: share what life might be like in a different climate</li></ul>
+    <div class="goal-subhead gs-math">🔢 Math — Place Value to 100</div><ul><li>Mentally calculate 10 more and 10 less than any two-digit number</li><li>Identify and describe number patterns on the hundreds chart</li><li>Explain the pattern of adding or subtracting 10 using place value language</li><li>Apply 10 more/10 less to solve simple word problems in seasonal contexts</li></ul>
+    <div class="goal-subhead gs-sci">🔬 Science / STEM</div><ul><li>Compare observable features of two different seasons (light, temperature, plant changes)</li><li>Represent seasonal data in a simple bar graph using picture symbols</li><li>Explain in simple terms why leaves change colour in autumn (less sunlight)</li><li>Identify seasonal changes visible in the local school environment over time</li></ul>
+    <div class="goal-subhead gs-ss">🌍 Social Studies</div><ul><li>Explain why the Northern and Southern Hemispheres have opposite seasons</li><li>Locate and identify at least two countries with different seasonal climates on a globe</li><li>Connect seasonal celebrations to their cultural and climatic origins</li><li>Appreciate that people living in different climates have unique and equally valid ways of life</li></ul>
+    <div class="goal-subhead gs-sel">❤️ SEL (CASEL)</div><ul><li>Demonstrate perspective-taking by discussing what life is like in a different climate</li><li>Show curiosity and respect when learning about cultural differences connected to seasons</li><li>Reflect on how living in different seasons might change feelings and daily choices</li><li>Practise active listening during partner sharing of global season discoveries (CASEL: Social Awareness)</li></ul>
+    <div class="goal-subhead gs-arts">🎨 Arts &amp; Crafts</div><ul><li>🎨 <strong>Wind Mobile</strong> — design and build a moving artwork inspired by the wind</li><li>Select natural and recycled materials (leaves, strips, feathers) that respond to air movement</li><li>VA.K.Cr3.1 Reflect on and refine artwork to achieve a purposeful result</li><li>VA.K.Cr2.1 Create designs based on personal observations of the natural world</li></ul>
+    <div class="goal-subhead gs-music">🎵 Music</div><ul><li><em class="ph">Weekly activities — see specialist teacher</em></li></ul>
+    <div class="goal-subhead gs-pe">🏃 PHE &amp; Movement</div><ul><li><em class="ph">Weekly activities — see specialist teacher</em></li></ul>
+    <div class="goal-subhead gs-comp">💻 Computer</div><ul><li><em class="ph">Weekly activities — see specialist teacher</em></li></ul>
+    <div class="goal-subhead gs-wl">🌐 World Language</div><ul><li>Explore greetings and seasonal phrases in two world languages; compare sounds and scripts</li></ul>
+    <div class="goal-subhead gs-atl">🧠 ATL &amp; Play-Based Learning</div><ul><li>Thinking: compare and contrast seasons in different countries using evidence</li><li>Research: gather information from images, books, and globes to build knowledge</li><li>Communication: present season facts from another country using drawings and labels</li><li>Self-management: contribute a full page to the class book independently</li></ul>
+  </div>
+  <div class="tt-title">🗓 Week 9 — Seasons Around the World — Daily Schedule</div>
+  <table class="tt">
+    <thead><tr>
+      <th style="width:13%">Time &amp; Block</th>
+      <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th>
+    </tr></thead>
+    <tbody><tr class="row-arrival"><td>7:30–8:00<br>☀️ Arrival</td><td colspan="5" class="all-day">🌤️ Good morning! Weather board check, coat hooks, breakfast club, free reading corners</td></tr>
+<tr class="row-circle"><td>8:00–8:10<br>🌅 Circle Time</td><td>Globe exploration — show photos of seasons in Australia, Sweden, Singapore, and Kenya; discuss differences</td><td>"What season is it now?" — find countries on globe; mark where it is summer/winter right now</td><td>Cultural celebrations and seasons — show images of Diwali, Lunar New Year, summer Christmas in Australia</td><td>🏫 Whole-School Assembly — join hall at 8:10</td><td>"If I could visit any place in any season, I would go to ___ because ___" — partner share</td></tr>
+<tr class="row-thai"><td>8:10–9:00<br>🇹🇭 Thai / Assembly</td><td><em class="ph">Thai language lesson — see Thai teacher</em></td><td><em class="ph">Thai language lesson — see Thai teacher</em></td><td><em class="ph">Thai language lesson — see Thai teacher</em></td><td>🏫 Whole-School Assembly — join hall at 8:10</td><td><em class="ph">Thai language lesson — see Thai teacher</em></td></tr>
+<tr class="row-snack"><td>9:00–9:20<br>🍎 Snack Break</td><td colspan="5" class="all-day">🍎 Snack time — wash hands, eat, tidy up, free quiet conversation</td></tr>
+<tr class="row-ela1"><td>9:20–10:00<br>🔡 ELA 1 / World Lang</td><td>Introduce /e/ (short) — egg, end, web; blend CVC words: bet, leg, red, net</td><td>Introduce /u/ (short) — up, umbrella, sun; blend: cut, bus, run, mud, cup</td><td>Short vowel review — e and u word sort; read decodable "The Bug in the Sun"</td><td><em class="ph">World Language (Chinese / Arabic) — specialist</em></td><td>Sight words <strong>of</strong> and <strong>what</strong> — "What kind of weather?" sentences; partner reading</td></tr>
+<tr class="row-mind"><td>10:00–10:15<br>🧘 Mindfulness Break</td><td>🌏 Global Sky Meditation — imagine watching the sky from 5 different countries; breathe softly</td><td>🌍 Spinning Earth Yoga — slowly spin arms like Earth rotating; breathe through four seasons</td><td>🍂 Autumn Leaf Fall — visualise leaves drifting gently from a tree; settle into calm</td><td>🎋 Bamboo Forest Breath — stand tall and sway gently like bamboo; slow deep exhale</td><td>🙏 Seasonal Gratitude Circle — name one thing from each season you are grateful for</td></tr>
+<tr class="row-math"><td>10:15–11:00<br>🔢 Math / ELA</td><td>🔢 Math: 10 More and 10 Less — what is 10 more than 34? 10 less than 67? Use hundreds chart</td><td>✏️ ELA 2: "In ___ (country), the season is ___. People ___." — 2–3 sentence journal</td><td>🔢 Math: Mental 10 more/less — number card speed game; identify patterns on hundreds chart</td><td>🔡 ELA 1: E and U blending — decodable reading; sound search in classroom seasonal books</td><td>🔢 Math: 10 more/less challenge — skip-count by 10s; hundreds chart pattern colouring</td></tr>
+<tr class="row-lunch"><td>11:00–11:50<br>🍱 Lunch Break</td><td colspan="5" class="all-day">🍱 Lunch 11:00–11:30 · 11:30–11:50 Self-Directed Centres (puzzles, drawing, free reading)</td></tr>
+<tr class="row-ctr"><td>11:50–12:20<br>🏡 Centres / 🌳 Outdoor</td><td>🏡 Centres: World seasons map puzzle · globe exploration · world seasons photo book corner</td><td>🏡 Centres: E/U word sorting mats · world flag sticker books · globe mobile making</td><td>🌳 Outdoor: Seasonal cloud watch — identify cloud types; estimate temperature by sky colour</td><td>🌳 Outdoor: Weather station setup — create simple instruments; measure and record observations</td><td>🏡 Centres: Dramatic play — seasons travel agency; students plan trips to seasonal destinations</td></tr>
+<tr class="row-ela2"><td>12:20–13:00<br>📖 ELA 2 / SS / Math</td><td>📖 ELA 2: Readers Workshop — "All in a Day" by Anno; compare seasons in different places</td><td>🌍 SS: Hemispheres lesson — why do Australia and Sweden have opposite seasons? globe activity</td><td>📖 ELA 2: E/U phonics games — word ladders: -ed, -et, -ub, -un; connect to seasons vocabulary</td><td>🔢 Math: Hundreds chart patterns — circle multiples of 10; +10 and -10 jumps with a partner</td><td>📖 ELA 2: Class "Seasons Around the World" book — each child contributes one country page</td></tr>
+<tr class="row-spec"><td>13:00–13:45<br>🌟 Specials</td><td>🎵 Music<br><em class="ph">Weekly activities — see specialist teacher</em></td><td>🎨 Arts &amp; Crafts<br>🎨 <strong>Wind Mobile</strong> — design and construct a hanging mobile using natural and recycled materials that moves like the wind (paper strips, leaves, seed pods, feathers). <em>Learning Goal: Design and create artwork that moves like the wind.</em> <span style="font-size:10.5px;color:#888;">VA.K.Cr3.1 · VA.K.Cr2.1</span></td><td>💻 Computer<br><em class="ph">Weekly activities — see specialist teacher</em></td><td>🔬 Science/STEM<br>🔬 Compare Seasons — explore light levels and temperature data from two different seasons; create simple bar graphs; introduce photosynthesis: why leaves change colour in autumn</td><td>🏃 PHE<br><em class="ph">Weekly activities — see specialist teacher</em></td></tr>
+<tr class="row-snack2"><td>13:45–14:00<br>🍊 Snack</td><td colspan="5" class="all-day">🍊 Afternoon snack — wash hands, eat, quiet conversation, tidy</td></tr>
+<tr class="row-aft"><td>14:00–14:35<br>🌱 Afternoon Block</td><td>🌳 Outdoor — seasonal garden walk; compare plant changes over past weeks</td><td>�� Outdoor — playground</td><td>🏃 MOVEMENT PHE — movements from different world cultures; seasonal dances</td><td>🎤 Show &amp; Tell: "Something from another country or a different season"</td><td>⛱️ Sand Play — build a world map in sand; label continents with ice cream sticks</td></tr>
+<tr class="row-close"><td>14:35–14:45<br>👋 Closing Circle</td><td colspan="5" class="all-day">👋 Pack bags · 3 things I learned today · gratitude share · goodbye song</td></tr>
+</tbody>
+  </table>
+  <div class="note">
+    <strong>📚 Key Concepts:</strong> hemisphere · equator · global diversity · seasons · culture · climate · perspective<br>
+    <strong>📖 Recommended Books:</strong> <em>All in a Day</em> — Mitsumasa Anno &nbsp;·&nbsp; <em>Waiting for Winter</em> — Sebastian Meschenmoser &nbsp;·&nbsp; <em>Lailah's Lunchbox</em> — Reem Faruqi<br>
+    <strong>🌍 Global Context Statement:</strong> Identities &amp; Relationships — Global Seasons &amp; Cultural Diversity: Exploring how seasons differ around the world builds perspective-taking, intercultural curiosity, and appreciation for diverse ways of living.
+  </div>
+  <div class="note note-green">
+    <strong>🇹🇭 Thai Teacher Note — Week 9:</strong> Theme is seasons around the world. Thai lessons may include Thai geography vocabulary (เหนือ north · ใต้ south · ฤดูกาล season · โลก world), comparing Thailand's seasons with a cold-climate country, and a Thai song about seasonal changes. Please coordinate on the world map display and share any Thai festivals connected to seasons.
+  </div>
+  <div class="footer">
+    <strong>Week 9 — Seasons Around the World</strong> &nbsp;·&nbsp; Pan Asia International School &nbsp;·&nbsp; KG3 (Age 5)
+    &nbsp;·&nbsp; Teacher: __________________ &nbsp;·&nbsp; Week of: __________________
+  </div>
+</div>
+<div class="week " id="week10">
+
+  <div class="school-header">
+    <h1>🌍 Pan Asia International School</h1>
+    <h2>KG3 (Age 5) — Unit 2 Week 10 &nbsp;·&nbsp; "I Play, I Learn, I Share"</h2>
+  </div>
+  <div class="meta-bar">
+    <span>📅 <strong>Week 10:</strong> Sharing Joy in Every Season</span>
+    <span>👧 <strong>Grade:</strong> KG3 (Age 5)</span>
+    <span>🌐 <strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Generosity, Sharing &amp; Seasonal Community Care</span>
+    <span>🌍 <strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vt">🤝 Generosity &amp; Collaboration — I share joy, kindness, and care with everyone around me</div>
+    <div class="vs">CASEL: Responsible Decision-Making · Relationship Skills &nbsp;·&nbsp; Phonics: <strong>r</strong> — /r/ rain, run, red, river &nbsp;·&nbsp; Sight Words: <strong>this, they</strong> &nbsp;·&nbsp; 🧘 Mindfulness: Gratitude Jar Meditation (fill an imaginary jar with thankful thoughts) &nbsp;·&nbsp; 🎯 Approach: Inquiry-Play Based Learning</div>
+  </div>
+  <div class="inquiry-banner">
+    <div class="iq-label">🔎 What I Wonder — Weekly Inquiry Question</div>
+    <div class="iq-q">"How can we share kindness and joy with others, no matter what the weather?"</div>
+  </div>
+  <div class="goals-container">
+    <h3>🎯 Week 10 Learning Goals — By the End of This Week Students Will:</h3>
+    <div class="goal-subhead gs-read">📖 ELA 1 — Reading &amp; Phonics</div><ul><li>Recognise and produce the /r/ sound: rain, run, red, rip, rod</li><li>Blend and segment CVC words with r: rat, rip, rod, rug, ran</li><li>Review all short vowels (a, e, i, o, u) in mixed CVC decodable reading</li><li>Read and recognise sight words <em>this</em> and <em>they</em> in context</li></ul>
+    <div class="goal-subhead gs-write">✏️ ELA 2 — Language, Literature &amp; Grammar</div><ul><li>Write CVC words with r and all short vowels on lined paper</li><li>Write 2–3 sentences using <em>this</em> and <em>they</em> about the unit</li><li>Complete a personal "My Seasons Book" with one page per season</li><li>Share writing from Author's Chair with confidence and clarity</li></ul>
+    <div class="goal-subhead gs-speak">🗣 Speaking &amp; Listening (Circle Time)</div><ul><li>Use <em>this</em> and <em>they</em> in spoken sentences about seasons and weather</li><li>Present a personal Caring Pledge to the group using voice and gesture</li><li>Reflect on the unit: "The most interesting thing I learned was ___"</li><li>Listen respectfully and respond to 2 classmates' sharing (CASEL: Relationship Skills)</li></ul>
+    <div class="goal-subhead gs-math">🔢 Math — Place Value to 100</div><ul><li>Apply place value knowledge to solve 2-step word problems</li><li>Review: identify tens and ones, compare two-digit numbers, apply 10 more/10 less</li><li>Explain reasoning when solving place value problems using mathematical language</li><li>Complete a self-assessment of Unit 2 math skills with teacher guidance</li></ul>
+    <div class="goal-subhead gs-sci">🔬 Science / STEM</div><ul><li>Reflect on and present key science learning from Unit 2 investigations</li><li>Identify observable changes in the school garden over the 5 weeks of the unit</li><li>Describe a favourite science experiment and explain what was discovered</li><li>Suggest one new science question they would like to explore about weather</li></ul>
+    <div class="goal-subhead gs-ss">🌍 Social Studies</div><ul><li>Reflect on how communities around the world share joy across different seasons</li><li>Describe one seasonal celebration from a culture other than their own</li><li>Connect personal acts of generosity to global community values</li><li>Recognise that sharing — across seasons, places, and differences — builds strong communities</li></ul>
+    <div class="goal-subhead gs-sel">❤️ SEL (CASEL)</div><ul><li>Identify and express feelings of gratitude and joy at the end of a learning journey</li><li>Practise generosity: write or draw a kindness card for a classmate</li><li>Celebrate personal and class achievements with specific, positive language</li><li>Set one personal goal for Unit 3 based on what they learned about themselves (Responsible Decision-Making)</li></ul>
+    <div class="goal-subhead gs-arts">🎨 Arts &amp; Crafts</div><ul><li>🎨 <strong>Seasons Mobile</strong> — represent all four seasons in one hanging artwork</li><li>Select seasonal symbols and materials for each season ring (spring/summer/autumn/winter)</li><li>VA.K.Cr2.1 Create artwork that represents personal observations and seasonal experiences</li><li>VA.K.Pr5.1 Prepare and display finished artwork for a class gallery</li></ul>
+    <div class="goal-subhead gs-music">🎵 Music</div><ul><li><em class="ph">Weekly activities — see specialist teacher</em></li></ul>
+    <div class="goal-subhead gs-pe">🏃 PHE &amp; Movement</div><ul><li><em class="ph">Weekly activities — see specialist teacher</em></li></ul>
+    <div class="goal-subhead gs-comp">💻 Computer</div><ul><li><em class="ph">Weekly activities — see specialist teacher</em></li></ul>
+    <div class="goal-subhead gs-wl">🌐 World Language</div><ul><li>Share a phrase of gratitude or celebration in a second language to close the unit</li></ul>
+    <div class="goal-subhead gs-atl">🧠 ATL &amp; Play-Based Learning</div><ul><li>Thinking: reflect on learning across Unit 2 and identify strongest moments</li><li>Research: gather and present evidence from 5 weeks of weather investigations</li><li>Communication: share completed portfolio work with confidence and clarity</li><li>Self-management: set a learning goal for Unit 3 based on personal reflection</li></ul>
+  </div>
+  <div class="tt-title">🗓 Week 10 — Sharing Joy in Every Season — Daily Schedule</div>
+  <table class="tt">
+    <thead><tr>
+      <th style="width:13%">Time &amp; Block</th>
+      <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th>
+    </tr></thead>
+    <tbody><tr class="row-arrival"><td>7:30–8:00<br>☀️ Arrival</td><td colspan="5" class="all-day">🌤️ Good morning! Weather board check, coat hooks, breakfast club, free reading corners</td></tr>
+<tr class="row-circle"><td>8:00–8:10<br>🌅 Circle Time</td><td>Unit reflection — revisit all 5 weeks; "What was your most exciting discovery?" class share</td><td>Kindness weather forecast — "Today, I will be sunny/warm/refreshing to my friends by ___"</td><td>Gratitude chain — each student adds a paper link for one thing they are grateful for this unit</td><td>🏫 Whole-School Assembly — join hall at 8:10</td><td>Celebration circle — share completed portfolios; applaud each other's seasonal learning</td></tr>
+<tr class="row-thai"><td>8:10–9:00<br>🇹🇭 Thai / Assembly</td><td><em class="ph">Thai language lesson — see Thai teacher</em></td><td><em class="ph">Thai language lesson — see Thai teacher</em></td><td><em class="ph">Thai language lesson — see Thai teacher</em></td><td>🏫 Whole-School Assembly — join hall at 8:10</td><td><em class="ph">Thai language lesson — see Thai teacher</em></td></tr>
+<tr class="row-snack"><td>9:00–9:20<br>🍎 Snack Break</td><td colspan="5" class="all-day">🍎 Snack time — wash hands, eat, tidy up, free quiet conversation</td></tr>
+<tr class="row-ela1"><td>9:20–10:00<br>🔡 ELA 1 / World Lang</td><td>Introduce /r/ — rain, run, red, river; letter formation; blend: rat, rip, rod, rug</td><td>R-blend CVC practice — read decodable "Red Rag Run"; oral blending and segmenting</td><td>Review r + all learned sounds — decodable reader challenge; fluency timing with a partner</td><td><em class="ph">World Language (Chinese / Arabic) — specialist</em></td><td>Sight words <strong>this</strong> and <strong>they</strong> — "This is the weather. They like to play." reading and writing</td></tr>
+<tr class="row-mind"><td>10:00–10:15<br>🧘 Mindfulness Break</td><td>🙏 Gratitude Jar — fill an imaginary jar with thankful thoughts; breathe in gratitude warmly</td><td>💛 Kindness Breathing — breathe in kindness; breathe out a silent wish for someone you care about</td><td>🤸 Sharing Circle Yoga — face a partner; mirror each other's gentle stretches and movements</td><td>🌟 Cosy Season Visualisation — imagine your perfect cosy corner; what season is it; who is with you?</td><td>🎉 Unit Celebration Dance — free joyful movement to celebrate all we have learned this unit</td></tr>
+<tr class="row-math"><td>10:15–11:00<br>🔢 Math / ELA</td><td>🔢 Math: Place value problem solving — "I have 4 tens and 7 ones. What is my number?"</td><td>✏️ ELA 2: "I am grateful for ___. In every season, I ___." — personal reflection journal</td><td>🔢 Math: Place value story problems — shopping, counting, and grouping with tens and ones</td><td>🔡 ELA 1: Review all short vowels — mixed CVC blending; decodable "The Red Bug Ran"</td><td>🔢 Math: Unit 2 challenge — solve 5 place value problems; partner check answers</td></tr>
+<tr class="row-lunch"><td>11:00–11:50<br>🍱 Lunch Break</td><td colspan="5" class="all-day">🍱 Lunch 11:00–11:30 · 11:30–11:50 Self-Directed Centres (puzzles, drawing, free reading)</td></tr>
+<tr class="row-ctr"><td>11:50–12:20<br>🏡 Centres / 🌳 Outdoor</td><td>🏡 Centres: Seasons reflection art · "My favourite week" writing/drawing · weather word search</td><td>🏡 Centres: Kindness card writing station · seasons mobile display · unit vocabulary bingo</td><td>🌳 Outdoor: Seasons nature installation — use natural items to create an outdoor display</td><td>🌳 Outdoor: Weather station celebration — present class weather data; share observations</td><td>🏡 Centres: Portfolio gallery walk · student presentations · celebration dramatic play corner</td></tr>
+<tr class="row-ela2"><td>12:20–13:00<br>📖 ELA 2 / SS / Math</td><td>📖 ELA 2: Readers Workshop — "Last Stop on Market Street" — sharing and gratitude discussion</td><td>🌍 SS: Global connections — how do communities share across seasons? harvest festivals, winter markets</td><td>📖 ELA 2: Write "My Seasons Book" — 4 pages, one per season; illustrate and add sentences</td><td>🔢 Math: Unit 2 review — tens/ones, comparisons, 10 more/less; self-assessment checklist</td><td>📖 ELA 2: Author's Chair — share writing with the class; celebrate completed portfolios</td></tr>
+<tr class="row-spec"><td>13:00–13:45<br>🌟 Specials</td><td>🎵 Music<br><em class="ph">Weekly activities — see specialist teacher</em></td><td>🎨 Arts &amp; Crafts<br>🎨 <strong>Seasons Mobile</strong> — represent all four seasons in a single hanging artwork using painted shapes, found objects, and seasonal symbols displayed in concentric rings. <em>Learning Goal: Represent all four seasons in a single hanging artwork.</em> <span style="font-size:10.5px;color:#888;">VA.K.Cr2.1 · VA.K.Pr5.1</span></td><td>💻 Computer<br><em class="ph">Weekly activities — see specialist teacher</em></td><td>🔬 Science/STEM<br>🔬 Unit Science Review — present weather experiments at a mini science fair; reflect on STEM investigations across Unit 2; discuss what changed in the school garden over the 5 weeks</td><td>🏃 PHE<br><em class="ph">Weekly activities — see specialist teacher</em></td></tr>
+<tr class="row-snack2"><td>13:45–14:00<br>🍊 Snack</td><td colspan="5" class="all-day">🍊 Afternoon snack — wash hands, eat, quiet conversation, tidy</td></tr>
+<tr class="row-aft"><td>14:00–14:35<br>🌱 Afternoon Block</td><td>🌳 Outdoor — seasonal scavenger hunt to celebrate unit learning</td><td>🌳 Outdoor — celebration playground time</td><td>🏃 MOVEMENT PHE — seasons parade; march through school sharing what we learned</td><td>🎤 Show &amp; Tell: "My favourite thing I learned about weather and seasons"</td><td>⛱️ Sand Play — free celebration play; seasonal sandcastle building challenge</td></tr>
+<tr class="row-close"><td>14:35–14:45<br>👋 Closing Circle</td><td colspan="5" class="all-day">👋 Pack bags · 3 things I learned today · gratitude share · goodbye song</td></tr>
+</tbody>
+  </table>
+  <div class="note">
+    <strong>📚 Key Concepts:</strong> generosity · sharing · community · gratitude · joy · kindness · celebration<br>
+    <strong>📖 Recommended Books:</strong> <em>Last Stop on Market Street</em> — Matt de la Peña &nbsp;·&nbsp; <em>Have You Filled a Bucket Today?</em> — Carol McCloud &nbsp;·&nbsp; <em>The Relatives Came</em> — Cynthia Rylant<br>
+    <strong>🌍 Global Context Statement:</strong> Identities &amp; Relationships — Generosity, Sharing &amp; Seasonal Community Care: Every season brings an opportunity to give, help, and connect with others. Sharing across differences is what builds strong, joyful communities.
+  </div>
+  <div class="note note-green">
+    <strong>🇹🇭 Thai Teacher Note — Week 10:</strong> Final week of Unit 2 — celebrate learning together! Thai lessons may include a seasonal reflection song, phrases for expressing gratitude in Thai (ขอบคุณ thank you · ดีใจ happy · แบ่งปัน share), and a simple Thai weather poem or chant. Please coordinate on the final celebration event and consider sharing a Thai seasonal tradition with the whole class.
+  </div>
+  <div class="footer">
+    <strong>Week 10 — Sharing Joy in Every Season</strong> &nbsp;·&nbsp; Pan Asia International School &nbsp;·&nbsp; KG3 (Age 5)
+    &nbsp;·&nbsp; Teacher: __________________ &nbsp;·&nbsp; Week of: __________________
+  </div>
+</div>
+
+<script>
+function showWeek(n,btn){
+  document.querySelectorAll('.week').forEach(w=>w.classList.remove('show'));
+  document.querySelectorAll('.selector button:not(.print-btn)').forEach(b=>b.classList.remove('active'));
+  document.getElementById('week'+n).classList.add('show');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

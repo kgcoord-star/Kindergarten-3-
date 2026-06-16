@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KG3 Unit 4 — I Inquire, I Design, I Create | Pan Asia International School</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Open Sans',sans-serif;background:#ECECEC;color:#222;}
+.selector{position:sticky;top:0;z-index:100;background:linear-gradient(135deg,#6B3410,#C85C14);padding:8px 16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;box-shadow:0 2px 8px rgba(0,0,0,.3);}
+.sel-title{color:#fff;font-weight:800;font-size:13px;margin-right:6px;white-space:nowrap;}
+.sel-btn{background:rgba(255,255,255,.2);color:#fff;border:1.5px solid rgba(255,255,255,.5);border-radius:18px;padding:4px 14px;font-size:11.5px;font-weight:700;cursor:pointer;transition:.2s;}
+.sel-btn:hover,.sel-btn.active{background:#fff;color:#C85C14;border-color:#fff;}
+.sel-btn.welcome-btn{border-style:dashed;}
+.print-btn{margin-left:auto;background:#1976D2;color:#fff;border:none;border-radius:18px;padding:4px 14px;font-size:11.5px;font-weight:700;cursor:pointer;}
+.print-btn:hover{background:#1565C0;}
+.week{display:none;max-width:1100px;margin:24px auto;background:#fff;border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,.13);overflow:hidden;}
+.week.active{display:block;}
+.welcome-card .school-header{background:linear-gradient(135deg,#1565C0,#1976D2,#42A5F5)!important;}
+.school-header{background:linear-gradient(135deg,#6B3410 0%,#C85C14 50%,#E8742A 100%);color:#fff;padding:14px 24px;}
+.school-header h1{font-size:11px;font-weight:600;opacity:.85;letter-spacing:1px;text-transform:uppercase;}
+.school-header h2{font-size:20px;font-weight:800;margin:3px 0 1px;}
+.school-header .week-tag{display:inline-block;background:rgba(255,255,255,.25);border-radius:20px;padding:2px 14px;font-size:11px;font-weight:700;margin-top:4px;}
+.school-header .theme-tag{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:2px 12px;font-size:10.5px;font-weight:600;margin-top:4px;margin-left:6px;}
+.meta-bar{background:#3E2723;color:#fff;padding:7px 24px;font-size:11px;display:flex;gap:18px;flex-wrap:wrap;align-items:center;}
+.meta-bar span{opacity:.9;}
+.meta-bar strong{color:#E8742A;}
+.value-banner{background:#FFF3E0;border-left:5px solid #C85C14;padding:9px 24px;font-size:11.5px;display:flex;gap:20px;flex-wrap:wrap;align-items:center;}
+.vb-item{display:flex;flex-direction:column;}
+.vb-label{font-size:9px;text-transform:uppercase;letter-spacing:.7px;color:#888;font-weight:700;}
+.vb-val{font-weight:700;color:#6B3410;font-size:12px;}
+.scope-strip{display:flex;gap:0;border-top:2px solid #C85C14;}
+.scope-strip .phonics-half{flex:1;background:#FFF3E0;padding:8px 20px;border-right:2px solid #C85C14;}
+.scope-strip .math-half{flex:1;background:#E8F5E9;padding:8px 20px;}
+.scope-strip .sh-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:#888;margin-bottom:3px;}
+.scope-strip .sh-topic{font-size:12.5px;font-weight:700;color:#C85C14;}
+.scope-strip .math-half .sh-topic{color:#2E7D32;}
+.scope-strip .sh-sub{font-size:10.5px;color:#555;margin-top:2px;}
+.scope-table{margin:0 20px 10px;border-radius:8px;overflow:hidden;border:2px solid #C85C14;}
+.scope-table-header{background:#6B3410;color:#fff;padding:6px 12px;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;}
+.scope-table table{width:100%;border-collapse:collapse;}
+.scope-table th{background:#3E2723;color:#fff;padding:4px 8px;font-size:9.5px;border:1px solid #5D4037;}
+.scope-table td{border:1px solid #e0d0c0;padding:4px 8px;font-size:10px;}
+.scope-row-active{background:#C85C14;color:#fff;font-weight:800;}
+.inquiry-banner{background:linear-gradient(135deg,#FFF8F3,#FFE0CC);border-left:6px solid #C85C14;padding:12px 24px;font-size:14px;font-style:italic;color:#6B3410;font-weight:600;line-height:1.5;}
+.goals-container{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;margin:14px 20px;}
+.goal-card{border-radius:10px;padding:12px 15px;}
+.goal-card h3{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;}
+.goal-card ul{list-style:none;padding:0;}
+.goal-card ul li{font-size:11px;line-height:1.55;padding:2px 0 2px 12px;position:relative;}
+.goal-card ul li::before{content:"▸";position:absolute;left:0;opacity:.7;}
+.gc-ela{background:#FFF3E0;border-left:4px solid #C85C14;}.gc-ela h3{color:#C85C14;}
+.gc-math{background:#E8F5E9;border-left:4px solid #2E7D32;}.gc-math h3{color:#2E7D32;}
+.gc-sci{background:#E3F2FD;border-left:4px solid #1565C0;}.gc-sci h3{color:#1565C0;}
+.gc-ss{background:#F3E5F5;border-left:4px solid #6A1B9A;}.gc-ss h3{color:#6A1B9A;}
+.gc-arts{background:#FBE9E7;border-left:4px solid #BF360C;}.gc-arts h3{color:#BF360C;}
+.gc-music{background:#f5f5f5;border-left:4px solid #aaa;}.gc-music h3{color:#888;}
+.gc-thai{background:#f0fff0;border-left:4px solid #aaa;}.gc-thai h3{color:#888;}
+.tt-title{font-size:12px;font-weight:800;color:#6B3410;text-transform:uppercase;letter-spacing:.7px;margin:6px 24px 4px;}
+table.tt{width:calc(100% - 48px);margin:0 24px 14px;border-collapse:collapse;font-size:10.5px;}
+table.tt th{background:#6B3410;color:#fff;padding:5px 7px;text-align:center;}
+table.tt td{border:1px solid #E0E0E0;padding:5px 7px;vertical-align:top;}
+table.tt td:first-child{font-weight:700;color:#C85C14;background:#FFF8F3;white-space:nowrap;min-width:44px;}
+.tt-row-ela{border-left:3px solid #C85C14;}
+.tt-row-math{border-left:3px solid #2E7D32;}
+.tt-row-sci{border-left:3px solid #1565C0;}
+.tt-row-ss{border-left:3px solid #6A1B9A;}
+.tt-row-arts{border-left:3px solid #BF360C;}
+.tt-row-mind{border-left:3px solid #00897B;}
+em.ph{color:#999999;font-style:italic;font-size:10px;}
+.note{background:#FFF8F3;border-radius:8px;margin:0 20px 10px;padding:10px 16px;font-size:11px;border-left:4px solid #C85C14;}
+.note.note-green{background:#F1F8E9;border-left-color:#2E7D32;}
+.note h4{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;color:#C85C14;}
+.note.note-green h4{color:#2E7D32;}
+.footer{background:#6B3410;color:rgba(255,255,255,.7);font-size:10px;padding:8px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px;}
+@media print{
+  body{background:#fff;}
+  .selector{display:none!important;}
+  .week{display:none!important;box-shadow:none;}
+  .week.active{display:block!important;}
+}
+</style>
+</head>
+<body>
+<nav class="selector">
+  <span class="sel-title">🔨 KG3 Unit 4: I Inquire, I Design, I Create — Creative Little Builders</span>
+  <button class="sel-btn active welcome-btn" onclick="showWeek(16,this)">⭐ Week 16</button><button class="sel-btn" onclick="showWeek(17,this)">Week 17</button><button class="sel-btn" onclick="showWeek(18,this)">Week 18</button><button class="sel-btn" onclick="showWeek(19,this)">Week 19</button><button class="sel-btn" onclick="showWeek(20,this)">Week 20</button><button class="sel-btn" onclick="showWeek(21,this)">Week 21</button>
+  <button class="print-btn" onclick="window.print()">🖨️ Print</button>
+</nav>
+
+<div class="week welcome-card" id="w16">
+  <div class="school-header">
+    <h1>Pan Asia International School · KG3 · Age 5 · Unit 4: I Inquire, I Design, I Create</h1>
+    <h2>🏠 Week 16: Welcome Back to School</h2>
+    <span class="week-tag">Theme: Creative Little Builders &nbsp;|&nbsp; School Week 1 · Welcome Back</span>
+    <span class="theme-tag">⭐ Welcome Back to Semester 2</span>
+  </div>
+  <div class="meta-bar">
+    <span><strong>Week:</strong> Week 16</span>
+    <span><strong>Grade:</strong> KG3 · Age 5</span>
+    <span><strong>Unit Theme:</strong> 🔨 Creative Little Builders</span>
+    <span><strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Personal Identity &amp; Belonging — Belonging, Rules, and New Beginnings</span>
+    <span><strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vb-item"><span class="vb-label">Value / Skill</span><span class="vb-val">💡 Belonging &amp; Responsibility</span></div>
+    <div class="vb-item"><span class="vb-label">CASEL</span><span class="vb-val">Self-Awareness</span></div>
+    <div class="vb-item"><span class="vb-label">Maths Topic</span><span class="vb-val">🔢 Introduction to Subtraction</span></div>
+    <div class="vb-item"><span class="vb-label">Mindfulness</span><span class="vb-val">🧘 Daily practice (see timetable)</span></div>
+    <div class="vb-item"><span class="vb-label">Approach</span><span class="vb-val">🎯 Inquiry-Play Based Learning</span></div>
+  </div>
+  <div class="scope-strip">
+  <div class="phonics-half">
+    <div class="sh-label">🔤 Phonics — Unit 4: Advanced Consonants &amp; Digraphs</div>
+    <div class="sh-topic">GPCs: <strong>w, x</strong> — Recognize and produce /w/ and /x/ sounds</div>
+    <div class="sh-sub">Sight words: <strong>who</strong> · <strong>what</strong> &nbsp;|&nbsp; Recognize and produce w and x sounds.</div>
+  </div>
+  <div class="math-half">
+    <div class="sh-label">🔢 Maths — Unit 4: Subtraction Concepts &amp; Strategies</div>
+    <div class="sh-topic" style="color:#2E7D32;">Introduction to Subtraction</div>
+    <div class="sh-sub">Warm-up review: what is subtraction? · Taking away — remove objects from a group · Connect subtraction to real-life situations</div>
+  </div>
+</div>
+  <div class="scope-table">
+  <div class="scope-table-header">📋 Unit 4 Scope at a Glance — Creative Little Builders</div>
+  <table><thead>
+    <tr>
+      <th>Week</th><th>🔤 Phonics</th><th>👁️ Sight Words</th><th>🔢 Maths Topic</th><th>Key Concepts</th>
+    </tr>
+  </thead><tbody><tr class="scope-row-active"><td style="font-weight:700;">W16</td><td>w, x</td><td>who, what</td><td style="font-weight:700;">Intro to Subtraction</td><td style="font-style:italic;">Taking away · real-life contexts</td></tr><tr class=""><td style="font-weight:700;">W17</td><td>y, z</td><td>come, here</td><td style="font-weight:400;">Meaning of Subtraction</td><td style="font-style:italic;">Taking away · Comparing</td></tr><tr class=""><td style="font-weight:700;">W18</td><td>zz, qu</td><td>were, said</td><td style="font-weight:400;">Subtraction Strategies</td><td style="font-style:italic;">Counting back · Related addition facts</td></tr><tr class=""><td style="font-weight:700;">W19</td><td>ch</td><td>little, big</td><td style="font-weight:400;">Fact Families</td><td style="font-style:italic;">Addition-subtraction relationships</td></tr><tr class=""><td style="font-weight:700;">W20</td><td>sh</td><td>play, look</td><td style="font-weight:400;">Missing Number Problems</td><td style="font-style:italic;">Unknown addend · Complete equations</td></tr><tr class=""><td style="font-weight:700;">W21</td><td>Review</td><td>play, look</td><td style="font-weight:400;">Subtraction Fluency</td><td style="font-style:italic;">Fluently subtract within 20</td></tr></tbody></table>
+</div>
+  <div class="inquiry-banner">"  What did we do over the holidays, and how can we use our experiences to build and create new things this semester?  "</div>
+  <div class="goals-container"><div class="goal-card gc-ela"><h3>ELA / Phonics</h3><ul><li>Recognise and produce /w/ (win, web, wag) and /x/ (fox, box, wax) sounds</li><li>Read and write sight words: <em>who</em>, <em>what</em></li><li>Listen to <em>How Do Dinosaurs Go to School?</em> and discuss classroom rules through story</li><li>Participate in collaborative storytelling: 'Over the holiday, I…'</li></ul></div><div class="goal-card gc-math"><h3>Mathematics</h3><ul><li style='font-weight:700;color:#2E7D32;list-style:none;padding-left:0;margin-bottom:2px;'>📊 Introduction to Subtraction</li><li style='color:#555;font-style:italic;'>Warm-up review: what is subtraction?</li><li style='color:#555;font-style:italic;'>Taking away — remove objects from a group</li><li style='color:#555;font-style:italic;'>Connect subtraction to real-life situations</li><li style='font-weight:700;color:#555;font-size:10px;list-style:none;padding-left:0;margin-top:3px;'>OBJECTIVES:</li><li>Introduce the concept of subtraction as 'taking away'</li><li>Model subtraction with physical objects and pictures</li></ul></div><div class="goal-card gc-sci"><h3>Science</h3><ul><li>Explore the unit question: What do builders, designers, and inventors do?</li><li>Share summer holiday discoveries — nature finds, buildings visited, things made</li><li>Set up science journals: draw something from nature you observed over the holiday</li><li>Begin wondering: What could we build or make this semester?</li></ul></div><div class="goal-card gc-ss"><h3>Social Studies</h3><ul><li>Revisit and co-create classroom community agreements for Semester 2</li><li>Share memories of places visited — temples, parks, markets, beaches in Thailand</li><li>Introduce Unit 4 theme: <em>Creative Little Builders</em> — who are builders in our community?</li><li>Create a 'Welcome Back' class mural with holiday memories</li></ul></div><div class="goal-card gc-arts"><h3>Arts &amp; Crafts</h3><ul><li>Create Summer Memories Sketchbook — connect summer experiences to personal memories</li><li>VA.K.Cn10.1 — Connect art-making to personal experiences and meaningful memories</li><li>VA.K.Re8.1 — Explain the meaning and personal significance of artwork</li></ul></div><div class="goal-card gc-music"><h3>Music</h3><ul><li><em class='ph'>Thai · Music · Computer · PHE — facilitator notes added each week</em></li></ul></div><div class="goal-card gc-thai"><h3>Thai</h3><ul><li><em class='ph'>ทบทวนคำศัพท์และกิจกรรมช่วงปิดเทอม — ครูภาษาไทยเป็นผู้กำหนด</em></li></ul></div></div>
+  <p class="tt-title">📅 Weekly Timetable</p><table class="tt"><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr><tr class=""><td>7:30</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td></tr><tr class=""><td>8:00</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td></tr><tr class="tt-row-ela"><td>8:10</td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><strong>🎤 Assembly</strong></td><td><em class='ph'>Thai</em></td></tr><tr class=""><td>9:00</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class="tt-row-ela"><td>9:20</td><td>ELA: Introduce /w/ /x/ · chant · word cards (win, box, fox)</td><td>ELA: Sight words <em>who / what</em> · 'Who am I?' guessing game</td><td>ELA: Blend /w/ and /x/ words · sentence reading on spirals</td><td>ELA: Read /w/ /x/ sentences · fluency games · partner reading</td><td>ELA: 'What did you do?' writing — holiday sentence</td></tr><tr class="tt-row-mind"><td>10:00</td><td>Welcome Back — share one thing you did over the holiday</td><td>Gratitude Circle — I am thankful for…</td><td>Breathing — breathe in welcome, breathe out worry</td><td>Body Check — how do you feel being back at school?</td><td>Kindness Intention — one way I will be a good friend this week</td></tr><tr class="tt-row-math"><td>10:15</td><td>Math: Warm-up — count back from 10 · introduction to minus</td><td>ELA: How Do Dinosaurs Go to School? — Read-Aloud · classroom rules discussion</td><td>Math: Taking away — use counters to subtract holiday objects</td><td>Math: Intro to subtraction story problems — real life contexts</td><td>Math: Draw a subtraction story — 5 shells, took 2 away</td></tr><tr class=""><td>11:00</td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td></tr><tr class=""><td>11:50</td><td>🎲 Centres</td><td>🎲 Centres</td><td>🌿 Outdoor Exploration</td><td>🌿 Outdoor Exploration</td><td>🎲 Centres</td></tr><tr class="tt-row-ss"><td>12:20</td><td>ELA: 'Who I am' — draw and share a summer memory</td><td>SS: Welcome Back Mural — holiday memories · community places in Thailand</td><td>ELA: Write 'Over the holiday, I went to ___'</td><td>Math: Intro to subtraction story problems — real life contexts</td><td>ELA: Partner share — tell a holiday story in 3 sentences</td></tr><tr class="tt-row-arts"><td>13:00</td><td><em class='ph'>🎵 Music</em></td><td>Arts &amp; Crafts: Summer Memories Sketchbook</td><td><em class='ph'>💻 Computer</em></td><td>Science: Holiday Wonder Journal — draw and share observations from the holiday</td><td><em class='ph'>🏃 PHE</em></td></tr><tr class=""><td>13:45</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class=""><td>14:00</td><td>🌿 Outdoor Play</td><td>🌿 Outdoor Play</td><td>🏃 MOVE — PHE</td><td>🗣️ Show &amp; Tell</td><td>🏖️ Sand Play</td></tr><tr class=""><td>14:35</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td></tr></table>
+  <div class="note">
+    <h4>📚 Key Concepts · Books · Global Context</h4>
+    Concepts: welcome back · belonging · community · memories · subtraction introduction<br>
+    Books / Read-Alouds: <em>How Do Dinosaurs Go to School? — Jane Yolen &amp; Mark Teague</em><br>
+    Statement of Inquiry: <em>When we ask questions, make plans, and build things, we discover our power to create solutions and express new ideas.</em>
+  </div>
+  <div class="note note-green">
+    <h4>🇹🇭 Thai Language Note</h4>
+    คำศัพท์ภาษาไทย: กลับมาโรงเรียน · ความทรงจำ · การสร้าง · ชุมชน · ผู้สร้าง — <em class="ph">ครูภาษาไทยเป็นผู้กำหนดเนื้อหาและกิจกรรมรายสัปดาห์</em>
+  </div>
+  <div class="footer">
+    <span>Week 16 · Unit 4: I Inquire, I Design, I Create</span>
+    <span>Pan Asia International School · KG3 · Age 5</span>
+    <span>Facilitator: _____________ · Date: _____________</span>
+  </div>
+</div>
+<div class="week " id="w17">
+  <div class="school-header">
+    <h1>Pan Asia International School · KG3 · Age 5 · Unit 4: I Inquire, I Design, I Create</h1>
+    <h2>🔨 Week 17: Building Starts with Ideas</h2>
+    <span class="week-tag">Theme: Creative Little Builders &nbsp;|&nbsp; School Week 2 · Unit Week 1</span>
+    
+  </div>
+  <div class="meta-bar">
+    <span><strong>Week:</strong> Week 17</span>
+    <span><strong>Grade:</strong> KG3 · Age 5</span>
+    <span><strong>Unit Theme:</strong> 🔨 Creative Little Builders</span>
+    <span><strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Creative Thinking — Where Ideas Come From</span>
+    <span><strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vb-item"><span class="vb-label">Value / Skill</span><span class="vb-val">💡 Creativity &amp; Curiosity</span></div>
+    <div class="vb-item"><span class="vb-label">CASEL</span><span class="vb-val">Self-Awareness</span></div>
+    <div class="vb-item"><span class="vb-label">Maths Topic</span><span class="vb-val">🔢 Meaning of Subtraction</span></div>
+    <div class="vb-item"><span class="vb-label">Mindfulness</span><span class="vb-val">🧘 Daily practice (see timetable)</span></div>
+    <div class="vb-item"><span class="vb-label">Approach</span><span class="vb-val">🎯 Inquiry-Play Based Learning</span></div>
+  </div>
+  <div class="scope-strip">
+  <div class="phonics-half">
+    <div class="sh-label">🔤 Phonics — Unit 4: Advanced Consonants &amp; Digraphs</div>
+    <div class="sh-topic">GPCs: <strong>y, z</strong> — Blend words containing /y/ and /z/</div>
+    <div class="sh-sub">Sight words: <strong>come</strong> · <strong>here</strong> &nbsp;|&nbsp; Blend words containing y and z.</div>
+  </div>
+  <div class="math-half">
+    <div class="sh-label">🔢 Maths — Unit 4: Subtraction Concepts &amp; Strategies</div>
+    <div class="sh-topic" style="color:#2E7D32;">Meaning of Subtraction</div>
+    <div class="sh-sub">Taking away — combine two groups and remove · Part-part-whole — understand what's left · Comparing — find the difference between two groups</div>
+  </div>
+</div>
+  <div class="scope-table">
+  <div class="scope-table-header">📋 Unit 4 Scope at a Glance — Creative Little Builders</div>
+  <table><thead>
+    <tr>
+      <th>Week</th><th>🔤 Phonics</th><th>👁️ Sight Words</th><th>🔢 Maths Topic</th><th>Key Concepts</th>
+    </tr>
+  </thead><tbody><tr class=""><td style="font-weight:700;">W16</td><td>w, x</td><td>who, what</td><td style="font-weight:400;">Intro to Subtraction</td><td style="font-style:italic;">Taking away · real-life contexts</td></tr><tr class="scope-row-active"><td style="font-weight:700;">W17</td><td>y, z</td><td>come, here</td><td style="font-weight:700;">Meaning of Subtraction</td><td style="font-style:italic;">Taking away · Comparing</td></tr><tr class=""><td style="font-weight:700;">W18</td><td>zz, qu</td><td>were, said</td><td style="font-weight:400;">Subtraction Strategies</td><td style="font-style:italic;">Counting back · Related addition facts</td></tr><tr class=""><td style="font-weight:700;">W19</td><td>ch</td><td>little, big</td><td style="font-weight:400;">Fact Families</td><td style="font-style:italic;">Addition-subtraction relationships</td></tr><tr class=""><td style="font-weight:700;">W20</td><td>sh</td><td>play, look</td><td style="font-weight:400;">Missing Number Problems</td><td style="font-style:italic;">Unknown addend · Complete equations</td></tr><tr class=""><td style="font-weight:700;">W21</td><td>Review</td><td>play, look</td><td style="font-weight:400;">Subtraction Fluency</td><td style="font-style:italic;">Fluently subtract within 20</td></tr></tbody></table>
+</div>
+  <div class="inquiry-banner">"  Where do building ideas come from, and how can we turn our ideas into something real?  "</div>
+  <div class="goals-container"><div class="goal-card gc-ela"><h3>ELA / Phonics</h3><ul><li>Recognise and produce /y/ (yet, yak, yell) and /z/ (zip, zap, zoo) sounds</li><li>Read and write sight words: <em>come</em>, <em>here</em></li><li>Listen to <em>The Most Magnificent Thing</em> and identify how the character gets and changes her ideas</li><li>Express a building idea orally and in writing: 'My idea is to build ___'</li></ul></div><div class="goal-card gc-math"><h3>Mathematics</h3><ul><li style='font-weight:700;color:#2E7D32;list-style:none;padding-left:0;margin-bottom:2px;'>📊 Meaning of Subtraction</li><li style='color:#555;font-style:italic;'>Taking away — combine two groups and remove</li><li style='color:#555;font-style:italic;'>Part-part-whole — understand what's left</li><li style='color:#555;font-style:italic;'>Comparing — find the difference between two groups</li><li style='font-weight:700;color:#555;font-size:10px;list-style:none;padding-left:0;margin-top:3px;'>OBJECTIVES:</li><li>Model subtraction situations using manipulatives and pictures</li><li>Represent subtraction with equations (e.g. 7 − 3 = 4)</li></ul></div><div class="goal-card gc-sci"><h3>Science</h3><ul><li>Explore basic physics: build a ramp for a toy car using blocks and cardboard</li><li>Test the ramp and observe how the car moves — faster/slower, far/near</li><li>Identify variables: What makes the car go further? (angle, surface, height)</li><li>Record observations with drawings and one written sentence</li></ul></div><div class="goal-card gc-ss"><h3>Social Studies</h3><ul><li>Identify community helpers who build: architects, engineers, construction workers</li><li>Discuss what buildings look like in Thailand 🇹🇭 — temples, homes, schools, markets</li><li>Compare types of homes in different ASEAN countries: stilts, concrete, wooden</li><li>Connect to inquiry: How do builders in our community make ideas into real things?</li></ul></div><div class="goal-card gc-arts"><h3>Arts &amp; Crafts</h3><ul><li>Create an Inventor Sketchbook — generate and record invention ideas through drawing and planning</li><li>VA.K.Cr1.1 — Generate and explore artistic ideas through imaginative drawing</li><li>VA.K.Cr2.1 — Develop and organise artistic plans through sketching</li></ul></div><div class="goal-card gc-music"><h3>Music</h3><ul><li><em class='ph'>Thai · Music · Computer · PHE — facilitator notes added each week</em></li></ul></div><div class="goal-card gc-thai"><h3>Thai</h3><ul><li><em class='ph'>สอนคำศัพท์เกี่ยวกับการสร้างและความคิด — ครูภาษาไทยเป็นผู้กำหนด</em></li></ul></div></div>
+  <p class="tt-title">📅 Weekly Timetable</p><table class="tt"><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr><tr class=""><td>7:30</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td></tr><tr class=""><td>8:00</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td></tr><tr class="tt-row-ela"><td>8:10</td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><strong>🎤 Assembly</strong></td><td><em class='ph'>Thai</em></td></tr><tr class=""><td>9:00</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class="tt-row-ela"><td>9:20</td><td>ELA: Introduce /y/ /z/ · word cards (yak, zip, zoo, yet)</td><td>ELA: Sight words <em>come / here</em> · sentence building with LEGO letters</td><td>ELA: Blend /y/ and /z/ words · word sort · whiteboard practice</td><td>ELA: Read /y/ /z/ sentences · fluency practice · partner reading</td><td>ELA: 'My idea is to build ___' — sentence frame writing</td></tr><tr class="tt-row-mind"><td>10:00</td><td>Idea Breathing — breathe in a new idea, breathe it out to the world</td><td>Builder's Mindset — 'I can try, fail, and try again'</td><td>Curiosity Pause — look around the room and wonder: what could this become?</td><td>Gratitude for Mistakes — mistakes help me learn to build better</td><td>Calm Body, Creative Mind — 5 deep breaths before we design</td></tr><tr class="tt-row-math"><td>10:15</td><td>Math: Taking away — 8 blocks, remove 3, how many left?</td><td>ELA: The Most Magnificent Thing — Read-Aloud · identify the character's ideas and struggles</td><td>Math: Write subtraction equations from picture cards</td><td>Math: Subtraction comparisons — who has more? who has fewer?</td><td>Math: Subtraction story problems — builders and tools</td></tr><tr class=""><td>11:00</td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td></tr><tr class=""><td>11:50</td><td>🎲 Centres</td><td>🎲 Centres</td><td>🌿 Outdoor Exploration</td><td>🌿 Outdoor Exploration</td><td>🎲 Centres</td></tr><tr class="tt-row-ss"><td>12:20</td><td>ELA: 'What does it mean to build?' — class discussion and draw</td><td>SS: Community Builders — types of buildings in Thailand and ASEAN</td><td>ELA: Draw and label an invention idea</td><td>Math: Subtraction comparisons — who has more? who has fewer?</td><td>ELA: Share invention ideas — oral presentation to a partner</td></tr><tr class="tt-row-arts"><td>13:00</td><td><em class='ph'>🎵 Music</em></td><td>Arts &amp; Crafts: Inventor Sketchbook</td><td><em class='ph'>💻 Computer</em></td><td>Science: Ramp Engineering Challenge — build, test, and improve a toy car ramp</td><td><em class='ph'>🏃 PHE</em></td></tr><tr class=""><td>13:45</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class=""><td>14:00</td><td>🌿 Outdoor Play</td><td>🌿 Outdoor Play</td><td>🏃 MOVE — PHE</td><td>🗣️ Show &amp; Tell</td><td>🏖️ Sand Play</td></tr><tr class=""><td>14:35</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td></tr></table>
+  <div class="note">
+    <h4>📚 Key Concepts · Books · Global Context</h4>
+    Concepts: ideas · imagination · community builders · subtraction · engineering challenge<br>
+    Books / Read-Alouds: <em>The Most Magnificent Thing — Ashley Spires</em><br>
+    Statement of Inquiry: <em>When we ask questions, make plans, and build things, we discover our power to create solutions and express new ideas.</em>
+  </div>
+  <div class="note note-green">
+    <h4>🇹🇭 Thai Language Note</h4>
+    คำศัพท์ภาษาไทย: ความคิด · การออกแบบ · ผู้สร้าง · โรงเรียน · วัด · ตลาด — <em class="ph">ครูภาษาไทยเป็นผู้กำหนดเนื้อหาและกิจกรรมรายสัปดาห์</em>
+  </div>
+  <div class="footer">
+    <span>Week 17 · Unit 4: I Inquire, I Design, I Create</span>
+    <span>Pan Asia International School · KG3 · Age 5</span>
+    <span>Facilitator: _____________ · Date: _____________</span>
+  </div>
+</div>
+<div class="week " id="w18">
+  <div class="school-header">
+    <h1>Pan Asia International School · KG3 · Age 5 · Unit 4: I Inquire, I Design, I Create</h1>
+    <h2>🔨 Week 18: Builders Make a Plan</h2>
+    <span class="week-tag">Theme: Creative Little Builders &nbsp;|&nbsp; School Week 3 · Unit Week 2</span>
+    
+  </div>
+  <div class="meta-bar">
+    <span><strong>Week:</strong> Week 18</span>
+    <span><strong>Grade:</strong> KG3 · Age 5</span>
+    <span><strong>Unit Theme:</strong> 🔨 Creative Little Builders</span>
+    <span><strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Design Thinking — Planning, Materials, and Iteration</span>
+    <span><strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vb-item"><span class="vb-label">Value / Skill</span><span class="vb-val">💡 Perseverance &amp; Problem Solving</span></div>
+    <div class="vb-item"><span class="vb-label">CASEL</span><span class="vb-val">Responsible Decision-Making</span></div>
+    <div class="vb-item"><span class="vb-label">Maths Topic</span><span class="vb-val">🔢 Subtraction Strategies</span></div>
+    <div class="vb-item"><span class="vb-label">Mindfulness</span><span class="vb-val">🧘 Daily practice (see timetable)</span></div>
+    <div class="vb-item"><span class="vb-label">Approach</span><span class="vb-val">🎯 Inquiry-Play Based Learning</span></div>
+  </div>
+  <div class="scope-strip">
+  <div class="phonics-half">
+    <div class="sh-label">🔤 Phonics — Unit 4: Advanced Consonants &amp; Digraphs</div>
+    <div class="sh-topic">GPCs: <strong>zz, qu</strong> — Read and write words with consonant clusters</div>
+    <div class="sh-sub">Sight words: <strong>were</strong> · <strong>said</strong> &nbsp;|&nbsp; Read and write words with consonant clusters.</div>
+  </div>
+  <div class="math-half">
+    <div class="sh-label">🔢 Maths — Unit 4: Subtraction Concepts &amp; Strategies</div>
+    <div class="sh-topic" style="color:#2E7D32;">Subtraction Strategies</div>
+    <div class="sh-sub">Counting back — start at the larger number, count back · Related addition facts — use 4+3=7 to solve 7−3=4</div>
+  </div>
+</div>
+  <div class="scope-table">
+  <div class="scope-table-header">📋 Unit 4 Scope at a Glance — Creative Little Builders</div>
+  <table><thead>
+    <tr>
+      <th>Week</th><th>🔤 Phonics</th><th>👁️ Sight Words</th><th>🔢 Maths Topic</th><th>Key Concepts</th>
+    </tr>
+  </thead><tbody><tr class=""><td style="font-weight:700;">W16</td><td>w, x</td><td>who, what</td><td style="font-weight:400;">Intro to Subtraction</td><td style="font-style:italic;">Taking away · real-life contexts</td></tr><tr class=""><td style="font-weight:700;">W17</td><td>y, z</td><td>come, here</td><td style="font-weight:400;">Meaning of Subtraction</td><td style="font-style:italic;">Taking away · Comparing</td></tr><tr class="scope-row-active"><td style="font-weight:700;">W18</td><td>zz, qu</td><td>were, said</td><td style="font-weight:700;">Subtraction Strategies</td><td style="font-style:italic;">Counting back · Related addition facts</td></tr><tr class=""><td style="font-weight:700;">W19</td><td>ch</td><td>little, big</td><td style="font-weight:400;">Fact Families</td><td style="font-style:italic;">Addition-subtraction relationships</td></tr><tr class=""><td style="font-weight:700;">W20</td><td>sh</td><td>play, look</td><td style="font-weight:400;">Missing Number Problems</td><td style="font-style:italic;">Unknown addend · Complete equations</td></tr><tr class=""><td style="font-weight:700;">W21</td><td>Review</td><td>play, look</td><td style="font-weight:400;">Subtraction Fluency</td><td style="font-style:italic;">Fluently subtract within 20</td></tr></tbody></table>
+</div>
+  <div class="inquiry-banner">"  How do we plan before we build, and what happens when our plan needs to change?  "</div>
+  <div class="goals-container"><div class="goal-card gc-ela"><h3>ELA / Phonics</h3><ul><li>Recognise double consonant <strong>zz</strong> (jazz, buzz, fizz) and <strong>qu</strong> (quack, quiz, queen, quick)</li><li>Read and write sight words: <em>were</em>, <em>said</em></li><li>Listen to <em>Building a House</em> and sequence the steps involved in building</li><li>Listen to <em>If I Built a House</em> and use descriptive language to describe an imagined building</li></ul></div><div class="goal-card gc-math"><h3>Mathematics</h3><ul><li style='font-weight:700;color:#2E7D32;list-style:none;padding-left:0;margin-bottom:2px;'>📊 Subtraction Strategies</li><li style='color:#555;font-style:italic;'>Counting back — start at the larger number, count back</li><li style='color:#555;font-style:italic;'>Related addition facts — use 4+3=7 to solve 7−3=4</li><li style='font-weight:700;color:#555;font-size:10px;list-style:none;padding-left:0;margin-top:3px;'>OBJECTIVES:</li><li>Use counting back strategy to subtract efficiently</li><li>Use related addition facts to check subtraction</li></ul></div><div class="goal-card gc-sci"><h3>Science</h3><ul><li>Test materials for strength and flexibility: cardboard, sticks, clay, foil, paper</li><li>Sort materials: strong/weak, bendy/rigid, waterproof/absorbent</li><li>Discuss: which material is best for a wall? A roof? A bridge?</li><li>Record material testing results in a simple class chart</li></ul></div><div class="goal-card gc-ss"><h3>Social Studies</h3><ul><li>Identify types of buildings in Thailand by purpose: temple, school, hospital, market 🇹🇭</li><li>Discuss why different buildings have different shapes and materials</li><li>Compare building styles in Thailand with other ASEAN countries (Malaysia, Vietnam, Indonesia)</li><li>Create a mini 'Buildings Around the World' book with drawings and labels</li></ul></div><div class="goal-card gc-arts"><h3>Arts &amp; Crafts</h3><ul><li>Design and create a bridge structure through iterative making</li><li>VA.K.Cr2.1 — Create designs using available materials with intention</li><li>VA.K.Cr3.1 — Improve and revise creations based on testing and reflection</li></ul></div><div class="goal-card gc-music"><h3>Music</h3><ul><li><em class='ph'>Thai · Music · Computer · PHE — facilitator notes added each week</em></li></ul></div><div class="goal-card gc-thai"><h3>Thai</h3><ul><li><em class='ph'>สอนคำศัพท์เกี่ยวกับการวางแผนและวัสดุ — ครูภาษาไทยเป็นผู้กำหนด</em></li></ul></div></div>
+  <p class="tt-title">📅 Weekly Timetable</p><table class="tt"><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr><tr class=""><td>7:30</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td></tr><tr class=""><td>8:00</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td></tr><tr class="tt-row-ela"><td>8:10</td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><strong>🎤 Assembly</strong></td><td><em class='ph'>Thai</em></td></tr><tr class=""><td>9:00</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class="tt-row-ela"><td>9:20</td><td>ELA: Introduce <em>zz</em> · buzz, jazz, fizz — chant and sort</td><td>ELA: Introduce <em>qu</em> · quack, quiz, queen · duck template activity</td><td>ELA: Sight words <em>were / said</em> · sentence reading · whiteboard</td><td>ELA: Read zz/qu sentences with fluency · group choral reading</td><td>ELA: Spelling practice — buzz, fizz, quiz, quack · partner quiz</td></tr><tr class="tt-row-mind"><td>10:00</td><td>Planner's Breath — inhale a plan, exhale a worry</td><td>Growth Mindset — 'My plan might change and that is okay'</td><td>Body Scan — notice any tension, breathe it out before building</td><td>Patience Visualisation — imagine building something carefully, step by step</td><td>Teamwork Intention — today I will listen to a partner's idea</td></tr><tr class="tt-row-math"><td>10:15</td><td>Math: Counting back — 10−3, start at 10, count back 3</td><td>ELA: Building a House — Read-Aloud · sequence the building steps</td><td>Math: Related facts — if 5+3=8, then 8−3=5</td><td>Math: Subtraction with a number line — count back on the builder's line</td><td>Math: Builder subtraction problems — bricks, tiles, planks</td></tr><tr class=""><td>11:00</td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td></tr><tr class=""><td>11:50</td><td>🎲 Centres</td><td>🎲 Centres</td><td>🌿 Outdoor Exploration</td><td>🌿 Outdoor Exploration</td><td>🎲 Centres</td></tr><tr class="tt-row-ss"><td>12:20</td><td>ELA: 'My dream building has ___' — descriptive sentence writing</td><td>SS: Buildings in Thailand and ASEAN — match buildings to their purpose</td><td>ELA: Design Plan drawing — label materials and parts</td><td>Math: Subtraction with a number line — count back on the builder's line</td><td>ELA: If I Built a House — share imaginary building with class</td></tr><tr class="tt-row-arts"><td>13:00</td><td><em class='ph'>🎵 Music</em></td><td>Arts &amp; Crafts: Build a Bridge Challenge</td><td><em class='ph'>💻 Computer</em></td><td>Science: Material Testing Lab — strong, weak, bendy, rigid · sort and chart</td><td><em class='ph'>🏃 PHE</em></td></tr><tr class=""><td>13:45</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class=""><td>14:00</td><td>🌿 Outdoor Play</td><td>🌿 Outdoor Play</td><td>🏃 MOVE — PHE</td><td>🗣️ Show &amp; Tell</td><td>🏖️ Sand Play</td></tr><tr class=""><td>14:35</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td></tr></table>
+  <div class="note">
+    <h4>📚 Key Concepts · Books · Global Context</h4>
+    Concepts: planning · materials · design process · subtraction strategies · building types<br>
+    Books / Read-Alouds: <em>Building a House — Byron Barton</em> · <em>If I Built a House — Chris Van Dusen</em><br>
+    Statement of Inquiry: <em>When we ask questions, make plans, and build things, we discover our power to create solutions and express new ideas.</em>
+  </div>
+  <div class="note note-green">
+    <h4>🇹🇭 Thai Language Note</h4>
+    คำศัพท์ภาษาไทย: แผนการ · วัสดุ · โครงสร้าง · วัด · โรงเรียน · โรงพยาบาล — <em class="ph">ครูภาษาไทยเป็นผู้กำหนดเนื้อหาและกิจกรรมรายสัปดาห์</em>
+  </div>
+  <div class="footer">
+    <span>Week 18 · Unit 4: I Inquire, I Design, I Create</span>
+    <span>Pan Asia International School · KG3 · Age 5</span>
+    <span>Facilitator: _____________ · Date: _____________</span>
+  </div>
+</div>
+<div class="week " id="w19">
+  <div class="school-header">
+    <h1>Pan Asia International School · KG3 · Age 5 · Unit 4: I Inquire, I Design, I Create</h1>
+    <h2>🔨 Week 19: Imagine and Build</h2>
+    <span class="week-tag">Theme: Creative Little Builders &nbsp;|&nbsp; School Week 4 · Unit Week 3</span>
+    
+  </div>
+  <div class="meta-bar">
+    <span><strong>Week:</strong> Week 19</span>
+    <span><strong>Grade:</strong> KG3 · Age 5</span>
+    <span><strong>Unit Theme:</strong> 🔨 Creative Little Builders</span>
+    <span><strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Design Thinking — Imagination, Structures, and Creativity</span>
+    <span><strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vb-item"><span class="vb-label">Value / Skill</span><span class="vb-val">💡 Imagination &amp; Innovation</span></div>
+    <div class="vb-item"><span class="vb-label">CASEL</span><span class="vb-val">Self-Management</span></div>
+    <div class="vb-item"><span class="vb-label">Maths Topic</span><span class="vb-val">🔢 Fact Families</span></div>
+    <div class="vb-item"><span class="vb-label">Mindfulness</span><span class="vb-val">🧘 Daily practice (see timetable)</span></div>
+    <div class="vb-item"><span class="vb-label">Approach</span><span class="vb-val">🎯 Inquiry-Play Based Learning</span></div>
+  </div>
+  <div class="scope-strip">
+  <div class="phonics-half">
+    <div class="sh-label">🔤 Phonics — Unit 4: Advanced Consonants &amp; Digraphs</div>
+    <div class="sh-topic">GPCs: <strong>ch</strong> — Identify and use ch in words</div>
+    <div class="sh-sub">Sight words: <strong>little</strong> · <strong>big</strong> &nbsp;|&nbsp; Identify and use ch in words.</div>
+  </div>
+  <div class="math-half">
+    <div class="sh-label">🔢 Maths — Unit 4: Subtraction Concepts &amp; Strategies</div>
+    <div class="sh-topic" style="color:#2E7D32;">Fact Families</div>
+    <div class="sh-sub">Addition-subtraction relationships: 3+4=7, 4+3=7, 7−3=4, 7−4=3 · Use a fact family triangle to see connections</div>
+  </div>
+</div>
+  <div class="scope-table">
+  <div class="scope-table-header">📋 Unit 4 Scope at a Glance — Creative Little Builders</div>
+  <table><thead>
+    <tr>
+      <th>Week</th><th>🔤 Phonics</th><th>👁️ Sight Words</th><th>🔢 Maths Topic</th><th>Key Concepts</th>
+    </tr>
+  </thead><tbody><tr class=""><td style="font-weight:700;">W16</td><td>w, x</td><td>who, what</td><td style="font-weight:400;">Intro to Subtraction</td><td style="font-style:italic;">Taking away · real-life contexts</td></tr><tr class=""><td style="font-weight:700;">W17</td><td>y, z</td><td>come, here</td><td style="font-weight:400;">Meaning of Subtraction</td><td style="font-style:italic;">Taking away · Comparing</td></tr><tr class=""><td style="font-weight:700;">W18</td><td>zz, qu</td><td>were, said</td><td style="font-weight:400;">Subtraction Strategies</td><td style="font-style:italic;">Counting back · Related addition facts</td></tr><tr class="scope-row-active"><td style="font-weight:700;">W19</td><td>ch</td><td>little, big</td><td style="font-weight:700;">Fact Families</td><td style="font-style:italic;">Addition-subtraction relationships</td></tr><tr class=""><td style="font-weight:700;">W20</td><td>sh</td><td>play, look</td><td style="font-weight:400;">Missing Number Problems</td><td style="font-style:italic;">Unknown addend · Complete equations</td></tr><tr class=""><td style="font-weight:700;">W21</td><td>Review</td><td>play, look</td><td style="font-weight:400;">Subtraction Fluency</td><td style="font-style:italic;">Fluently subtract within 20</td></tr></tbody></table>
+</div>
+  <div class="inquiry-banner">"  How can our imagination help us design and build things that did not exist before?  "</div>
+  <div class="goals-container"><div class="goal-card gc-ela"><h3>ELA / Phonics</h3><ul><li>Recognise and produce the /ch/ digraph in initial and final position (chair, chin, chop, rich, much)</li><li>Read and write sight words: <em>little</em>, <em>big</em></li><li>Listen to <em>Not a Box</em> and retell how imagination transforms an ordinary object</li><li>Write: 'My box is not a box. It is a ___' — creative writing with illustration</li></ul></div><div class="goal-card gc-math"><h3>Mathematics</h3><ul><li style='font-weight:700;color:#2E7D32;list-style:none;padding-left:0;margin-bottom:2px;'>📊 Fact Families</li><li style='color:#555;font-style:italic;'>Addition-subtraction relationships: 3+4=7, 4+3=7, 7−3=4, 7−4=3</li><li style='color:#555;font-style:italic;'>Use a fact family triangle to see connections</li><li style='font-weight:700;color:#555;font-size:10px;list-style:none;padding-left:0;margin-top:3px;'>OBJECTIVES:</li><li>Understand addition and subtraction as inverse operations</li><li>Identify and complete fact families within 20</li></ul></div><div class="goal-card gc-sci"><h3>Science</h3><ul><li>Explore structures: what makes a building tall and stable? (base, weight, balance)</li><li>Build the tallest tower possible using blocks, cups, or recycled materials</li><li>Test stability: does the tower fall? What went wrong? How can we fix it?</li><li>Introduce engineering design process: imagine → plan → build → improve</li></ul></div><div class="goal-card gc-ss"><h3>Social Studies</h3><ul><li>Discuss famous structures students know: Eiffel Tower, temples in Thailand, the Burj Khalifa</li><li>Explore ASEAN landmarks: Petronas Towers (Malaysia), Angkor Wat (Cambodia) 🌏</li><li>Connect to inquiry: Why do people build tall, beautiful, or special structures?</li><li>Draw and label 'My Dream Structure' inspired by global and local landmarks</li></ul></div><div class="goal-card gc-arts"><h3>Arts &amp; Crafts</h3><ul><li>Build a Recycled Robot sculpture using recycled and found materials</li><li>VA.K.Cr2.2 — Use found and recycled materials creatively and intentionally</li><li>VA.K.Cn11.1 — Connect art-making to sustainability and recycling themes</li></ul></div><div class="goal-card gc-music"><h3>Music</h3><ul><li><em class='ph'>Thai · Music · Computer · PHE — facilitator notes added each week</em></li></ul></div><div class="goal-card gc-thai"><h3>Thai</h3><ul><li><em class='ph'>สอนคำศัพท์เกี่ยวกับจินตนาการและการสร้างสรรค์ — ครูภาษาไทยเป็นผู้กำหนด</em></li></ul></div></div>
+  <p class="tt-title">📅 Weekly Timetable</p><table class="tt"><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr><tr class=""><td>7:30</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td></tr><tr class=""><td>8:00</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td></tr><tr class="tt-row-ela"><td>8:10</td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><strong>🎤 Assembly</strong></td><td><em class='ph'>Thai</em></td></tr><tr class=""><td>9:00</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class="tt-row-ela"><td>9:20</td><td>ELA: Introduce /ch/ · chair, chin, chop — gesture + chant</td><td>ELA: Sight words <em>little / big</em> · 'big or little' sorting game</td><td>ELA: /ch/ Spot the Error worksheet · fix the sentences</td><td>ELA: Read /ch/ sentences · fluency with partner · choral reading</td><td>ELA: 'Not a Box' writing — 'My box is not a box. It is a ___'</td></tr><tr class="tt-row-mind"><td>10:00</td><td>Creative Pause — close eyes, imagine something amazing you could build</td><td>Mindful Making — notice the texture of materials as you build</td><td>Growth Mindset Mantra — 'I imagine, I try, I improve'</td><td>Builder's Breath — slow breath in as you plan, slow breath out as you create</td><td>Gratitude — I am grateful for my imagination</td></tr><tr class="tt-row-math"><td>10:15</td><td>Math: Fact families — introduce triangle with 2, 5, 7</td><td>ELA: Not a Box — Read-Aloud · how does imagination change what we see?</td><td>Math: Build fact families — use cubes, write all four equations</td><td>Math: Use fact families to solve missing number problems</td><td>Math: Fact family puzzles — fill in the missing number</td></tr><tr class=""><td>11:00</td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td></tr><tr class=""><td>11:50</td><td>🎲 Centres</td><td>🎲 Centres</td><td>🌿 Outdoor Exploration</td><td>🌿 Outdoor Exploration</td><td>🎲 Centres</td></tr><tr class="tt-row-ss"><td>12:20</td><td>ELA: 'What is big? What is little?' — comparative sentences</td><td>SS: Famous Structures — ASEAN landmarks and Thai temples</td><td>ELA: Draw my imagined building — label with adjectives</td><td>Math: Use fact families to solve missing number problems</td><td>ELA: Oral share — present 'My Dream Structure' to the class</td></tr><tr class="tt-row-arts"><td>13:00</td><td><em class='ph'>🎵 Music</em></td><td>Arts &amp; Crafts: Recycled Robot</td><td><em class='ph'>💻 Computer</em></td><td>Science: Tower Challenge — build tall, test stability, improve the design</td><td><em class='ph'>🏃 PHE</em></td></tr><tr class=""><td>13:45</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class=""><td>14:00</td><td>🌿 Outdoor Play</td><td>🌿 Outdoor Play</td><td>🏃 MOVE — PHE</td><td>🗣️ Show &amp; Tell</td><td>🏖️ Sand Play</td></tr><tr class=""><td>14:35</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td></tr></table>
+  <div class="note">
+    <h4>📚 Key Concepts · Books · Global Context</h4>
+    Concepts: imagination · structures · stability · fact families · ASEAN landmarks<br>
+    Books / Read-Alouds: <em>Not a Box — Antoinette Portis</em><br>
+    Statement of Inquiry: <em>When we ask questions, make plans, and build things, we discover our power to create solutions and express new ideas.</em>
+  </div>
+  <div class="note note-green">
+    <h4>🇹🇭 Thai Language Note</h4>
+    คำศัพท์ภาษาไทย: จินตนาการ · โครงสร้าง · สูง · แข็งแรง · วัสดุรีไซเคิล — <em class="ph">ครูภาษาไทยเป็นผู้กำหนดเนื้อหาและกิจกรรมรายสัปดาห์</em>
+  </div>
+  <div class="footer">
+    <span>Week 19 · Unit 4: I Inquire, I Design, I Create</span>
+    <span>Pan Asia International School · KG3 · Age 5</span>
+    <span>Facilitator: _____________ · Date: _____________</span>
+  </div>
+</div>
+<div class="week " id="w20">
+  <div class="school-header">
+    <h1>Pan Asia International School · KG3 · Age 5 · Unit 4: I Inquire, I Design, I Create</h1>
+    <h2>🔨 Week 20: Creating with Purpose</h2>
+    <span class="week-tag">Theme: Creative Little Builders &nbsp;|&nbsp; School Week 5 · Unit Week 4</span>
+    
+  </div>
+  <div class="meta-bar">
+    <span><strong>Week:</strong> Week 20</span>
+    <span><strong>Grade:</strong> KG3 · Age 5</span>
+    <span><strong>Unit Theme:</strong> 🔨 Creative Little Builders</span>
+    <span><strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Design Thinking — Problem Solving and Purposeful Creation</span>
+    <span><strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vb-item"><span class="vb-label">Value / Skill</span><span class="vb-val">💡 Responsibility &amp; Sustainability</span></div>
+    <div class="vb-item"><span class="vb-label">CASEL</span><span class="vb-val">Responsible Decision-Making</span></div>
+    <div class="vb-item"><span class="vb-label">Maths Topic</span><span class="vb-val">🔢 Missing Number Problems</span></div>
+    <div class="vb-item"><span class="vb-label">Mindfulness</span><span class="vb-val">🧘 Daily practice (see timetable)</span></div>
+    <div class="vb-item"><span class="vb-label">Approach</span><span class="vb-val">🎯 Inquiry-Play Based Learning</span></div>
+  </div>
+  <div class="scope-strip">
+  <div class="phonics-half">
+    <div class="sh-label">🔤 Phonics — Unit 4: Advanced Consonants &amp; Digraphs</div>
+    <div class="sh-topic">GPCs: <strong>sh</strong> — Read and spell words containing sh</div>
+    <div class="sh-sub">Sight words: <strong>play</strong> · <strong>look</strong> &nbsp;|&nbsp; Read and spell words containing sh.</div>
+  </div>
+  <div class="math-half">
+    <div class="sh-label">🔢 Maths — Unit 4: Subtraction Concepts &amp; Strategies</div>
+    <div class="sh-topic" style="color:#2E7D32;">Missing Number Problems</div>
+    <div class="sh-sub">Unknown addend: 5 + ? = 9 · Complete equations with missing numbers: ? − 3 = 4 · Use addition facts to solve subtraction unknowns</div>
+  </div>
+</div>
+  <div class="scope-table">
+  <div class="scope-table-header">📋 Unit 4 Scope at a Glance — Creative Little Builders</div>
+  <table><thead>
+    <tr>
+      <th>Week</th><th>🔤 Phonics</th><th>👁️ Sight Words</th><th>🔢 Maths Topic</th><th>Key Concepts</th>
+    </tr>
+  </thead><tbody><tr class=""><td style="font-weight:700;">W16</td><td>w, x</td><td>who, what</td><td style="font-weight:400;">Intro to Subtraction</td><td style="font-style:italic;">Taking away · real-life contexts</td></tr><tr class=""><td style="font-weight:700;">W17</td><td>y, z</td><td>come, here</td><td style="font-weight:400;">Meaning of Subtraction</td><td style="font-style:italic;">Taking away · Comparing</td></tr><tr class=""><td style="font-weight:700;">W18</td><td>zz, qu</td><td>were, said</td><td style="font-weight:400;">Subtraction Strategies</td><td style="font-style:italic;">Counting back · Related addition facts</td></tr><tr class=""><td style="font-weight:700;">W19</td><td>ch</td><td>little, big</td><td style="font-weight:400;">Fact Families</td><td style="font-style:italic;">Addition-subtraction relationships</td></tr><tr class="scope-row-active"><td style="font-weight:700;">W20</td><td>sh</td><td>play, look</td><td style="font-weight:700;">Missing Number Problems</td><td style="font-style:italic;">Unknown addend · Complete equations</td></tr><tr class=""><td style="font-weight:700;">W21</td><td>Review</td><td>play, look</td><td style="font-weight:400;">Subtraction Fluency</td><td style="font-style:italic;">Fluently subtract within 20</td></tr></tbody></table>
+</div>
+  <div class="inquiry-banner">"  How can we design and build things that solve real problems and help our community?  "</div>
+  <div class="goals-container"><div class="goal-card gc-ela"><h3>ELA / Phonics</h3><ul><li>Recognise the /sh/ digraph in initial and final position (ship, shop, shed, fish, dish)</li><li>Read and write sight words: <em>play</em>, <em>look</em></li><li>Listen to <em>What Do You Do with a Problem?</em> and discuss how the character faces and solves challenges</li><li>Write: 'I see a problem. I will ___' — problem-solution sentence frame</li></ul></div><div class="goal-card gc-math"><h3>Mathematics</h3><ul><li style='font-weight:700;color:#2E7D32;list-style:none;padding-left:0;margin-bottom:2px;'>📊 Missing Number Problems</li><li style='color:#555;font-style:italic;'>Unknown addend: 5 + ? = 9</li><li style='color:#555;font-style:italic;'>Complete equations with missing numbers: ? − 3 = 4</li><li style='color:#555;font-style:italic;'>Use addition facts to solve subtraction unknowns</li><li style='font-weight:700;color:#555;font-size:10px;list-style:none;padding-left:0;margin-top:3px;'>OBJECTIVES:</li><li>Solve unknown addend problems using counting on and fact families</li><li>Complete equations with missing numbers in any position</li></ul></div><div class="goal-card gc-sci"><h3>Science</h3><ul><li>Explore recycled materials: which materials can we reuse to build something new?</li><li>Design a simple invention to solve a classroom problem (e.g. a book holder, a pencil organiser)</li><li>Build the invention from recycled materials and test it</li><li>Reflect: Did it work? What would you change?</li></ul></div><div class="goal-card gc-ss"><h3>Social Studies</h3><ul><li>Discuss how communities solve problems by building (rain shelters, water systems, markets)</li><li>Explore how Thai engineers and inventors solve problems in Thailand 🇹🇭</li><li>Compare: How do different ASEAN communities use local materials to solve problems?</li><li>Create a 'Community Problem + Solution' poster — identify a local problem and draw a building solution</li></ul></div><div class="goal-card gc-arts"><h3>Arts &amp; Crafts</h3><ul><li>Sculpt an original invention using clay with detail and intention</li><li>VA.K.Cr2.2 — Use sculpting techniques and clay materials expressively</li><li>VA.K.Cr3.1 — Refine artistic work with attention to texture and form</li></ul></div><div class="goal-card gc-music"><h3>Music</h3><ul><li><em class='ph'>Thai · Music · Computer · PHE — facilitator notes added each week</em></li></ul></div><div class="goal-card gc-thai"><h3>Thai</h3><ul><li><em class='ph'>สอนคำศัพท์เกี่ยวกับการแก้ปัญหาและการออกแบบ — ครูภาษาไทยเป็นผู้กำหนด</em></li></ul></div></div>
+  <p class="tt-title">📅 Weekly Timetable</p><table class="tt"><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr><tr class=""><td>7:30</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td></tr><tr class=""><td>8:00</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td></tr><tr class="tt-row-ela"><td>8:10</td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><strong>🎤 Assembly</strong></td><td><em class='ph'>Thai</em></td></tr><tr class=""><td>9:00</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class="tt-row-ela"><td>9:20</td><td>ELA: Introduce /sh/ · ship, shop, shed · chant and sort</td><td>ELA: Sight words <em>play / look</em> · paper plate spelling game</td><td>ELA: /sh/ story reading + comprehension worksheet</td><td>ELA: Read /sh/ sentences fluently · partner reading · choral</td><td>ELA: Spelling test: They play here. Look! A ship! She sees a shop.</td></tr><tr class="tt-row-mind"><td>10:00</td><td>Problem Solver's Breath — breathe in the problem, breathe out a solution</td><td>Mindful Making — feel the clay, notice the texture and weight</td><td>Persistence Mantra — 'I keep trying even when it is hard'</td><td>Gratitude — name one material around me that helps me create</td><td>Caring for Earth — one way I will use recycled materials today</td></tr><tr class="tt-row-math"><td>10:15</td><td>Math: Missing addend — 5 + __ = 9 · use counters to find</td><td>ELA: What Do You Do with a Problem? — Read-Aloud · how do you face a challenge?</td><td>Math: Missing number in subtraction — 8 − __ = 3</td><td>Math: Missing number puzzles — builder challenges</td><td>Math: Mixed missing number word problems — builder context</td></tr><tr class=""><td>11:00</td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td></tr><tr class=""><td>11:50</td><td>🎲 Centres</td><td>🎲 Centres</td><td>🌿 Outdoor Exploration</td><td>🌿 Outdoor Exploration</td><td>🎲 Centres</td></tr><tr class="tt-row-ss"><td>12:20</td><td>ELA: Problem-Solution writing — 'I see a problem. I will ___'</td><td>SS: Community Problem Solvers — Thai engineers and ASEAN local solutions</td><td>ELA: Draw my invention — label parts and purpose</td><td>Math: Missing number puzzles — builder challenges</td><td>ELA: 'I look at this and see ___' — creative writing + share</td></tr><tr class="tt-row-arts"><td>13:00</td><td><em class='ph'>🎵 Music</em></td><td>Arts &amp; Crafts: Clay Inventions</td><td><em class='ph'>💻 Computer</em></td><td>Science: Recycled Invention Lab — design, build, and test a classroom solution</td><td><em class='ph'>🏃 PHE</em></td></tr><tr class=""><td>13:45</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class=""><td>14:00</td><td>🌿 Outdoor Play</td><td>🌿 Outdoor Play</td><td>🏃 MOVE — PHE</td><td>🗣️ Show &amp; Tell</td><td>🏖️ Sand Play</td></tr><tr class=""><td>14:35</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td></tr></table>
+  <div class="note">
+    <h4>📚 Key Concepts · Books · Global Context</h4>
+    Concepts: problem solving · recycled materials · invention · missing numbers · sustainability<br>
+    Books / Read-Alouds: <em>What Do You Do with a Problem? — Kobi Yamada</em><br>
+    Statement of Inquiry: <em>When we ask questions, make plans, and build things, we discover our power to create solutions and express new ideas.</em>
+  </div>
+  <div class="note note-green">
+    <h4>🇹🇭 Thai Language Note</h4>
+    คำศัพท์ภาษาไทย: ปัญหา · วิธีแก้ไข · การประดิษฐ์ · วัสดุ · ชุมชน — <em class="ph">ครูภาษาไทยเป็นผู้กำหนดเนื้อหาและกิจกรรมรายสัปดาห์</em>
+  </div>
+  <div class="footer">
+    <span>Week 20 · Unit 4: I Inquire, I Design, I Create</span>
+    <span>Pan Asia International School · KG3 · Age 5</span>
+    <span>Facilitator: _____________ · Date: _____________</span>
+  </div>
+</div>
+<div class="week " id="w21">
+  <div class="school-header">
+    <h1>Pan Asia International School · KG3 · Age 5 · Unit 4: I Inquire, I Design, I Create</h1>
+    <h2>🔨 Week 21: Maker Fair Showcase</h2>
+    <span class="week-tag">Theme: Creative Little Builders &nbsp;|&nbsp; School Week 6 · Unit Week 5</span>
+    
+  </div>
+  <div class="meta-bar">
+    <span><strong>Week:</strong> Week 21</span>
+    <span><strong>Grade:</strong> KG3 · Age 5</span>
+    <span><strong>Unit Theme:</strong> 🔨 Creative Little Builders</span>
+    <span><strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Creative Thinking — Sharing, Presenting, and Celebrating Innovation</span>
+    <span><strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vb-item"><span class="vb-label">Value / Skill</span><span class="vb-val">💡 Open-mindedness &amp; Pride in Work</span></div>
+    <div class="vb-item"><span class="vb-label">CASEL</span><span class="vb-val">Social Awareness</span></div>
+    <div class="vb-item"><span class="vb-label">Maths Topic</span><span class="vb-val">🔢 Subtraction Fluency</span></div>
+    <div class="vb-item"><span class="vb-label">Mindfulness</span><span class="vb-val">🧘 Daily practice (see timetable)</span></div>
+    <div class="vb-item"><span class="vb-label">Approach</span><span class="vb-val">🎯 Inquiry-Play Based Learning</span></div>
+  </div>
+  <div class="scope-strip">
+  <div class="phonics-half">
+    <div class="sh-label">🔤 Phonics — Unit 4: Advanced Consonants &amp; Digraphs</div>
+    <div class="sh-topic">Review: <strong>All digraphs</strong> — ch, sh, zz, qu · Apply all learned consonant patterns</div>
+    <div class="sh-sub">Sight words: <strong>play</strong> · <strong>look</strong> &nbsp;|&nbsp; Apply all learned consonant patterns in reading and writing.</div>
+  </div>
+  <div class="math-half">
+    <div class="sh-label">🔢 Maths — Unit 4: Subtraction Concepts &amp; Strategies</div>
+    <div class="sh-topic" style="color:#2E7D32;">Subtraction Fluency</div>
+    <div class="sh-sub">Recall and apply all Unit 4 subtraction strategies · Fluently subtract within 20 with speed and accuracy</div>
+  </div>
+</div>
+  <div class="scope-table">
+  <div class="scope-table-header">📋 Unit 4 Scope at a Glance — Creative Little Builders</div>
+  <table><thead>
+    <tr>
+      <th>Week</th><th>🔤 Phonics</th><th>👁️ Sight Words</th><th>🔢 Maths Topic</th><th>Key Concepts</th>
+    </tr>
+  </thead><tbody><tr class=""><td style="font-weight:700;">W16</td><td>w, x</td><td>who, what</td><td style="font-weight:400;">Intro to Subtraction</td><td style="font-style:italic;">Taking away · real-life contexts</td></tr><tr class=""><td style="font-weight:700;">W17</td><td>y, z</td><td>come, here</td><td style="font-weight:400;">Meaning of Subtraction</td><td style="font-style:italic;">Taking away · Comparing</td></tr><tr class=""><td style="font-weight:700;">W18</td><td>zz, qu</td><td>were, said</td><td style="font-weight:400;">Subtraction Strategies</td><td style="font-style:italic;">Counting back · Related addition facts</td></tr><tr class=""><td style="font-weight:700;">W19</td><td>ch</td><td>little, big</td><td style="font-weight:400;">Fact Families</td><td style="font-style:italic;">Addition-subtraction relationships</td></tr><tr class=""><td style="font-weight:700;">W20</td><td>sh</td><td>play, look</td><td style="font-weight:400;">Missing Number Problems</td><td style="font-style:italic;">Unknown addend · Complete equations</td></tr><tr class="scope-row-active"><td style="font-weight:700;">W21</td><td>Review</td><td>play, look</td><td style="font-weight:700;">Subtraction Fluency</td><td style="font-style:italic;">Fluently subtract within 20</td></tr></tbody></table>
+</div>
+  <div class="inquiry-banner">"  How do we share what we have created, and what did we discover about ourselves as builders and inventors?  "</div>
+  <div class="goals-container"><div class="goal-card gc-ela"><h3>ELA / Phonics</h3><ul><li>Review and apply all digraphs learned: ch, sh, zz, qu in reading and writing</li><li>Read and write sight words: <em>play</em>, <em>look</em></li><li>Prepare and present a verbal explanation of a personal creation: 'I built ___ because ___'</li><li>Listen to peers' explanations and ask one question: 'I wonder why you chose ___'</li></ul></div><div class="goal-card gc-math"><h3>Mathematics</h3><ul><li style='font-weight:700;color:#2E7D32;list-style:none;padding-left:0;margin-bottom:2px;'>📊 Subtraction Fluency</li><li style='color:#555;font-style:italic;'>Recall and apply all Unit 4 subtraction strategies</li><li style='color:#555;font-style:italic;'>Fluently subtract within 20 with speed and accuracy</li><li style='font-weight:700;color:#555;font-size:10px;list-style:none;padding-left:0;margin-top:3px;'>OBJECTIVES:</li><li>Fluently subtract within 20</li><li>Explain the strategy used: 'I used counting back because…'</li></ul></div><div class="goal-card gc-sci"><h3>Science</h3><ul><li>Display and explain all unit science investigations: ramp, materials test, tower, invention</li><li>Write one discovery sentence for each experiment in the science journal</li><li>Share: 'I discovered that ___ because ___' — use evidence from observations</li><li>Discuss: How does science help us design and build better things?</li></ul></div><div class="goal-card gc-ss"><h3>Social Studies</h3><ul><li>Celebrate creativity from Thailand and ASEAN — showcase inspired by real-world builders and inventors</li><li>Make connections: How do builders in our community use creativity to help people?</li><li>Reflect on Unit 4: What did I learn about myself as a creative person?</li><li>Write a Unit Commitment: 'I will use my creativity to ___'</li></ul></div><div class="goal-card gc-arts"><h3>Arts &amp; Crafts</h3><ul><li>Present and explain creative work to an audience at the Maker Fair</li><li>VA.K.Pr4.1 — Present artwork and creations with confidence and clear explanation</li><li>VA.K.Re8.1 — Explain artistic choices: why you used those materials and made those decisions</li></ul></div><div class="goal-card gc-music"><h3>Music</h3><ul><li><em class='ph'>Thai · Music · Computer · PHE — facilitator notes added each week</em></li></ul></div><div class="goal-card gc-thai"><h3>Thai</h3><ul><li><em class='ph'>สอนคำศัพท์เกี่ยวกับการนำเสนอและการฉลอง — ครูภาษาไทยเป็นผู้กำหนด</em></li></ul></div></div>
+  <p class="tt-title">📅 Weekly Timetable</p><table class="tt"><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr><tr class=""><td>7:30</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td></tr><tr class=""><td>8:00</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td></tr><tr class="tt-row-ela"><td>8:10</td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><strong>🎤 Assembly</strong></td><td><em class='ph'>Thai</em></td></tr><tr class=""><td>9:00</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class="tt-row-ela"><td>9:20</td><td>ELA: Review all digraphs — ch/sh/zz/qu flashcard speed round</td><td>ELA: Sight words review <em>play / look</em> · maker fair sentence frames</td><td>ELA: 'I built ___ because ___' — practice oral presentation</td><td>ELA: Partner reading — digraph books · celebrate reading progress</td><td>ELA: Read digraph sentences fluently · unit phonics celebration</td></tr><tr class="tt-row-mind"><td>10:00</td><td>Celebration Breath — deep breath in for all we created, out with a smile</td><td>Gratitude Circle — I am proud of ___</td><td>Artist's Reflection — what I made, what I learned, what I would change</td><td>Sharing Intention — today I will explain my work clearly and listen to others</td><td>Closing Calm — breathe, reflect, celebrate our creative journey</td></tr><tr class="tt-row-math"><td>10:15</td><td>Math: Fluency games — subtraction Snap · count back challenge</td><td>ELA: Maker Fair rehearsal — present creation to a partner, give feedback</td><td>Math: Mixed subtraction problems · solve and explain your strategy</td><td>Math: Subtraction fluency challenge — how many can you solve in 5 minutes?</td><td>Math: Unit 4 Maths Celebration — fastest fingers, oral quiz</td></tr><tr class=""><td>11:00</td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td></tr><tr class=""><td>11:50</td><td>🎲 Centres</td><td>🎲 Centres</td><td>🌿 Outdoor Exploration</td><td>🌿 Outdoor Exploration</td><td>🎲 Centres</td></tr><tr class="tt-row-ss"><td>12:20</td><td>ELA: Draw the front cover of 'My Unit 4 Book' — title and author</td><td>SS: Our Creative Community — unit reflection mural · builders in Thailand &amp; ASEAN</td><td>ELA: Write artist's statement — 'I made ___, I used ___, I learned ___'</td><td>Math: Subtraction fluency challenge — how many can you solve in 5 minutes?</td><td>ELA: Maker Fair Showcase — present to visitors/other classes</td></tr><tr class="tt-row-arts"><td>13:00</td><td><em class='ph'>🎵 Music</em></td><td>Arts &amp; Crafts: Maker Fair Showcase</td><td><em class='ph'>💻 Computer</em></td><td>Science: Science Journal Gallery — display experiments and discoveries</td><td><em class='ph'>🏃 PHE</em></td></tr><tr class=""><td>13:45</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class=""><td>14:00</td><td>🌿 Outdoor Play</td><td>🌿 Outdoor Play</td><td>🏃 MOVE — PHE</td><td>🗣️ Show &amp; Tell</td><td>🏖️ Sand Play</td></tr><tr class=""><td>14:35</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td></tr></table>
+  <div class="note">
+    <h4>📚 Key Concepts · Books · Global Context</h4>
+    Concepts: showcase · reflection · presentation · subtraction fluency · celebration of learning<br>
+    Books / Read-Alouds: <em>What Do You Do with a Problem? — Kobi Yamada (revisit)</em> · <em>The Most Magnificent Thing — Ashley Spires (revisit)</em><br>
+    Statement of Inquiry: <em>When we ask questions, make plans, and build things, we discover our power to create solutions and express new ideas.</em>
+  </div>
+  <div class="note note-green">
+    <h4>🇹🇭 Thai Language Note</h4>
+    คำศัพท์ภาษาไทย: การนำเสนอ · ความภาคภูมิใจ · นักประดิษฐ์ · ผลงาน · การฉลอง — <em class="ph">ครูภาษาไทยเป็นผู้กำหนดเนื้อหาและกิจกรรมรายสัปดาห์</em>
+  </div>
+  <div class="footer">
+    <span>Week 21 · Unit 4: I Inquire, I Design, I Create</span>
+    <span>Pan Asia International School · KG3 · Age 5</span>
+    <span>Facilitator: _____________ · Date: _____________</span>
+  </div>
+</div>
+<script>
+function showWeek(n, btn) {
+  document.querySelectorAll('.week').forEach(w => w.classList.remove('active'));
+  document.querySelectorAll('.sel-btn').forEach(b => b.classList.remove('active'));
+  var el = document.getElementById('w' + n);
+  if (el) el.classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+window.onload = function() { showWeek(16, document.querySelector('.sel-btn.active')); };
+</script>
+</body>
+</html>

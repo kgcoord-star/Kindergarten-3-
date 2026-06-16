@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KG3 Unit 3 — I Wonder, I Discover, I Protect | Pan Asia International School</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Open Sans',sans-serif;background:#ECECEC;color:#222;}
+.selector{position:sticky;top:0;z-index:100;background:linear-gradient(135deg,#6B3410,#C85C14);padding:8px 16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;box-shadow:0 2px 8px rgba(0,0,0,.3);}
+.sel-title{color:#fff;font-weight:800;font-size:13px;margin-right:6px;white-space:nowrap;}
+.sel-btn{background:rgba(255,255,255,.2);color:#fff;border:1.5px solid rgba(255,255,255,.5);border-radius:18px;padding:4px 14px;font-size:11.5px;font-weight:700;cursor:pointer;transition:.2s;}
+.sel-btn:hover,.sel-btn.active{background:#fff;color:#C85C14;border-color:#fff;}
+.print-btn{margin-left:auto;background:#1976D2;color:#fff;border:none;border-radius:18px;padding:4px 14px;font-size:11.5px;font-weight:700;cursor:pointer;}
+.print-btn:hover{background:#1565C0;}
+.week{display:none;max-width:1100px;margin:24px auto;background:#fff;border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,.13);overflow:hidden;}
+.week.active{display:block;}
+.school-header{background:linear-gradient(135deg,#6B3410 0%,#C85C14 50%,#E8742A 100%);color:#fff;padding:14px 24px;}
+.school-header h1{font-size:11px;font-weight:600;opacity:.85;letter-spacing:1px;text-transform:uppercase;}
+.school-header h2{font-size:20px;font-weight:800;margin:3px 0 1px;}
+.school-header .week-tag{display:inline-block;background:rgba(255,255,255,.25);border-radius:20px;padding:2px 14px;font-size:11px;font-weight:700;margin-top:4px;}
+.meta-bar{background:#3E2723;color:#fff;padding:7px 24px;font-size:11px;display:flex;gap:18px;flex-wrap:wrap;align-items:center;}
+.meta-bar span{opacity:.9;}
+.meta-bar strong{color:#E8742A;}
+.value-banner{background:#FFF3E0;border-left:5px solid #C85C14;padding:9px 24px;font-size:11.5px;display:flex;gap:20px;flex-wrap:wrap;align-items:center;}
+.value-banner .vb-item{display:flex;flex-direction:column;}
+.value-banner .vb-label{font-size:9px;text-transform:uppercase;letter-spacing:.7px;color:#888;font-weight:700;}
+.value-banner .vb-val{font-weight:700;color:#6B3410;font-size:12px;}
+.inquiry-banner{background:linear-gradient(135deg,#FFF8F3,#FFE0CC);border-left:6px solid #C85C14;padding:12px 24px;font-size:14px;font-style:italic;color:#6B3410;font-weight:600;line-height:1.5;}
+.card{background:#fff;border-radius:10px;box-shadow:0 1px 6px rgba(0,0,0,.08);margin:12px 20px;padding:14px 18px;}
+.goals-container{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;margin:14px 20px;}
+.goal-card{border-radius:10px;padding:12px 15px;}
+.goal-card h3{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;}
+.goal-card ul{list-style:none;padding:0;}
+.goal-card ul li{font-size:11px;line-height:1.55;padding:2px 0 2px 12px;position:relative;}
+.goal-card ul li::before{content:"▸";position:absolute;left:0;color:inherit;opacity:.7;}
+.gc-ela{background:#FFF3E0;border-left:4px solid #C85C14;}.gc-ela h3{color:#C85C14;}
+.gc-math{background:#E8F5E9;border-left:4px solid #2E7D32;}.gc-math h3{color:#2E7D32;}
+.gc-sci{background:#E3F2FD;border-left:4px solid #1565C0;}.gc-sci h3{color:#1565C0;}
+.gc-ss{background:#F3E5F5;border-left:4px solid #6A1B9A;}.gc-ss h3{color:#6A1B9A;}
+.gc-arts{background:#FBE9E7;border-left:4px solid #BF360C;}.gc-arts h3{color:#BF360C;}
+.gc-music{background:#f5f5f5;border-left:4px solid #aaa;}.gc-music h3{color:#888;}
+.gc-thai{background:#f0fff0;border-left:4px solid #aaa;}.gc-thai h3{color:#888;}
+.tt-title{font-size:12px;font-weight:800;color:#6B3410;text-transform:uppercase;letter-spacing:.7px;margin:6px 24px 4px;}
+table.tt{width:calc(100% - 48px);margin:0 24px 14px;border-collapse:collapse;font-size:10.5px;}
+table.tt th{background:#6B3410;color:#fff;padding:5px 7px;text-align:center;}
+table.tt td{border:1px solid #E0E0E0;padding:5px 7px;vertical-align:top;}
+table.tt td:first-child{font-weight:700;color:#C85C14;background:#FFF8F3;white-space:nowrap;min-width:44px;}
+.tt-row-ela{border-left:3px solid #C85C14;}
+.tt-row-math{border-left:3px solid #2E7D32;}
+.tt-row-sci{border-left:3px solid #1565C0;}
+.tt-row-ss{border-left:3px solid #6A1B9A;}
+.tt-row-arts{border-left:3px solid #BF360C;}
+.tt-row-mind{border-left:3px solid #00897B;}
+.ph{color:#999999;font-style:italic;font-size:10px;}
+em.ph{color:#999999;font-style:italic;}
+.note{background:#FFF8F3;border-radius:8px;margin:0 20px 10px;padding:10px 16px;font-size:11px;border-left:4px solid #C85C14;}
+.note.note-green{background:#F1F8E9;border-left-color:#2E7D32;}
+.note h4{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;color:#C85C14;}
+.note.note-green h4{color:#2E7D32;}
+.footer{background:#6B3410;color:rgba(255,255,255,.7);font-size:10px;padding:8px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px;}
+@media print{
+  body{background:#fff;}
+  .selector{display:none!important;}
+  .week{display:none!important;box-shadow:none;}
+  .week.active{display:block!important;}
+}
+</style>
+</head>
+<body>
+<nav class="selector">
+  <span class="sel-title">🌿 KG3 Unit 3: I Wonder, I Discover, I Protect</span>
+  <button class="sel-btn active" onclick="showWeek(11,this)">Week 11</button><button class="sel-btn" onclick="showWeek(12,this)">Week 12</button><button class="sel-btn" onclick="showWeek(13,this)">Week 13</button><button class="sel-btn" onclick="showWeek(14,this)">Week 14</button><button class="sel-btn" onclick="showWeek(15,this)">Week 15</button>
+  <button class="print-btn" onclick="window.print()">🖨️ Print</button>
+</nav>
+
+<div class="week" id="w11">
+  <div class="school-header">
+    <h1>Pan Asia International School · KG3 · Age 5 · Unit 3: I Wonder, I Discover, I Protect</h1>
+    <h2>🌿 Week 11: Pets Around Us</h2>
+    <span class="week-tag">Theme: Living Things Around Us &nbsp;|&nbsp; School Week 5 · Unit Week 1</span>
+  </div>
+  <div class="meta-bar">
+    <span><strong>Week:</strong> Week 11</span>
+    <span><strong>Grade:</strong> KG3 · Age 5</span>
+    <span><strong>Unit Theme:</strong> 🌱 Living Things Around Us</span>
+    <span><strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Personal Identity &amp; Belonging — Pets and Responsibility</span>
+    <span><strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vb-item"><span class="vb-label">Value / Skill</span><span class="vb-val">💚 Curiosity &amp; Responsibility</span></div>
+    <div class="vb-item"><span class="vb-label">CASEL</span><span class="vb-val">Self-Management</span></div>
+    <div class="vb-item"><span class="vb-label">Maths Topic</span><span class="vb-val">🔢 Addition Meanings</span></div>
+    <div class="vb-item"><span class="vb-label">Mindfulness</span><span class="vb-val">🧘 Daily practice</span></div>
+    <div class="vb-item"><span class="vb-label">Approach</span><span class="vb-val">🎯 Inquiry-Play Based Learning</span></div>
+  </div>
+  <div style="display:flex;gap:0;margin:0;border-top:2px solid #C85C14;">
+  <div style="flex:1;background:#FFF3E0;padding:8px 20px;border-right:2px solid #C85C14;">
+    <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:#888;margin-bottom:3px;">🔤 Phonics — Unit 3: Expanding the Alphabet</div>
+    <div style="font-size:12.5px;font-weight:700;color:#C85C14;">GPCs: <strong>h, b</strong> — Blend words with /h/ and /b/ in pet-themed contexts</div>
+    <div style="font-size:11px;margin-top:2px;color:#555;">Sight words: <strong>her</strong> &nbsp;·&nbsp; <strong>all</strong> &nbsp;|&nbsp; Objective: Blend words with h and b.</div>
+  </div>
+  <div style="flex:1;background:#E8F5E9;padding:8px 20px;">
+    <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:#888;margin-bottom:3px;">🔢 Maths — Unit 3: Addition Concepts and Strategies</div>
+    <div style="font-size:12.5px;font-weight:700;color:#2E7D32;">Addition Meanings</div>
+    <div style="font-size:11px;margin-top:2px;color:#555;">Joining — combine two groups and find the total · Part-part-whole — understand the relationship between addends and sum</div>
+  </div>
+</div>
+  <div style="margin:0 20px 10px;border-radius:8px;overflow:hidden;border:2px solid #C85C14;">
+  <div style="background:#6B3410;color:#fff;padding:6px 12px;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;">
+    📋 Unit 3 Scope at a Glance — Living Things Around Us
+  </div>
+  <table style="width:100%;border-collapse:collapse;">
+    <thead>
+      <tr style="background:#3E2723;color:#fff;font-size:9.5px;">
+        <th style="padding:4px 8px;border:1px solid #5D4037;">Week</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">Theme</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">🔤 Phonics</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">👁️ Sight Words</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">🔢 Maths Topic</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">Key Concepts</th>
+      </tr>
+    </thead>
+    <tbody><tr style="background:#C85C14;color:#fff;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 11</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Pets Around Us</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-weight:800;">h, b</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">her, all</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-weight:800;">Addition Meanings</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Joining · Part-part-whole</td>
+</tr><tr style="background:#fff;color:#333;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 12</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Farm</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">f, l</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">out, be</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Addition Strategies</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Counting on · Doubles · Near doubles</td>
+</tr><tr style="background:#fff;color:#333;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 13</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Sea Life</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">ff, ll</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">there, some</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Make a Ten</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Make-a-ten · Add within 20</td>
+</tr><tr style="background:#fff;color:#333;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 14</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Habitats</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">ss, s=/z/</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">have, where</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Three Addends</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Three-addend equations</td>
+</tr><tr style="background:#fff;color:#333;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 15</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Life Cycles</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">j, v</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">one, two</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Addition Fluency</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Fluently add within 20</td>
+</tr></tbody>
+  </table>
+</div>
+  <div class="inquiry-banner">"  What do our pets need to be happy and healthy, and how can we show we care?  "</div>
+  <div class="goals-container"><div class="goal-card gc-ela"><h3>ELA / Phonics</h3><ul><li>Recognise and produce the /h/ and /b/ sounds in pet-related words (rat, rock, hop, hen, hug, bat, bug)</li><li>Read and write sight words: <em>her</em>, <em>all</em></li><li>Listen to and retell key details from <em>Brown Bear, Brown Bear, What Do You See?</em></li><li>Write one sentence about an animal using correct spacing and punctuation</li></ul></div><div class="goal-card gc-math"><h3>Mathematics</h3><ul><li style='font-weight:700;color:#2E7D32;list-style:none;padding-left:0;margin-bottom:2px;'>📊 Addition Meanings</li><li style='color:#555;font-style:italic;'>Joining — combine two groups and find the total</li><li style='color:#555;font-style:italic;'>Part-part-whole — understand the relationship between addends and sum</li><li style='font-weight:700;color:#555;font-size:10px;list-style:none;padding-left:0;margin-top:3px;'>OBJECTIVES:</li><li>Model addition situations using manipulatives and pictures</li><li>Represent addition with equations (e.g. 3 + 2 = 5)</li></ul></div><div class="goal-card gc-sci"><h3>Science</h3><ul><li>Identify the basic needs of living things: food, water, shelter, space</li><li>Plant a sunflower seed and begin a growth observation log</li><li>List basic responsibilities for caring for a pet (feeding, water, space, love)</li><li>Compare needs of domesticated pets vs. wild animals</li></ul></div><div class="goal-card gc-ss"><h3>Social Studies</h3><ul><li>Recognise that families around the world keep different types of pets</li><li>Compare pet customs in Thailand 🇹🇭, Japan 🇯🇵, and ASEAN countries</li><li>Discuss how caring for animals demonstrates kindness and respect for living things</li><li>Create a class 'Pets Around the World' chart with pictures and labels</li></ul></div><div class="goal-card gc-arts"><h3>Arts &amp; Crafts</h3><ul><li>Carefully observe and draw details of plants and animals from life</li><li>VA.K.Re7.1 — Observe details carefully in natural subjects</li><li>VA.K.Cr2.1 — Represent observations through detailed drawing</li></ul></div><div class="goal-card gc-music"><h3>Music</h3><ul><li><em class='ph'>Thai · Music · Computer · PHE — facilitator notes added each week</em></li></ul></div><div class="goal-card gc-thai"><h3>Thai</h3><ul><li><em class='ph'>สอนคำศัพท์สัตว์เลี้ยงและการดูแลสัตว์ — ครูภาษาไทยเป็นผู้กำหนด</em></li></ul></div></div>
+  <p class="tt-title">📅 Weekly Timetable</p><table class="tt"><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr><tr class=""><td>7:30</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td></tr><tr class=""><td>8:00</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td></tr><tr class="tt-row-ela"><td>8:10</td><td><em class="ph">Thai</em></td><td><em class="ph">Thai</em></td><td><em class="ph">Thai</em></td><td><strong>🎤 Assembly</strong></td><td><em class="ph">Thai</em></td></tr><tr class=""><td>9:00</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class="tt-row-ela"><td>9:20</td><td>ELA: Introduce /h/ /b/ · phonics chant with pet words</td><td>ELA: Sight words <em>her / all</em> · shared reading</td><td>ELA: Blending /h/ and /b/ · word sort activity</td><td>ELA: Read sentences with /h/ &amp; /b/ · fluency and comprehension</td><td>ELA: Write 'My pet is ___' · sentence structure</td></tr><tr class="tt-row-mind"><td>10:00</td><td>Body Scan — How do you feel today?</td><td>Animal Breathing — breathe like your favourite pet</td><td>Gratitude — think of one living thing you love</td><td>Mindful Listening — close eyes, listen to classroom sounds</td><td>Kindness Intention — one act of care for an animal today</td></tr><tr class="tt-row-math"><td>10:15</td><td>Math: Joining — model adding two groups of animals</td><td>ELA: Brown Bear Read-Aloud · identify key details · animal descriptions</td><td>Math: Part-part-whole mat · pet counters</td><td>ELA: Read sentences with /h/ &amp; /b/ · fluency and comprehension</td><td>Math: Write addition equations from picture stories</td></tr><tr class=""><td>11:00</td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td></tr><tr class=""><td>11:50</td><td>🎲 Centres</td><td>🎲 Centres</td><td>🌿 Outdoor Exploration</td><td>🌿 Outdoor Exploration</td><td>🎲 Centres</td></tr><tr class="tt-row-ss"><td>12:20</td><td>ELA: Oral retell — describe an animal in a complete sentence</td><td>SS: Pets Around the World — compare Thailand, Japan, Middle East</td><td>ELA: Draw and label your favourite animal</td><td>Math: Addition story problems — pets joining a home</td><td>ELA: Shared writing — our class pet story</td></tr><tr class="tt-row-arts"><td>13:00</td><td><em class="ph">🎵 Music</em></td><td>Arts &amp; Crafts: Nature Observation Drawing</td><td><em class="ph">💻 Computer</em></td><td>Science: Planting sunflowers — what plants and pets need to live</td><td><em class="ph">🏃 PHE</em></td></tr><tr class=""><td>13:45</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class=""><td>14:00</td><td>🌿 Outdoor Play</td><td>🌿 Outdoor Play</td><td>🏃 MOVE — PHE</td><td>🗣️ Show &amp; Tell</td><td>🏖️ Sand Play</td></tr><tr class=""><td>14:35</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td></tr></table>
+  <div class="note">
+    <h4>📚 Key Concepts · Books · Global Context</h4>
+    Concepts: living things · basic needs · pet care · responsibility · observation<br>
+    Books / Read-Alouds: <em>Brown Bear, Brown Bear, What Do You See? — Bill Martin Jr.</em> · <em>How to Find a Fox — Jane Pearlman</em><br>
+    Statement of Inquiry: <em>When we observe and wonder about living things, we discover our responsibility to protect and care for the world around us.</em>
+  </div>
+  <div class="note note-green">
+    <h4>🇹🇭 Thai Language Note</h4>
+    คำศัพท์ภาษาไทย: สัตว์เลี้ยง · อาหาร · น้ำ · ที่อยู่อาศัย · ความรับผิดชอบ — <em class="ph">ครูภาษาไทยเป็นผู้กำหนดเนื้อหาและกิจกรรมรายสัปดาห์</em>
+  </div>
+  <div class="footer">
+    <span>Week 11 · Unit 3: I Wonder, I Discover, I Protect</span>
+    <span>Pan Asia International School · KG3 · Age 5</span>
+    <span>Facilitator: _____________ · Date: _____________</span>
+  </div>
+</div>
+<div class="week" id="w12">
+  <div class="school-header">
+    <h1>Pan Asia International School · KG3 · Age 5 · Unit 3: I Wonder, I Discover, I Protect</h1>
+    <h2>🌿 Week 12: Farm</h2>
+    <span class="week-tag">Theme: Living Things Around Us &nbsp;|&nbsp; School Week 6 · Unit Week 2</span>
+  </div>
+  <div class="meta-bar">
+    <span><strong>Week:</strong> Week 12</span>
+    <span><strong>Grade:</strong> KG3 · Age 5</span>
+    <span><strong>Unit Theme:</strong> 🌱 Living Things Around Us</span>
+    <span><strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Personal Identity &amp; Belonging — Food Systems and Our Community</span>
+    <span><strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vb-item"><span class="vb-label">Value / Skill</span><span class="vb-val">💚 Caring &amp; Appreciation</span></div>
+    <div class="vb-item"><span class="vb-label">CASEL</span><span class="vb-val">Social Awareness</span></div>
+    <div class="vb-item"><span class="vb-label">Maths Topic</span><span class="vb-val">🔢 Addition Strategies</span></div>
+    <div class="vb-item"><span class="vb-label">Mindfulness</span><span class="vb-val">🧘 Daily practice</span></div>
+    <div class="vb-item"><span class="vb-label">Approach</span><span class="vb-val">🎯 Inquiry-Play Based Learning</span></div>
+  </div>
+  <div style="display:flex;gap:0;margin:0;border-top:2px solid #C85C14;">
+  <div style="flex:1;background:#FFF3E0;padding:8px 20px;border-right:2px solid #C85C14;">
+    <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:#888;margin-bottom:3px;">🔤 Phonics — Unit 3: Expanding the Alphabet</div>
+    <div style="font-size:12.5px;font-weight:700;color:#C85C14;">GPCs: <strong>f, l</strong> — Improve fluency reading CVC words with /f/ and /l/</div>
+    <div style="font-size:11px;margin-top:2px;color:#555;">Sight words: <strong>out</strong> &nbsp;·&nbsp; <strong>be</strong> &nbsp;|&nbsp; Objective: Improve fluency reading CVC words.</div>
+  </div>
+  <div style="flex:1;background:#E8F5E9;padding:8px 20px;">
+    <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:#888;margin-bottom:3px;">🔢 Maths — Unit 3: Addition Concepts and Strategies</div>
+    <div style="font-size:12.5px;font-weight:700;color:#2E7D32;">Addition Strategies</div>
+    <div style="font-size:11px;margin-top:2px;color:#555;">Counting on — start at the larger number and count up · Doubles — use doubles facts to add quickly (e.g. 4+4=8) · Near doubles — use a known double to solve (e.g. 4+5 = 4+4+1)</div>
+  </div>
+</div>
+  <div style="margin:0 20px 10px;border-radius:8px;overflow:hidden;border:2px solid #C85C14;">
+  <div style="background:#6B3410;color:#fff;padding:6px 12px;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;">
+    📋 Unit 3 Scope at a Glance — Living Things Around Us
+  </div>
+  <table style="width:100%;border-collapse:collapse;">
+    <thead>
+      <tr style="background:#3E2723;color:#fff;font-size:9.5px;">
+        <th style="padding:4px 8px;border:1px solid #5D4037;">Week</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">Theme</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">🔤 Phonics</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">👁️ Sight Words</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">🔢 Maths Topic</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">Key Concepts</th>
+      </tr>
+    </thead>
+    <tbody><tr style="background:#fff;color:#333;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 11</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Pets Around Us</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">h, b</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">her, all</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Addition Meanings</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Joining · Part-part-whole</td>
+</tr><tr style="background:#C85C14;color:#fff;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 12</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Farm</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-weight:800;">f, l</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">out, be</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-weight:800;">Addition Strategies</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Counting on · Doubles · Near doubles</td>
+</tr><tr style="background:#fff;color:#333;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 13</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Sea Life</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">ff, ll</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">there, some</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Make a Ten</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Make-a-ten · Add within 20</td>
+</tr><tr style="background:#fff;color:#333;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 14</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Habitats</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">ss, s=/z/</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">have, where</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Three Addends</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Three-addend equations</td>
+</tr><tr style="background:#fff;color:#333;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 15</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Life Cycles</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">j, v</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">one, two</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Addition Fluency</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Fluently add within 20</td>
+</tr></tbody>
+  </table>
+</div>
+  <div class="inquiry-banner">"  Where does our food come from, and how do farms help our community and the world?  "</div>
+  <div class="goals-container"><div class="goal-card gc-ela"><h3>ELA / Phonics</h3><ul><li>Recognise and produce /f/ and /l/ sounds in farm-context CVC words (fog, fun, lip, log)</li><li>Read and write sight words: <em>out</em>, <em>be</em></li><li>Listen to and respond to <em>Topsy and Tim at the Farm</em> by identifying farm animals and their products</li><li>Write a sentence about a farm animal and what it gives us (e.g. The cow gives us milk.)</li></ul></div><div class="goal-card gc-math"><h3>Mathematics</h3><ul><li style='font-weight:700;color:#2E7D32;list-style:none;padding-left:0;margin-bottom:2px;'>📊 Addition Strategies</li><li style='color:#555;font-style:italic;'>Counting on — start at the larger number and count up</li><li style='color:#555;font-style:italic;'>Doubles — use doubles facts to add quickly (e.g. 4+4=8)</li><li style='color:#555;font-style:italic;'>Near doubles — use a known double to solve (e.g. 4+5 = 4+4+1)</li><li style='font-weight:700;color:#555;font-size:10px;list-style:none;padding-left:0;margin-top:3px;'>OBJECTIVES:</li><li>Solve addition problems using efficient strategies</li><li>Choose and apply the best strategy for a given problem</li></ul></div><div class="goal-card gc-sci"><h3>Science</h3><ul><li>Continue sunflower observation log — record growth changes (sprout, stem, leaves)</li><li>Identify parts of a plant: roots, stem, leaves, flower, seed</li><li>Understand that plants grow from seeds and need sunlight, water, and soil</li><li>Connect plant growth to the food we eat (grains, vegetables, fruits from farms)</li></ul></div><div class="goal-card gc-ss"><h3>Social Studies</h3><ul><li>Understand the farm-to-table journey: planting → growing → harvesting → eating</li><li>Create a class chart: Farm Animal | Product (Cow→Milk, Chicken→Eggs, Sheep→Wool)</li><li>Compare farming practices in Thailand 🇹🇭 (rice paddies) with farms in other ASEAN countries</li><li>Discuss how farmers care for living things and protect the environment</li></ul></div><div class="goal-card gc-arts"><h3>Arts &amp; Crafts</h3><ul><li>Create a 3D habitat diorama representing where an animal lives</li><li>VA.K.Cr2.1 — Create three-dimensional representations of living environments</li><li>VA.K.Cn11.1 — Connect art-making to understanding of living things and their habitats</li></ul></div><div class="goal-card gc-music"><h3>Music</h3><ul><li><em class='ph'>Thai · Music · Computer · PHE — facilitator notes added each week</em></li></ul></div><div class="goal-card gc-thai"><h3>Thai</h3><ul><li><em class='ph'>สอนคำศัพท์เกี่ยวกับฟาร์มและอาหาร — ครูภาษาไทยเป็นผู้กำหนด</em></li></ul></div></div>
+  <p class="tt-title">📅 Weekly Timetable</p><table class="tt"><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr><tr class=""><td>7:30</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td></tr><tr class=""><td>8:00</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td></tr><tr class="tt-row-ela"><td>8:10</td><td><em class="ph">Thai</em></td><td><em class="ph">Thai</em></td><td><em class="ph">Thai</em></td><td><strong>🎤 Assembly</strong></td><td><em class="ph">Thai</em></td></tr><tr class=""><td>9:00</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class="tt-row-ela"><td>9:20</td><td>ELA: Introduce /f/ /l/ · farm vocab · flashcards</td><td>ELA: Sight words <em>out / be</em> · CVC word sort (fog, fun, lip)</td><td>ELA: Blending /f/ and /l/ in sentences · whiteboard practice</td><td>ELA: Read CVC sentences with /f/ &amp; /l/ · group fluency</td><td>ELA: Sentence building — 'The ___ is on the farm.'</td></tr><tr class="tt-row-mind"><td>10:00</td><td>Breathing Flower — breathe in to smell a flower, out to blow a dandelion</td><td>Gratitude — name one food you are thankful for</td><td>Body Awareness — feel your feet on the ground like roots</td><td>Mindful Eating — describe the taste and texture of one snack</td><td>Nature Visualisation — imagine walking through a farm</td></tr><tr class="tt-row-math"><td>10:15</td><td>Math: Counting-on strategy · start at bigger number</td><td>ELA: Topsy and Tim at the Farm — Read-Aloud · farm animal chart</td><td>Math: Doubles facts — pairs of farm animals</td><td>ELA: Read CVC sentences with /f/ &amp; /l/ · group fluency</td><td>Math: Near doubles — solve 4+5 with a doubles bridge</td></tr><tr class=""><td>11:00</td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td></tr><tr class=""><td>11:50</td><td>🎲 Centres</td><td>🎲 Centres</td><td>🌿 Outdoor Exploration</td><td>🌿 Outdoor Exploration</td><td>🎲 Centres</td></tr><tr class="tt-row-ss"><td>12:20</td><td>ELA: Write 'A farm animal that gives us ___'</td><td>SS: Farm to Table — trace the journey of one food from seed to plate</td><td>ELA: Draw a farm scene with labels</td><td>Math: Story problems — how many eggs did the farmer collect?</td><td>ELA: Shared writing — From the farm to our table</td></tr><tr class="tt-row-arts"><td>13:00</td><td><em class="ph">🎵 Music</em></td><td>Arts &amp; Crafts: Animal Habitat Diorama</td><td><em class="ph">💻 Computer</em></td><td>Science: Sunflower observation log — draw changes, label parts of a plant</td><td><em class="ph">🏃 PHE</em></td></tr><tr class=""><td>13:45</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class=""><td>14:00</td><td>🌿 Outdoor Play</td><td>🌿 Outdoor Play</td><td>🏃 MOVE — PHE</td><td>🗣️ Show &amp; Tell</td><td>🏖️ Sand Play</td></tr><tr class=""><td>14:35</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td></tr></table>
+  <div class="note">
+    <h4>📚 Key Concepts · Books · Global Context</h4>
+    Concepts: farm animals · plant life cycle · food systems · farm to table · community helpers<br>
+    Books / Read-Alouds: <em>Topsy and Tim at the Farm — Jean and Gareth Adamson</em> · <em>From Farm to Table (informational)</em><br>
+    Statement of Inquiry: <em>When we observe and wonder about living things, we discover our responsibility to protect and care for the world around us.</em>
+  </div>
+  <div class="note note-green">
+    <h4>🇹🇭 Thai Language Note</h4>
+    คำศัพท์ภาษาไทย: ฟาร์ม · สัตว์ในฟาร์ม · พืชผัก · อาหาร · เกษตรกร — <em class="ph">ครูภาษาไทยเป็นผู้กำหนดเนื้อหาและกิจกรรมรายสัปดาห์</em>
+  </div>
+  <div class="footer">
+    <span>Week 12 · Unit 3: I Wonder, I Discover, I Protect</span>
+    <span>Pan Asia International School · KG3 · Age 5</span>
+    <span>Facilitator: _____________ · Date: _____________</span>
+  </div>
+</div>
+<div class="week" id="w13">
+  <div class="school-header">
+    <h1>Pan Asia International School · KG3 · Age 5 · Unit 3: I Wonder, I Discover, I Protect</h1>
+    <h2>🌿 Week 13: Sea Life — Underwater Wonders</h2>
+    <span class="week-tag">Theme: Living Things Around Us &nbsp;|&nbsp; School Week 7 · Unit Week 3</span>
+  </div>
+  <div class="meta-bar">
+    <span><strong>Week:</strong> Week 13</span>
+    <span><strong>Grade:</strong> KG3 · Age 5</span>
+    <span><strong>Unit Theme:</strong> 🌱 Living Things Around Us</span>
+    <span><strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Scientific Curiosity — Ocean Biodiversity and Marine Ecosystems</span>
+    <span><strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vb-item"><span class="vb-label">Value / Skill</span><span class="vb-val">💚 Wonder &amp; Respect for Life</span></div>
+    <div class="vb-item"><span class="vb-label">CASEL</span><span class="vb-val">Responsible Decision-Making</span></div>
+    <div class="vb-item"><span class="vb-label">Maths Topic</span><span class="vb-val">🔢 Make a Ten Strategy</span></div>
+    <div class="vb-item"><span class="vb-label">Mindfulness</span><span class="vb-val">🧘 Daily practice</span></div>
+    <div class="vb-item"><span class="vb-label">Approach</span><span class="vb-val">🎯 Inquiry-Play Based Learning</span></div>
+  </div>
+  <div style="display:flex;gap:0;margin:0;border-top:2px solid #C85C14;">
+  <div style="flex:1;background:#FFF3E0;padding:8px 20px;border-right:2px solid #C85C14;">
+    <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:#888;margin-bottom:3px;">🔤 Phonics — Unit 3: Expanding the Alphabet</div>
+    <div style="font-size:12.5px;font-weight:700;color:#C85C14;">GPCs: <strong>ff, ll</strong> — Recognise common double consonants in spelling patterns</div>
+    <div style="font-size:11px;margin-top:2px;color:#555;">Sight words: <strong>there</strong> &nbsp;·&nbsp; <strong>some</strong> &nbsp;|&nbsp; Objective: Recognize common double consonants.</div>
+  </div>
+  <div style="flex:1;background:#E8F5E9;padding:8px 20px;">
+    <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:#888;margin-bottom:3px;">🔢 Maths — Unit 3: Addition Concepts and Strategies</div>
+    <div style="font-size:12.5px;font-weight:700;color:#2E7D32;">Make a Ten Strategy</div>
+    <div style="font-size:11px;margin-top:2px;color:#555;">Make a ten — decompose one addend to reach 10, then add the rest · Add efficiently within 20 using ten frames</div>
+  </div>
+</div>
+  <div style="margin:0 20px 10px;border-radius:8px;overflow:hidden;border:2px solid #C85C14;">
+  <div style="background:#6B3410;color:#fff;padding:6px 12px;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;">
+    📋 Unit 3 Scope at a Glance — Living Things Around Us
+  </div>
+  <table style="width:100%;border-collapse:collapse;">
+    <thead>
+      <tr style="background:#3E2723;color:#fff;font-size:9.5px;">
+        <th style="padding:4px 8px;border:1px solid #5D4037;">Week</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">Theme</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">🔤 Phonics</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">👁️ Sight Words</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">🔢 Maths Topic</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">Key Concepts</th>
+      </tr>
+    </thead>
+    <tbody><tr style="background:#fff;color:#333;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 11</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Pets Around Us</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">h, b</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">her, all</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Addition Meanings</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Joining · Part-part-whole</td>
+</tr><tr style="background:#fff;color:#333;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 12</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Farm</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">f, l</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">out, be</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Addition Strategies</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Counting on · Doubles · Near doubles</td>
+</tr><tr style="background:#C85C14;color:#fff;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 13</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Sea Life</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-weight:800;">ff, ll</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">there, some</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-weight:800;">Make a Ten</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Make-a-ten · Add within 20</td>
+</tr><tr style="background:#fff;color:#333;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 14</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Habitats</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">ss, s=/z/</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">have, where</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Three Addends</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Three-addend equations</td>
+</tr><tr style="background:#fff;color:#333;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 15</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Life Cycles</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">j, v</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">one, two</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Addition Fluency</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Fluently add within 20</td>
+</tr></tbody>
+  </table>
+</div>
+  <div class="inquiry-banner">"  What amazing creatures live in the ocean, and why is it important that we protect our seas?  "</div>
+  <div class="goals-container"><div class="goal-card gc-ela"><h3>ELA / Phonics</h3><ul><li>Recognise double consonant patterns: <strong>ff</strong> (huff, off) and <strong>ll</strong> (bell, ball, will)</li><li>Read and write sight words: <em>there</em>, <em>some</em></li><li>Listen to and retell sea animal facts from <em>Commotion in the Ocean</em></li><li>Write descriptive sentences about a sea animal using colour, size, and movement words</li></ul></div><div class="goal-card gc-math"><h3>Mathematics</h3><ul><li style='font-weight:700;color:#2E7D32;list-style:none;padding-left:0;margin-bottom:2px;'>📊 Make a Ten Strategy</li><li style='color:#555;font-style:italic;'>Make a ten — decompose one addend to reach 10, then add the rest</li><li style='color:#555;font-style:italic;'>Add efficiently within 20 using ten frames</li><li style='font-weight:700;color:#555;font-size:10px;list-style:none;padding-left:0;margin-top:3px;'>OBJECTIVES:</li><li>Use the make-a-ten strategy to add efficiently</li><li>Add within 20 with growing speed and accuracy</li></ul></div><div class="goal-card gc-sci"><h3>Science</h3><ul><li>Identify and name the main parts of a fish: fins, tail, gills, eyes, mouth, scales</li><li>Understand how each body part helps the fish survive in water</li><li>Label a fish diagram showing the function of each body part</li><li>Name and describe the four ocean layers: Sunlight, Twilight, Midnight, Abyss</li></ul></div><div class="goal-card gc-ss"><h3>Social Studies</h3><ul><li>Identify animals that live in each ocean layer and explain why they live there</li><li>Discuss the importance of Thailand's coastal seas and the Gulf of Thailand 🇹🇭</li><li>Explore how ASEAN communities depend on the ocean for food and livelihoods</li><li>Begin discussing ocean pollution and why we must protect marine environments</li></ul></div><div class="goal-card gc-arts"><h3>Arts &amp; Crafts</h3><ul><li>Explore symmetry through butterfly wing painting (fold-and-press technique)</li><li>VA.K.Re7.1 — Observe visual relationships and symmetry in nature</li><li>VA.K.Cr1.1 — Experiment with paint techniques to create symmetrical designs</li></ul></div><div class="goal-card gc-music"><h3>Music</h3><ul><li><em class='ph'>Thai · Music · Computer · PHE — facilitator notes added each week</em></li></ul></div><div class="goal-card gc-thai"><h3>Thai</h3><ul><li><em class='ph'>สอนคำศัพท์สัตว์ทะเลและมหาสมุทร — ครูภาษาไทยเป็นผู้กำหนด</em></li></ul></div></div>
+  <p class="tt-title">📅 Weekly Timetable</p><table class="tt"><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr><tr class=""><td>7:30</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td></tr><tr class=""><td>8:00</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td></tr><tr class="tt-row-ela"><td>8:10</td><td><em class="ph">Thai</em></td><td><em class="ph">Thai</em></td><td><em class="ph">Thai</em></td><td><strong>🎤 Assembly</strong></td><td><em class="ph">Thai</em></td></tr><tr class=""><td>9:00</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class="tt-row-ela"><td>9:20</td><td>ELA: Introduce <em>ff / ll</em> · double consonant chant (huff, bell)</td><td>ELA: Sight words <em>there / some</em> · reading sea sentences</td><td>ELA: Spelling practice — huff, off, bell, will · whiteboard</td><td>ELA: Read ff/ll sentences · oral fluency with ocean theme</td><td>ELA: Kinetic sand — find seashells, read words, build sentences</td></tr><tr class="tt-row-mind"><td>10:00</td><td>Ocean Breathing — deep inhale, long exhale like ocean waves</td><td>Visualisation — imagine swimming among coral and fish</td><td>Mindful Observation — look carefully at one shell or pebble for 1 min</td><td>Gratitude — name one ocean animal you find amazing</td><td>Relaxation — lie still and imagine floating on a calm sea</td></tr><tr class="tt-row-math"><td>10:15</td><td>Math: Make-a-ten — use ten frames with sea counters</td><td>ELA: Commotion in the Ocean — Read-Aloud · sea animal vocabulary</td><td>Math: Practice make-a-ten within 20 · partner game</td><td>ELA: Read ff/ll sentences · oral fluency with ocean theme</td><td>Math: Apply strategy — addition problems within 20</td></tr><tr class=""><td>11:00</td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td></tr><tr class=""><td>11:50</td><td>🎲 Centres</td><td>🎲 Centres</td><td>🌿 Outdoor Exploration</td><td>🌿 Outdoor Exploration</td><td>🎲 Centres</td></tr><tr class="tt-row-ss"><td>12:20</td><td>ELA: Describe a sea animal — 'It has ___ and it can ___'</td><td>SS: Ocean Layers Poster — draw animals in each layer; Thai seas discussion</td><td>ELA: Label a sea animal drawing · sentence extension</td><td>Math: Make-a-ten story problems — sea animal counting</td><td>ELA: Fishing for Words — fish for word cards, make sentences</td></tr><tr class="tt-row-arts"><td>13:00</td><td><em class="ph">🎵 Music</em></td><td>Arts &amp; Crafts: Butterfly Symmetry Painting</td><td><em class="ph">💻 Computer</em></td><td>Science: Parts of a fish labelling · ocean layers diorama activity</td><td><em class="ph">🏃 PHE</em></td></tr><tr class=""><td>13:45</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class=""><td>14:00</td><td>🌿 Outdoor Play</td><td>🌿 Outdoor Play</td><td>🏃 MOVE — PHE</td><td>🗣️ Show &amp; Tell</td><td>🏖️ Sand Play</td></tr><tr class=""><td>14:35</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td></tr></table>
+  <div class="note">
+    <h4>📚 Key Concepts · Books · Global Context</h4>
+    Concepts: ocean layers · fish anatomy · marine biodiversity · double consonants · symmetry<br>
+    Books / Read-Alouds: <em>Commotion in the Ocean — Giles Andreae</em> · <em>Under the Sea (National Geographic Kids)</em><br>
+    Statement of Inquiry: <em>When we observe and wonder about living things, we discover our responsibility to protect and care for the world around us.</em>
+  </div>
+  <div class="note note-green">
+    <h4>🇹🇭 Thai Language Note</h4>
+    คำศัพท์ภาษาไทย: ทะเล · ปลา · สัตว์ทะเล · มหาสมุทร · อนุรักษ์ — <em class="ph">ครูภาษาไทยเป็นผู้กำหนดเนื้อหาและกิจกรรมรายสัปดาห์</em>
+  </div>
+  <div class="footer">
+    <span>Week 13 · Unit 3: I Wonder, I Discover, I Protect</span>
+    <span>Pan Asia International School · KG3 · Age 5</span>
+    <span>Facilitator: _____________ · Date: _____________</span>
+  </div>
+</div>
+<div class="week" id="w14">
+  <div class="school-header">
+    <h1>Pan Asia International School · KG3 · Age 5 · Unit 3: I Wonder, I Discover, I Protect</h1>
+    <h2>🌿 Week 14: All Connected: Who Eats Who? / Habitats</h2>
+    <span class="week-tag">Theme: Living Things Around Us &nbsp;|&nbsp; School Week 8 · Unit Week 4</span>
+  </div>
+  <div class="meta-bar">
+    <span><strong>Week:</strong> Week 14</span>
+    <span><strong>Grade:</strong> KG3 · Age 5</span>
+    <span><strong>Unit Theme:</strong> 🌱 Living Things Around Us</span>
+    <span><strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Scientific Curiosity — Ecosystems, Food Chains &amp; Environmental Stewardship</span>
+    <span><strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vb-item"><span class="vb-label">Value / Skill</span><span class="vb-val">💚 Respect for Living Things</span></div>
+    <div class="vb-item"><span class="vb-label">CASEL</span><span class="vb-val">Responsible Decision-Making</span></div>
+    <div class="vb-item"><span class="vb-label">Maths Topic</span><span class="vb-val">🔢 Three Addends</span></div>
+    <div class="vb-item"><span class="vb-label">Mindfulness</span><span class="vb-val">🧘 Daily practice</span></div>
+    <div class="vb-item"><span class="vb-label">Approach</span><span class="vb-val">🎯 Inquiry-Play Based Learning</span></div>
+  </div>
+  <div style="display:flex;gap:0;margin:0;border-top:2px solid #C85C14;">
+  <div style="flex:1;background:#FFF3E0;padding:8px 20px;border-right:2px solid #C85C14;">
+    <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:#888;margin-bottom:3px;">🔤 Phonics — Unit 3: Expanding the Alphabet</div>
+    <div style="font-size:12.5px;font-weight:700;color:#C85C14;">GPCs: <strong>ss, s=/z/</strong> — Identify different pronunciations of <em>s</em></div>
+    <div style="font-size:11px;margin-top:2px;color:#555;">Sight words: <strong>have</strong> &nbsp;·&nbsp; <strong>where</strong> &nbsp;|&nbsp; Objective: Identify different pronunciations of s.</div>
+  </div>
+  <div style="flex:1;background:#E8F5E9;padding:8px 20px;">
+    <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:#888;margin-bottom:3px;">🔢 Maths — Unit 3: Addition Concepts and Strategies</div>
+    <div style="font-size:12.5px;font-weight:700;color:#2E7D32;">Three Addends</div>
+    <div style="font-size:11px;margin-top:2px;color:#555;">Add three numbers by grouping two that make 10 · Apply commutative and associative properties to simplify</div>
+  </div>
+</div>
+  <div style="margin:0 20px 10px;border-radius:8px;overflow:hidden;border:2px solid #C85C14;">
+  <div style="background:#6B3410;color:#fff;padding:6px 12px;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;">
+    📋 Unit 3 Scope at a Glance — Living Things Around Us
+  </div>
+  <table style="width:100%;border-collapse:collapse;">
+    <thead>
+      <tr style="background:#3E2723;color:#fff;font-size:9.5px;">
+        <th style="padding:4px 8px;border:1px solid #5D4037;">Week</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">Theme</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">🔤 Phonics</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">👁️ Sight Words</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">🔢 Maths Topic</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">Key Concepts</th>
+      </tr>
+    </thead>
+    <tbody><tr style="background:#fff;color:#333;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 11</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Pets Around Us</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">h, b</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">her, all</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Addition Meanings</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Joining · Part-part-whole</td>
+</tr><tr style="background:#fff;color:#333;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 12</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Farm</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">f, l</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">out, be</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Addition Strategies</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Counting on · Doubles · Near doubles</td>
+</tr><tr style="background:#fff;color:#333;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 13</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Sea Life</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">ff, ll</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">there, some</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Make a Ten</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Make-a-ten · Add within 20</td>
+</tr><tr style="background:#C85C14;color:#fff;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 14</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Habitats</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-weight:800;">ss, s=/z/</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">have, where</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-weight:800;">Three Addends</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Three-addend equations</td>
+</tr><tr style="background:#fff;color:#333;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 15</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Life Cycles</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">j, v</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">one, two</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Addition Fluency</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Fluently add within 20</td>
+</tr></tbody>
+  </table>
+</div>
+  <div class="inquiry-banner">"  How are all living things connected, and what happens when one part of a habitat is harmed?  "</div>
+  <div class="goals-container"><div class="goal-card gc-ela"><h3>ELA / Phonics</h3><ul><li>Recognise double consonant <strong>ss</strong> (miss, toss, mess) and <em>s</em>=/z/ in everyday words (is, has, as)</li><li>Read and write sight words: <em>have</em>, <em>where</em></li><li>Read and discuss what a habitat is — connect to story <em>Squirrels in Antarctica</em></li><li>Write a sentence describing an animal in its correct habitat</li></ul></div><div class="goal-card gc-math"><h3>Mathematics</h3><ul><li style='font-weight:700;color:#2E7D32;list-style:none;padding-left:0;margin-bottom:2px;'>📊 Three Addends</li><li style='color:#555;font-style:italic;'>Add three numbers by grouping two that make 10</li><li style='color:#555;font-style:italic;'>Apply commutative and associative properties to simplify</li><li style='font-weight:700;color:#555;font-size:10px;list-style:none;padding-left:0;margin-top:3px;'>OBJECTIVES:</li><li>Solve addition problems with three numbers</li><li>Record solutions clearly: (2 + 8) + 5 = 15</li></ul></div><div class="goal-card gc-sci"><h3>Science</h3><ul><li>Define habitat and identify the four things all animals need: food, water, shelter, space</li><li>Match animals to their correct habitats: desert, ocean, arctic, forest, rainforest</li><li>Create a physical food chain using animal cards and yarn (sun → plant → insect → frog → bird)</li><li>Explain why an animal cannot survive in the wrong habitat</li></ul></div><div class="goal-card gc-ss"><h3>Social Studies</h3><ul><li>Explore ecosystems found in Southeast Asia: rainforests, mangroves, rivers, coral reefs</li><li>Identify animals unique to Thailand and ASEAN 🌏 (elephant, gibbon, clownfish, hornbill)</li><li>Discuss how human actions (pollution, deforestation) affect habitats and food chains</li><li>Begin a class 'Protect Our World' pledge wall with one action each student commits to</li></ul></div><div class="goal-card gc-arts"><h3>Arts &amp; Crafts</h3><ul><li>Sculpt garden creatures using clay with texture and surface detail</li><li>VA.K.Cr2.2 — Use sculpting and clay materials expressively</li><li>VA.K.Cr3.1 — Refine a three-dimensional artwork with attention to texture and detail</li></ul></div><div class="goal-card gc-music"><h3>Music</h3><ul><li><em class='ph'>Thai · Music · Computer · PHE — facilitator notes added each week</em></li></ul></div><div class="goal-card gc-thai"><h3>Thai</h3><ul><li><em class='ph'>สอนคำศัพท์เกี่ยวกับถิ่นอาศัยและห่วงโซ่อาหาร — ครูภาษาไทยเป็นผู้กำหนด</em></li></ul></div></div>
+  <p class="tt-title">📅 Weekly Timetable</p><table class="tt"><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr><tr class=""><td>7:30</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td></tr><tr class=""><td>8:00</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td></tr><tr class="tt-row-ela"><td>8:10</td><td><em class="ph">Thai</em></td><td><em class="ph">Thai</em></td><td><em class="ph">Thai</em></td><td><strong>🎤 Assembly</strong></td><td><em class="ph">Thai</em></td></tr><tr class=""><td>9:00</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class="tt-row-ela"><td>9:20</td><td>ELA: Introduce <em>ss</em> · word sort: miss, bell, toss, mess</td><td>ELA: Sight words <em>have / where</em> · habitat sentence reading</td><td>ELA: s=/z/ pattern — is, has, as · compare ss and s=/z/</td><td>ELA: Read habitat sentences with ss/s=/z/ · fluency pairs</td><td>ELA: Spelling game — unscramble habitat sentences</td></tr><tr class="tt-row-mind"><td>10:00</td><td>Root Visualisation — imagine your feet growing roots into the earth</td><td>Gratitude — thank a plant or animal that gives you food</td><td>Mindful Observation — study one leaf in silence for 1 minute</td><td>Habitat Imagination — picture your perfect natural home</td><td>Deep Breathing — breathe in strength like a big tree</td></tr><tr class="tt-row-math"><td>10:15</td><td>Math: Three addends — group to make ten first</td><td>ELA: What Is a Habitat? — CKLA read-aloud · habitat vocabulary chart</td><td>Math: Solve food chain addition: 3+7+2 = ___</td><td>ELA: Read habitat sentences with ss/s=/z/ · fluency pairs</td><td>Math: Three-addend word problems · draw a picture to solve</td></tr><tr class=""><td>11:00</td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td></tr><tr class=""><td>11:50</td><td>🎲 Centres</td><td>🎲 Centres</td><td>🌿 Outdoor Exploration</td><td>🌿 Outdoor Exploration</td><td>🎲 Centres</td></tr><tr class="tt-row-ss"><td>12:20</td><td>ELA: Write 'The ___ lives in a ___ because ___'</td><td>SS: ASEAN Animals &amp; Habitats — match animals to Southeast Asian ecosystems</td><td>ELA: Draw an animal in the WRONG habitat · discuss why</td><td>Math: Three-addend food chain problems — how many animals in all?</td><td>ELA: Draw and label an animal in its CORRECT habitat</td></tr><tr class="tt-row-arts"><td>13:00</td><td><em class="ph">🎵 Music</em></td><td>Arts &amp; Crafts: Clay Garden Creatures</td><td><em class="ph">💻 Computer</em></td><td>Science: Food chain yarn activity · habitat corners movement game</td><td><em class="ph">🏃 PHE</em></td></tr><tr class=""><td>13:45</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class=""><td>14:00</td><td>🌿 Outdoor Play</td><td>🌿 Outdoor Play</td><td>🏃 MOVE — PHE</td><td>🗣️ Show &amp; Tell</td><td>🏖️ Sand Play</td></tr><tr class=""><td>14:35</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td></tr></table>
+  <div class="note">
+    <h4>📚 Key Concepts · Books · Global Context</h4>
+    Concepts: habitat · food chain · ecosystem · biodiversity · environmental stewardship<br>
+    Books / Read-Alouds: <em>Squirrels in Antarctica (CKLA Lesson 1A)</em> · <em>What Is a Food Chain? (informational)</em><br>
+    Statement of Inquiry: <em>When we observe and wonder about living things, we discover our responsibility to protect and care for the world around us.</em>
+  </div>
+  <div class="note note-green">
+    <h4>🇹🇭 Thai Language Note</h4>
+    คำศัพท์ภาษาไทย: ถิ่นอาศัย · ห่วงโซ่อาหาร · ระบบนิเวศ · การอนุรักษ์ · สัตว์ป่า — <em class="ph">ครูภาษาไทยเป็นผู้กำหนดเนื้อหาและกิจกรรมรายสัปดาห์</em>
+  </div>
+  <div class="footer">
+    <span>Week 14 · Unit 3: I Wonder, I Discover, I Protect</span>
+    <span>Pan Asia International School · KG3 · Age 5</span>
+    <span>Facilitator: _____________ · Date: _____________</span>
+  </div>
+</div>
+<div class="week" id="w15">
+  <div class="school-header">
+    <h1>Pan Asia International School · KG3 · Age 5 · Unit 3: I Wonder, I Discover, I Protect</h1>
+    <h2>🌿 Week 15: Life Cycles</h2>
+    <span class="week-tag">Theme: Living Things Around Us &nbsp;|&nbsp; School Week 9 · Unit Week 5</span>
+  </div>
+  <div class="meta-bar">
+    <span><strong>Week:</strong> Week 15</span>
+    <span><strong>Grade:</strong> KG3 · Age 5</span>
+    <span><strong>Unit Theme:</strong> 🌱 Living Things Around Us</span>
+    <span><strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Scientific Curiosity — Cycles of Life &amp; Environmental Responsibility</span>
+    <span><strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vb-item"><span class="vb-label">Value / Skill</span><span class="vb-val">💚 Open-mindedness &amp; Environmental Awareness</span></div>
+    <div class="vb-item"><span class="vb-label">CASEL</span><span class="vb-val">Social Awareness</span></div>
+    <div class="vb-item"><span class="vb-label">Maths Topic</span><span class="vb-val">🔢 Addition Fluency</span></div>
+    <div class="vb-item"><span class="vb-label">Mindfulness</span><span class="vb-val">🧘 Daily practice</span></div>
+    <div class="vb-item"><span class="vb-label">Approach</span><span class="vb-val">🎯 Inquiry-Play Based Learning</span></div>
+  </div>
+  <div style="display:flex;gap:0;margin:0;border-top:2px solid #C85C14;">
+  <div style="flex:1;background:#FFF3E0;padding:8px 20px;border-right:2px solid #C85C14;">
+    <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:#888;margin-bottom:3px;">🔤 Phonics — Unit 3: Expanding the Alphabet</div>
+    <div style="font-size:12.5px;font-weight:700;color:#C85C14;">GPCs: <strong>j, v</strong> — Apply all learned consonant patterns in reading and writing</div>
+    <div style="font-size:11px;margin-top:2px;color:#555;">Sight words: <strong>one</strong> &nbsp;·&nbsp; <strong>two</strong> &nbsp;|&nbsp; Objective: Apply all learned consonant patterns in reading and writing.</div>
+  </div>
+  <div style="flex:1;background:#E8F5E9;padding:8px 20px;">
+    <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:#888;margin-bottom:3px;">🔢 Maths — Unit 3: Addition Concepts and Strategies</div>
+    <div style="font-size:12.5px;font-weight:700;color:#2E7D32;">Addition Fluency</div>
+    <div style="font-size:11px;margin-top:2px;color:#555;">Recall and apply all Unit 3 addition strategies · Fluently add within 20 with speed and accuracy</div>
+  </div>
+</div>
+  <div style="margin:0 20px 10px;border-radius:8px;overflow:hidden;border:2px solid #C85C14;">
+  <div style="background:#6B3410;color:#fff;padding:6px 12px;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;">
+    📋 Unit 3 Scope at a Glance — Living Things Around Us
+  </div>
+  <table style="width:100%;border-collapse:collapse;">
+    <thead>
+      <tr style="background:#3E2723;color:#fff;font-size:9.5px;">
+        <th style="padding:4px 8px;border:1px solid #5D4037;">Week</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">Theme</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">🔤 Phonics</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">👁️ Sight Words</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">🔢 Maths Topic</th>
+        <th style="padding:4px 8px;border:1px solid #5D4037;">Key Concepts</th>
+      </tr>
+    </thead>
+    <tbody><tr style="background:#fff;color:#333;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 11</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Pets Around Us</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">h, b</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">her, all</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Addition Meanings</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Joining · Part-part-whole</td>
+</tr><tr style="background:#fff;color:#333;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 12</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Farm</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">f, l</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">out, be</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Addition Strategies</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Counting on · Doubles · Near doubles</td>
+</tr><tr style="background:#fff;color:#333;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 13</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Sea Life</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">ff, ll</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">there, some</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Make a Ten</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Make-a-ten · Add within 20</td>
+</tr><tr style="background:#fff;color:#333;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 14</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Habitats</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">ss, s=/z/</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">have, where</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Three Addends</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Three-addend equations</td>
+</tr><tr style="background:#C85C14;color:#fff;font-size:10px;">
+  <td style="padding:4px 8px;font-weight:700;border:1px solid #e0d0c0;">Week 15</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">Life Cycles</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-weight:800;">j, v</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;">one, two</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-weight:800;">Addition Fluency</td>
+  <td style="padding:4px 8px;border:1px solid #e0d0c0;font-style:italic;">Fluently add within 20</td>
+</tr></tbody>
+  </table>
+</div>
+  <div class="inquiry-banner">"  How do living things grow and change, and what can WE do to protect them?  "</div>
+  <div class="goals-container"><div class="goal-card gc-ela"><h3>ELA / Phonics</h3><ul><li>Recognise and produce /j/ (jet, jam, jog) and /v/ (van, vet, vat) in reading and writing</li><li>Read and write sight words: <em>one</em>, <em>two</em></li><li>Listen to and sequence events from <em>The Very Hungry Caterpillar</em> (Mon–Fri sequence)</li><li>Write a sentence using a comma: 'I saw a caterpillar, a butterfly, and a flower.'</li></ul></div><div class="goal-card gc-math"><h3>Mathematics</h3><ul><li style='font-weight:700;color:#2E7D32;list-style:none;padding-left:0;margin-bottom:2px;'>📊 Addition Fluency</li><li style='color:#555;font-style:italic;'>Recall and apply all Unit 3 addition strategies</li><li style='color:#555;font-style:italic;'>Fluently add within 20 with speed and accuracy</li><li style='font-weight:700;color:#555;font-size:10px;list-style:none;padding-left:0;margin-top:3px;'>OBJECTIVES:</li><li>Fluently add within 20</li><li>Explain the strategy used: 'I used make-a-ten because…'</li></ul></div><div class="goal-card gc-sci"><h3>Science</h3><ul><li>Identify and sequence the stages of the butterfly life cycle: egg → caterpillar → chrysalis → butterfly</li><li>Draw and label a scientific diagram of the butterfly life cycle</li><li>Compare the life cycle of a butterfly with the life cycle of a sunflower (plant)</li><li>Connect life cycles to environmental protection: why butterflies and plants matter</li></ul></div><div class="goal-card gc-ss"><h3>Social Studies</h3><ul><li>Reflect on all five weeks: pets, farms, oceans, habitats, and life cycles</li><li>Create a 'Protect Our Planet' poster with an environmental message for the school community</li><li>Discuss how children in Thailand and ASEAN countries protect nature (national parks, marine reserves)</li><li>Share personal Unit 3 commitment: one thing I will do to care for living things</li></ul></div><div class="goal-card gc-arts"><h3>Arts &amp; Crafts</h3><ul><li>Design a poster communicating an environmental protection message</li><li>VA.K.Cn11.1 — Connect art-making to environmental responsibility and stewardship</li><li>VA.K.Pr4.1 — Share artwork with a purpose and present to an audience (school hallway display)</li></ul></div><div class="goal-card gc-music"><h3>Music</h3><ul><li><em class='ph'>Thai · Music · Computer · PHE — facilitator notes added each week</em></li></ul></div><div class="goal-card gc-thai"><h3>Thai</h3><ul><li><em class='ph'>สอนคำศัพท์วัฏจักรชีวิตและสิ่งแวดล้อม — ครูภาษาไทยเป็นผู้กำหนด</em></li></ul></div></div>
+  <p class="tt-title">📅 Weekly Timetable</p><table class="tt"><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr><tr class=""><td>7:30</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td></tr><tr class=""><td>8:00</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td></tr><tr class="tt-row-ela"><td>8:10</td><td><em class="ph">Thai</em></td><td><em class="ph">Thai</em></td><td><em class="ph">Thai</em></td><td><strong>🎤 Assembly</strong></td><td><em class="ph">Thai</em></td></tr><tr class=""><td>9:00</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class="tt-row-ela"><td>9:20</td><td>ELA: Introduce /j/ and /v/ · word cards · phonics chant</td><td>ELA: Sight words <em>one / two</em> · life cycle sentences</td><td>ELA: Blend /j/ and /v/ words · sentence writing</td><td>ELA: Read /j/ /v/ sentences · oral fluency · partner reading</td><td>ELA: Apply all consonant patterns · fluency reading</td></tr><tr class="tt-row-mind"><td>10:00</td><td>Butterfly Breathing — slow, deep breaths like a butterfly opening its wings</td><td>Gratitude — name three living things in your community you want to protect</td><td>Growth Mindset — 'I can change and grow, just like a caterpillar'</td><td>Nature Pledge — one thing I will do to protect living things</td><td>Closing Calm — body scan, breathe, smile, send kindness to the Earth</td></tr><tr class="tt-row-math"><td>10:15</td><td>Math: Fluency review — counting on and doubles</td><td>ELA: The Very Hungry Caterpillar — Read-Aloud · sequence chart Monday–Friday</td><td>Math: Mixed addition strategies quiz — within 20</td><td>ELA: Read /j/ /v/ sentences · oral fluency · partner reading</td><td>Math: Unit 3 maths celebration — solve and explain</td></tr><tr class=""><td>11:00</td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style="font-size:9.5px;color:#888;">11:30 Centres</span></td></tr><tr class=""><td>11:50</td><td>🎲 Centres</td><td>🎲 Centres</td><td>🌿 Outdoor Exploration</td><td>🌿 Outdoor Exploration</td><td>🎲 Centres</td></tr><tr class="tt-row-ss"><td>12:20</td><td>ELA: 'If I were a very hungry caterpillar I would eat…' writing</td><td>SS: Protect Our Planet — create class mural / pledge wall for living things</td><td>ELA: Life cycle diagram — draw and label all 4 stages</td><td>Math: Addition fluency challenge — how quickly can you solve within 20?</td><td>ELA: Comma practice — list sentences about nature</td></tr><tr class="tt-row-arts"><td>13:00</td><td><em class="ph">🎵 Music</em></td><td>Arts &amp; Crafts: Protect Our Planet Poster</td><td><em class="ph">💻 Computer</em></td><td>Science: Butterfly life cycle sequencing · draw and label scientific diagram</td><td><em class="ph">🏃 PHE</em></td></tr><tr class=""><td>13:45</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class=""><td>14:00</td><td>🌿 Outdoor Play</td><td>🌿 Outdoor Play</td><td>🏃 MOVE — PHE</td><td>🗣️ Show &amp; Tell</td><td>🏖️ Sand Play</td></tr><tr class=""><td>14:35</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td></tr></table>
+  <div class="note">
+    <h4>📚 Key Concepts · Books · Global Context</h4>
+    Concepts: life cycle · metamorphosis · growth and change · environmental protection · interconnectedness<br>
+    Books / Read-Alouds: <em>The Very Hungry Caterpillar — Eric Carle</em> · <em>Are You a Butterfly? — Judy Allen</em><br>
+    Statement of Inquiry: <em>When we observe and wonder about living things, we discover our responsibility to protect and care for the world around us.</em>
+  </div>
+  <div class="note note-green">
+    <h4>🇹🇭 Thai Language Note</h4>
+    คำศัพท์ภาษาไทย: วัฏจักรชีวิต · ผีเสื้อ · การเจริญเติบโต · สิ่งแวดล้อม · การปกป้องธรรมชาติ — <em class="ph">ครูภาษาไทยเป็นผู้กำหนดเนื้อหาและกิจกรรมรายสัปดาห์</em>
+  </div>
+  <div class="footer">
+    <span>Week 15 · Unit 3: I Wonder, I Discover, I Protect</span>
+    <span>Pan Asia International School · KG3 · Age 5</span>
+    <span>Facilitator: _____________ · Date: _____________</span>
+  </div>
+</div>
+<script>
+function showWeek(n, btn) {
+  document.querySelectorAll('.week').forEach(w => w.classList.remove('active'));
+  document.querySelectorAll('.sel-btn').forEach(b => b.classList.remove('active'));
+  var el = document.getElementById('w' + n);
+  if (el) el.classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+window.onload = function() { showWeek(11, document.querySelector('.sel-btn.active')); };
+</script>
+</body>
+</html>

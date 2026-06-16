@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>KG3 Unit 1 — I Listen, I Imagine, I Care | Pan Asia International School</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#ECECEC; font-family:'Open Sans',sans-serif; font-size:13px; color:#333; }
+
+.selector {
+  position:sticky; top:0; z-index:999;
+  background:#2E7D32; padding:10px 16px;
+  display:flex; flex-wrap:wrap; gap:6px; align-items:center;
+}
+.selector .lbl { color:#fff; font-weight:700; margin-right:4px; white-space:nowrap; }
+.selector button {
+  background:#333; color:#fff;
+  border:2px solid #C85C14; border-radius:20px;
+  padding:5px 13px; cursor:pointer;
+  font-size:11.5px; font-family:'Open Sans',sans-serif;
+  transition:background .15s;
+}
+.selector button.active, .selector button:hover { background:#C85C14; }
+.selector .print-btn { background:#fff; color:#333; border-color:#999; margin-left:auto; }
+.selector .print-btn:hover { background:#f0f0f0; }
+
+.week { display:none; max-width:1120px; margin:20px auto 40px; border-radius:12px; overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,.12); }
+.week.show { display:block; }
+
+.school-header { background:linear-gradient(135deg,#C85C14,#E8742A); color:#fff; padding:20px 28px; text-align:center; }
+.school-header h1 { font-size:21px; font-weight:800; margin-bottom:6px; }
+.school-header h2 { font-size:13.5px; font-weight:600; opacity:.93; margin-bottom:8px; }
+.week-tag { display:inline-block; background:rgba(255,255,255,.22); border-radius:14px; padding:3px 14px; font-size:12px; font-weight:700; }
+
+.meta-bar { background:#fff; border-left:5px solid #C85C14; padding:10px 22px; display:flex; flex-wrap:wrap; gap:18px; font-size:12px; color:#444; }
+.meta-bar span strong { color:#C85C14; }
+
+.value-banner { background:#FFF8F3; border-left:5px solid #C85C14; padding:12px 22px; margin-top:2px; }
+.vt { font-weight:700; font-size:13.5px; color:#C85C14; margin-bottom:4px; }
+.vs { font-size:12px; color:#555; line-height:1.7; }
+
+.inquiry-banner { background:#fff; border-left:5px solid #C85C14; padding:14px 22px; margin-top:2px; }
+.iq-label { font-size:10.5px; font-weight:700; color:#999; text-transform:uppercase; letter-spacing:1.2px; margin-bottom:5px; }
+.iq-q { font-size:17px; font-style:italic; color:#C85C14; font-weight:700; }
+
+.goals-container { background:#fff; border-left:5px solid #C85C14; padding:16px 22px; margin-top:2px; }
+.goals-container h3 { font-size:13px; color:#333; margin-bottom:10px; }
+.goal-subhead { color:#fff; padding:5px 13px; border-radius:4px; font-size:11.5px; font-weight:700; margin-top:10px; margin-bottom:3px; display:inline-block; }
+.goals-container ul { margin-left:22px; margin-bottom:2px; }
+.goals-container ul li { font-size:12px; color:#444; margin-bottom:3px; line-height:1.55; }
+
+.gs-read  { background:#E65100; }
+.gs-write { background:#6A1B9A; }
+.gs-speak { background:#00838F; }
+.gs-math  { background:#283593; }
+.gs-sci   { background:#2E7D32; }
+.gs-ss    { background:#5D4037; }
+.gs-sel   { background:#880E4F; }
+.gs-arts  { background:#AD1457; }
+.gs-music { background:#D84315; }
+.gs-pe    { background:#00695C; }
+.gs-comp  { background:#006064; }
+.gs-wl    { background:#1565C0; }
+.gs-atl   { background:#388E3C; }
+
+.tt-title { background:#C85C14; color:#fff; padding:10px 22px; font-weight:700; font-size:13.5px; margin-top:2px; }
+table.tt { width:100%; border-collapse:collapse; background:#fff; }
+table.tt th { background:#C85C14; color:#fff; padding:8px 10px; font-size:12px; text-align:center; border:1px solid #ddd; }
+table.tt th:first-child { width:13%; text-align:left; }
+table.tt td { padding:7px 9px; border:1px solid #e0e0e0; font-size:11.5px; vertical-align:top; line-height:1.5; }
+table.tt td:first-child { font-weight:700; font-size:11px; color:#555; white-space:nowrap; }
+.all-day { font-style:italic; color:#555; text-align:center; background:#FAFAFA; }
+
+.row-arrival   > td:first-child { border-left:5px solid #9E9E9E; }
+.row-circle    > td:first-child { border-left:5px solid #C85C14; }
+.row-wlang     > td:first-child { border-left:5px solid #00838F; }
+.row-snack     > td:first-child { border-left:5px solid #9E9E9E; }
+.row-ela1      > td:first-child { border-left:5px solid #E65100; }
+.row-mindful   > td:first-child { border-left:5px solid #00838F; }
+.row-math      > td:first-child { border-left:5px solid #283593; }
+.row-lunch     > td:first-child { border-left:5px solid #9E9E9E; }
+.row-centres   > td:first-child { border-left:5px solid #F57F17; }
+.row-ela2ss    > td:first-child { border-left:5px solid #6A1B9A; }
+.row-specials  > td:first-child { border-left:5px solid #AD1457; }
+.row-snack2    > td:first-child { border-left:5px solid #9E9E9E; }
+.row-afternoon > td:first-child { border-left:5px solid #BF360C; }
+.row-close     > td:first-child { border-left:5px solid #C85C14; }
+table.tt tbody tr:nth-child(even) { background:#FAFAFA; }
+
+.cell-ph  { font-style:italic; color:#AAA; font-size:11px; }
+.cell-asm { background:#E8F5E9; color:#2E7D32; font-weight:600; text-align:center; }
+.cell-wl  { background:#FCE4EC; color:#880E4F; font-weight:600; }
+.cell-out { background:#F1F8E9; color:#33691E; }
+.cell-ctr { background:#FFFDE7; color:#F57F17; }
+
+.note-standards { background:#E8F5E9; border-left:5px solid #1565C0; color:#0D47A1; }
+.note { background:#fff; border-left:5px solid #C85C14; padding:14px 22px; margin-top:2px; font-size:12px; color:#444; line-height:1.9; }
+.note-green { background:#F1F8E9; border-left-color:#558B2F; color:#33691E; }
+
+.footer { background:linear-gradient(135deg,#C85C14,#E8742A); color:#fff; padding:12px 22px; font-size:12px; text-align:center; }
+
+@media print {
+  .selector { display:none; }
+  .week { display:none !important; max-width:100%; margin:0; border-radius:0; box-shadow:none; }
+  .week.show { display:block !important; }
+  body { background:#fff; }
+  .school-header,.tt-title,.footer,.goal-subhead { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+}
+</style>
+</head>
+<body>
+
+<div class="selector">
+  <span class="lbl">📅 View Week:</span>
+  <button onclick="showWeek(0,this)" class="active">Week 0 · Welcome to School</button>
+  <button onclick="showWeek(1,this)">Week 1 · All About Me</button>
+  <button onclick="showWeek(2,this)">Week 2 · My Family</button>
+  <button onclick="showWeek(3,this)">Week 3 · My Feelings</button>
+  <button onclick="showWeek(4,this)">Week 4 · My Community</button>
+  <button onclick="showWeek(5,this)">Week 5 · Caring for Others</button>
+  <button class="print-btn" onclick="window.print()">🖨 Print This Week</button>
+</div>
+
+
+<div class="week show" id="week0">
+
+  <div class="school-header">
+    <h1>🌟 Pan Asia International School</h1>
+    <h2>KG3 — Unit 1 · "I Listen, I Imagine, I Care"</h2>
+    <span class="week-tag">📅 Week 0 · Welcome to School</span>
+  </div>
+
+  <div class="meta-bar">
+    <span>📅 <strong>Week 0:</strong> Welcome to School</span>
+    <span>👧 <strong>Grade:</strong> KG3 (Age 5)</span>
+    <span>🌍 <strong>Global Competency Focus:</strong> OECD Global Competency — Self-Awareness &amp; Belonging: understanding oneself as part of a local and global community</span>
+    <span>📐 <strong>Frameworks:</strong> CCSS · NGSS · CASEL · C3 Social Studies · OECD Global Competency</span>
+  </div>
+
+  <div class="value-banner">
+    <div class="vt">❤️ Curiosity &amp; Belonging</div>
+    <div class="vs">
+      <strong>CASEL Connection:</strong> Self-Awareness — identifying and naming emotions about new experiences<br>
+      <strong>Phonics / Sight Word Note:</strong> Print awareness · name recognition · environmental print · alphabet introduction &nbsp;·&nbsp; <strong>Sight Words:</strong> I · a · my · the<br>
+      <strong>🧘 Mindfulness:</strong> Balloon Breath<br>
+      <strong>🎯 Approach:</strong> Inquiry-Play Based Learning — children construct understanding through play, exploration, questioning, and creative expression
+    </div>
+  </div>
+
+  <div class="inquiry-banner">
+    <div class="iq-label">🔎 What I Wonder — Weekly Inquiry Question</div>
+    <div class="iq-q">"Who am I, and where do I belong?"</div>
+  </div>
+
+  <div class="goals-container">
+    <h3>🎯 Week 0 Learning Goals — By the End of the Week, Students Will:</h3>
+<div class="goal-subhead gs-read">📖 Reading — CCSS RF.K.1 · RI.K</div><ul><li>RF.K.1 Understand that print carries meaning; books have fronts, backs, and spines</li><li>RF.K.1b Track print left-to-right, top-to-bottom</li><li>RI.K.1 Ask and answer questions about a read-aloud (<em>The Kissing Hand</em>)</li></ul>
+<div class="goal-subhead gs-write">✏️ Writing — CCSS W.K.2</div><ul><li>W.K.2 Draw and label self-portraits with name or 1–2 descriptive words</li><li>W.K.5 Share drawings with a partner and offer one idea to improve</li></ul>
+<div class="goal-subhead gs-speak">🗣️ Speaking & Listening — CCSS SL.K.1 · L.K</div><ul><li>SL.K.1 Collaborative conversations: listen, take turns, stay on topic</li><li>SL.K.4 Describe self and classroom in complete sentences</li><li>L.K.1 Use oral language conventions in morning meeting</li></ul>
+<div class="goal-subhead gs-math">🔢 Math — CCSS K.CC.1 · K.MD.3 · K.G.1</div><ul><li>K.CC.1 Count to 20 by ones; rote count to 100 with teacher support</li><li>K.MD.3 Classify objects into given categories (shape, colour, size)</li><li>K.G.1 Describe positions using above, below, beside, in front, next to</li></ul><p>K.OA.1–3 Review: addition and subtraction within 10. K.CC.1 Count to 100 by tens. K.G.1–6 Geometry review: shape hunt in the environment. <em>Unit celebration: skip-counting and shape collage.</p></div><p>K.MD.1 Describe and compare measurable attributes (helper tools: big/small). K.MD.3 Classify and count objects by category. K.CC.5 Count objects 1–20. <em>Community helpers survey: graphing, tallying, data.</p></div><p>K.CC.7 Compare two numbers 1–10. K.OA.3 Decompose numbers less than or equal to 10 (feelings numbers). K.NBT.1 Compose/decompose numbers 11–19 with tens and ones. <em>Feelings graph: data collection and counting.</p></div><p>K.CC.5 Count out objects: family members 1–10. K.OA.2 Solve addition and subtraction word problems (family joining/leaving). K.G.4 Analyse and compare 2D shapes. <em>Family portrait: counting, sorting, shape patterns.</p></div><p>K.CC.4 Understand relationship between numbers and quantities. K.CC.6 Identify whether number is greater than/less than. K.OA.1 Representing addition with objects/drawings. <em>Math story: counting classmates, graphing eye colours.</p></div><p>K.CC.1 Count to 20 by ones. K.MD.3 Classify objects into given categories. K.G.1 Describe positions using above, below, beside, in front. <em>Play-based math: sorting self-portraits, shape hunts.</p></div><ul><li>Count objects from 1 to 5 with one-to-one correspondence</li><li>Sort objects by colour and by size using math vocabulary: more, fewer, same</li><li>Recognise and name numerals 1–5</li></ul>
+<div class="goal-subhead gs-sci">🔬 Science — NGSS K-PS1-1 · K-LS1-1</div><ul><li>K-PS1-1 Observable Properties: explore the 5 senses as tools for observing the world</li><li>K-LS1-1 Identify basic needs of living things (food, water, sunlight, air)</li><li>Play-based inquiry: sensory bins, magnifiers, observation journals</li></ul><p><strong>K-ESS3-3</strong> Earth and Human Activity — actions that reduce impact on the environment. <strong>K-2-ETS1-2</strong> Developing and Comparing Multiple Solutions: designing a caring-for-earth pledge. <em>Culminating STEM project: 'Our World Needs Us' care action.</em></p></div><p><strong>K-ESS2-1</strong> Weather and Climate: observing local and global weather patterns. <strong>K-ESS3-3</strong> Earth and Human Activity: how communities care for shared resources. <em>Community helpers + environmental stewardship project.</em></p></div><p><strong>K-PS3-1</strong> Sunlight warms the Earth: exploring warmth and light as sources of comfort. <strong>K-ESS3-1</strong> Earth and Human Activity: weather effects on communities. <em>Emotional + scientific inquiry: how does weather make us feel?</em></p></div><p><strong>K-LS1-1</strong> Needs of living things — comparing plant/animal needs to our own. <strong>K-2-ETS1-1</strong> Defining Simple Problems: designing solutions with art materials. <em>Inquiry: 'What do families of animals do?' observation study.</em></p></div><p><strong>K-PS1-1</strong> Observable Properties: sorting objects by colour, size, texture. <strong>K-ESS2-2</strong> Earth's Systems: weather patterns, sky observations. <em>Engineering play: building structures that represent 'me'.</em></p></div><p><strong>K-PS1-1</strong> Observable Properties: Exploring the five senses as tools for observing the world. <strong>K-LS1-1</strong> Basic needs of living things. <em>Play-based inquiry: sensory bins, magnifiers, observation journals.</em></p></div><ul><li>Use senses to observe and describe classroom materials</li><li>Compare and sort objects by observable properties</li><li>Record observations through drawing</li></ul>
+<div class="goal-subhead gs-ss">🌍 Social Studies</div><ul><li>Identify classroom rules and explain why they help the community</li><li>Learn the names of classmates and teachers</li><li>Understand what it means to belong to a class community</li></ul>
+<div class="goal-subhead gs-sel">❤️ SEL (CASEL)</div><ul><li>Name and express feelings about starting school</li><li>Practise greeting others with a smile and kind words</li><li>Understand that all feelings are valid and normal</li></ul>
+<div class="goal-subhead gs-arts">🎨 Arts &amp; Crafts</div><ul><li>Create artwork that expresses feelings about starting school</li><li>Engage in imaginative exploration with paint and mark-making tools</li><li>Connect artwork to personal experience of first day</li></ul>
+<div class="goal-subhead gs-music">🎵 Music</div><ul><li><span class="cell-ph">🎵 Music content — to be completed by the Music teacher</span></li></ul>
+<div class="goal-subhead gs-pe">🏃 PHE &amp; Movement</div><ul><li><span class="cell-ph">🏃 PHE content — to be completed by the PHE teacher</span></li></ul>
+<div class="goal-subhead gs-comp">💻 Computer</div><ul><li><span class="cell-ph">💻 Computer content — to be completed by the Computer teacher</span></li></ul>
+<ul><li><span class="cell-ph">🌏 World Language content — to be completed by the World Language teacher</span></li></ul>
+<ul><li>Build curiosity through free exploration of classroom learning centres</li><li>Practise sharing materials and taking turns with peers</li><li>Ask 'I wonder…' questions about classroom objects and spaces</li></ul>
+
+  </div>
+
+  
+<div class="tt-title">🗓 Week 0 Daily Schedule — Welcome to School</div>
+<table class="tt">
+<thead><tr>
+  <th>Time &amp; Block</th>
+  <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th>
+</tr></thead>
+<tbody>
+<tr class="row-wlang"><td>8:10 – 9:00</td><td colspan="4" style="text-align:center; font-style:italic; color:#00838F;">🌍 Global Morning Meeting — greetings in 2+ languages, calendar math, cultural sharing, community circle (SEL + World Language + Global Competency)</td></tr>
+
+<tr class="row-arrival">
+  <td>7:30–8:00<br><strong>Arrival</strong></td>
+  <td colspan="5" class="all-day">School doors open · Children settle into morning exploration activities and welcome routines</td>
+</tr>
+
+<tr class="row-circle">
+  <td>8:00–8:10<br><strong>🌅 Circle Time</strong></td>
+  <td>'Good Morning' welcome song · each child shares name and one thing they love · class name poem</td><td>Morning routine introduction · calendar, weather chart, days of the week song</td><td>'Our Classroom Agreement' — co-create class rules · discuss: why do rules help us?</td>
+  <td>Alphabet warm-up song · class attendance · whole-school assembly preparation</td><td>'My Favourite Part of the Week' sharing circle · celebrate one class success together</td>
+</tr>
+
+<tr class="row-snack">
+  <td>9:00–9:20<br><strong>🍎 Snack Break</strong></td>
+  <td colspan="5" class="all-day">Children enjoy morning snack · Supervised social time · Table manners &amp; independent self-care</td>
+</tr>
+
+<tr class="row-ela1">
+  <td>9:20–10:00<br><strong>📖 ELA 1 / World Lang</strong></td>
+  <td>Shared reading: <em>The Kissing Hand</em> · print concepts: left-to-right, top-to-bottom · make text-to-self connections</td><td>Environmental print walk · 'I can read!' — identify logos, labels, and name tags around the classroom</td><td>Alphabet chart introduction — sing alphabet song · match uppercase to lowercase letters</td>
+  <td><span class="cell-wl"><span class="cell-ph">🌏 World Language content — to be completed by the World Language teacher</span></span></td>
+  <td>Name writing practice · identify beginning letter of own name · draw and label 3 classroom objects</td>
+</tr>
+
+<tr class="row-mindful">
+  <td>10:00–10:15<br><strong>🧘 Mindfulness Break</strong></td>
+  <td>🎈 <strong>Balloon Breath</strong><br>Breathe in slowly to fill your belly like a balloon; breathe out with a long 'shhh' to deflate — 5 times</td><td>⭐ <strong>Starfish Breath</strong><br>Spread one hand like a starfish; breathe in as you trace up each finger, out as you trace down — 5 fingers</td><td>🫧 <strong>Bubble Breath</strong><br>Breathe in deeply; breathe out as slowly as you can, as if blowing one giant, perfect bubble</td><td>🏔️ <strong>Mountain Breath</strong><br>Breathe in as arms slowly rise to a peak; breathe out as arms float gently back down — 5 breaths</td><td>🌈 <strong>Rainbow Breath</strong><br>Trace a rainbow arc with one arm — breathe in on the rise, breathe out on the way down</td>
+</tr>
+
+<tr class="row-math">
+  <td>10:15–11:00<br><strong>🔢 Math / ELA</strong></td>
+  <td>Counting objects 1–5 with manipulatives · one-to-one correspondence · 'How many?' with classroom objects</td>
+  <td>'I am ___' self-portrait — draw yourself, write/dictate your name · 'Tell me one thing about you!' partner share</td>
+  <td>Sorting by colour — coloured bears and blocks · describe the sorting rule · 'Which group has more?'</td>
+  <td>Alphabet letter recognition — match capital to lowercase · identify and name letters in own name · alphabet bingo</td>
+  <td>Sorting by size — big, medium, small · order objects smallest to largest · math talk: bigger, smaller, same</td>
+</tr>
+
+<tr class="row-lunch">
+  <td>11:00–11:50<br><strong>🍱 Lunch Break</strong></td>
+  <td colspan="5" class="all-day">Supervised lunch 11:00–11:30 &nbsp;·&nbsp; Self-Directed Centres 11:30–11:50</td>
+</tr>
+
+<tr class="row-centres">
+  <td>11:50–12:20<br><strong>🌱 Centres / Outdoor</strong></td>
+  <td><span class="cell-ctr">📦 Self-Directed Centres</span></td><td><span class="cell-ctr">📦 Self-Directed Centres</span></td>
+  <td><span class="cell-out">🌳 Outdoor Playtime</span></td><td><span class="cell-out">🌳 Outdoor Playtime</span></td><td><span class="cell-ctr">📦 Self-Directed Centres</span></td>
+</tr>
+
+<tr class="row-ela2ss">
+  <td>12:20–13:00<br><strong>📝 ELA 2 / SS / Math</strong></td>
+  <td>'Draw Your Family' — share drawing with a partner · teacher scribes a dictated sentence</td><td>'Our Classroom Community' — tour and label the classroom · discuss teacher, student, and helper roles · draw a class map</td><td>'This is Me!' mini booklet — draw face, colour eyes and hair · complete: <em>My name is ___</em></td>
+  <td>Counting 1–5 review · numeral formation 1–5 in playdough · match numeral cards to picture sets</td><td>'I feel _____ at school' — draw and write/dictate · share at the closing circle</td>
+</tr>
+
+<tr class="row-specials">
+  <td>13:00–13:45<br><strong>🎨 Specials</strong></td>
+  <td><span class="cell-ph">🎵 Music content — to be completed by the Music teacher</span></td>
+  <td>🎨 <strong>My First Day at KG3</strong> — explore paint and mark-making freely on large paper · press handprints · express feelings about starting school through colour and texture</td>
+  <td><span class="cell-ph">💻 Computer content — to be completed by the Computer teacher</span></td>
+  <td>🔬 <strong>Classroom Explorer!</strong> — observe and describe 5 materials using 5 senses · STEM: build the tallest free-standing tower from classroom blocks; test and compare results</td>
+  <td><span class="cell-ph">🏃 PHE content — to be completed by the PHE teacher</span></td>
+</tr>
+
+<tr class="row-snack2">
+  <td>13:45–14:00<br><strong>🍊 Snack Break</strong></td>
+  <td colspan="5" class="all-day">Afternoon snack · Tidy-up routine · Children prepare for afternoon activities</td>
+</tr>
+
+<tr class="row-afternoon">
+  <td>14:00–14:35<br><strong>🌟 Afternoon Block</strong></td>
+  <td><span class="cell-out">🌳 Outdoor Playtime — free exploration &amp; making new friends</span></td><td><span class="cell-out">🌳 Outdoor Playtime — cooperative games &amp; group challenges</span></td><td>🕺 <strong>MOVEMENT PHE</strong> — dancing to welcome songs · move in different ways: fast/slow, high/low · freeze dance · body-space awareness</td>
+  <td>🌟 <strong>Show &amp; Tell</strong> — children share a drawing of something special about themselves · 'This is me!' mini presentation</td><td>🏖 <strong>Sand Play</strong> — sensory exploration of the sandpit · write own name in sand · free creative building</td>
+</tr>
+
+<tr class="row-close">
+  <td>14:35–14:45<br><strong>👋 Closing Circle</strong></td>
+  <td colspan="5" class="all-day">Daily affirmation: <em>"I am curious, I am kind, and I belong here. 🌟"</em> &nbsp;·&nbsp; Pack bags &nbsp;·&nbsp; Goodbye song &nbsp;·&nbsp; Dismissal</td>
+</tr>
+
+</tbody>
+</table>
+
+
+  <div class="note">
+    <strong>📚 Key Concepts:</strong> identity · belonging · curiosity · community · classroom routines · first experiences<br>
+    <strong>📖 Recommended Books:</strong> <em>The Kissing Hand</em> — Audrey Penn &nbsp;·&nbsp; <em>First Day Jitters</em> — Julie Danneberg &nbsp;·&nbsp; <em>All Are Welcome</em> — Alexandra Penfold<br>
+    <strong>🌍 Global Context Statement:</strong> OECD Global Competency — Self-Awareness &amp; Belonging: understanding oneself as part of a local and global community | SDG 4 Quality Education · SDG 10 Reduced Inequalities — Every child belongs. Our classroom is a global community where all first experiences are honoured.
+  </div>
+
+  <div class="footer">
+    <strong>Week 0 · Welcome to School</strong> &nbsp;·&nbsp; Pan Asia International School &nbsp;·&nbsp; KG3 (Age 5)
+    &nbsp;·&nbsp; Teacher: __________________________ &nbsp;·&nbsp; Week of: __________________________
+  </div>
+
+</div><!-- /week0 -->
+
+<div class="week" id="week1">
+
+  <div class="school-header">
+    <h1>🌟 Pan Asia International School</h1>
+    <h2>KG3 — Unit 1 · "I Listen, I Imagine, I Care"</h2>
+    <span class="week-tag">📅 Week 1 · All About Me</span>
+  </div>
+
+  <div class="meta-bar">
+    <span>📅 <strong>Week 1:</strong> All About Me</span>
+    <span>👧 <strong>Grade:</strong> KG3 (Age 5)</span>
+    <span>🌍 <strong>Global Competency Focus:</strong> OECD Global Competency — Self-Awareness &amp; Cultural Identity: celebrating what makes each person unique</span>
+    <span>📐 <strong>Frameworks:</strong> CCSS · NGSS · CASEL · C3 Social Studies · OECD Global Competency</span>
+  </div>
+
+  <div class="value-banner">
+    <div class="vt">✨ Self-Awareness &amp; Confidence</div>
+    <div class="vs">
+      <strong>CASEL Connection:</strong> Self-Awareness — identifying personal strengths, qualities, and emotions<br>
+      <strong>Phonics / Sight Word Note:</strong> GPCs: <strong>s, a</strong> · Recognise and produce /s/ and /a/ sounds · write letters correctly · begin blending simple words &nbsp;·&nbsp; <strong>Sight Words:</strong> <strong>I · can</strong><br>
+      <strong>🧘 Mindfulness:</strong> Starfish Breathing<br>
+      <strong>🎯 Approach:</strong> Inquiry-Play Based Learning — children construct understanding through play, exploration, questioning, and creative expression
+    </div>
+  </div>
+
+  <div class="inquiry-banner">
+    <div class="iq-label">🔎 What I Wonder — Weekly Inquiry Question</div>
+    <div class="iq-q">"What makes me special and unique?"</div>
+  </div>
+
+  <div class="goals-container">
+    <h3>🎯 Week 1 Learning Goals — By the End of the Week, Students Will:</h3>
+<div class="goal-subhead gs-read">📖 Reading — CCSS RF.K.1b · RF.K.2a</div><ul><li>RF.K.1b Practise left-to-right directionality with name cards and poems</li><li>RF.K.2a Recognise and produce rhyming words from weekly poems</li><li>RL.K.1 Retell key details about characters in identity-themed books</li></ul>
+<div class="goal-subhead gs-write">✏️ Writing — CCSS W.K.2 · W.K.5</div><ul><li>W.K.2 Informational: draw and label 'All About Me' book page</li><li>W.K.5 Add detail to a drawing after partner sharing and feedback</li></ul>
+<div class="goal-subhead gs-speak">🗣️ Speaking & Listening — CCSS SL.K.4 · SL.K.5</div><ul><li>SL.K.4 Share personal story: 'My name means…' with the group</li><li>SL.K.5 Add drawing to a description of a favourite activity</li><li>L.K.1 Speak in complete sentences during sharing circle</li></ul>
+<div class="goal-subhead gs-math">🔢 Math — CCSS K.CC.4 · K.CC.6 · K.OA.1</div><ul><li>K.CC.4 Understand the relationship between numbers and quantities (1–10)</li><li>K.CC.6 Identify whether a group has more, less, or the same as another</li><li>K.OA.1 Represent addition with objects and drawings (counting classmates)</li></ul>
+<div class="goal-subhead gs-sci">🔬 Science — NGSS K-PS1-1 · K-ESS2-2</div><ul><li>K-PS1-1 Sort objects by colour, size, texture, and material</li><li>K-ESS2-2 Earth's Systems: observe and record weather patterns and sky changes</li><li>Engineering play: build structures that represent 'me' using natural materials</li></ul>
+<div class="goal-subhead gs-ss">🌍 Social Studies</div><ul><li>Explain what makes each person unique while belonging to the same community</li><li>Identify themselves as members of a classroom, school, and local community</li><li>Discuss rights and responsibilities as a class member</li></ul>
+<div class="goal-subhead gs-sel">❤️ SEL (CASEL)</div><ul><li>Identify and describe personal strengths and areas of growth</li><li>Use positive self-talk to build confidence</li><li>Show empathy by noticing and affirming classmates' unique qualities</li></ul>
+<div class="goal-subhead gs-arts">🎨 Arts &amp; Crafts</div><ul><li>Observe and represent personal features through careful self-portrait drawing</li><li>Use line, colour, and shape to depict facial features with increasing detail</li><li>Describe own artwork using visual vocabulary: line, shape, colour</li></ul>
+<div class="goal-subhead gs-music">🎵 Music</div><ul><li><span class="cell-ph">🎵 Music content — to be completed by the Music teacher</span></li></ul>
+<div class="goal-subhead gs-pe">🏃 PHE &amp; Movement</div><ul><li><span class="cell-ph">🏃 PHE content — to be completed by the PHE teacher</span></li></ul>
+<div class="goal-subhead gs-comp">💻 Computer</div><ul><li><span class="cell-ph">💻 Computer content — to be completed by the Computer teacher</span></li></ul>
+<ul><li><span class="cell-ph">🌏 World Language content — to be completed by the World Language teacher</span></li></ul>
+<ul><li>Ask questions and explore ideas through play and investigation</li><li>Reflect on own learning: 'What did I discover about myself?'</li><li>Show self-management by following routines independently</li></ul>
+
+  </div>
+
+  
+<div class="tt-title">🗓 Week 1 Daily Schedule — All About Me</div>
+<table class="tt">
+<thead><tr>
+  <th>Time &amp; Block</th>
+  <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th>
+</tr></thead>
+<tbody>
+<tr class="row-wlang"><td>8:10 – 9:00</td><td colspan="4" style="text-align:center; font-style:italic; color:#00838F;">🌍 Global Morning Meeting — greetings in 2+ languages, calendar math, cultural sharing, community circle (SEL + World Language + Global Competency)</td></tr>
+
+<tr class="row-arrival">
+  <td>7:30–8:00<br><strong>Arrival</strong></td>
+  <td colspan="5" class="all-day">School doors open · Children settle into morning exploration activities and welcome routines</td>
+</tr>
+
+<tr class="row-circle">
+  <td>8:00–8:10<br><strong>🌅 Circle Time</strong></td>
+  <td>Name game circle — each child says name with a movement · 'I am [name] and I like [action]'</td><td>Calendar and weather · count class members · 'How many friends do we have?' tally on the board</td><td>'What makes me special?' — turn-and-talk with a partner · share with the whole group</td>
+  <td>Phonics warm-up: /s/ and /a/ sound clap-out · 'Who can hear the /a/?' · Assembly preparation</td><td>'This week I learned…' reflection · compliment circle — say something kind to a neighbour</td>
+</tr>
+
+<tr class="row-snack">
+  <td>9:00–9:20<br><strong>🍎 Snack Break</strong></td>
+  <td colspan="5" class="all-day">Children enjoy morning snack · Supervised social time · Table manners &amp; independent self-care</td>
+</tr>
+
+<tr class="row-ela1">
+  <td>9:20–10:00<br><strong>📖 ELA 1 / World Lang</strong></td>
+  <td>GPC <strong>s</strong> — recognise /s/ sound · words: sun, sit, sand · mouth position · trace and write letter Ss in sand trays and on whiteboards</td><td>GPC <strong>a</strong> — recognise short /a/ sound · words: ant, apple, add · trace and write letter Aa · compare mouth shapes for /s/ and /a/</td><td>Review <strong>s</strong> and <strong>a</strong> — blend simple words: as, sap · Elkonin boxes with 2-phoneme words · read sight word: <em>I</em></td>
+  <td><span class="cell-wl"><span class="cell-ph">🌏 World Language content — to be completed by the World Language teacher</span></span></td>
+  <td>Blend words using <strong>s</strong> and <strong>a</strong> · read and write sight words: <em>I, can</em> · partner decodable word game: 'Can a ___ ___?'</td>
+</tr>
+
+<tr class="row-mindful">
+  <td>10:00–10:15<br><strong>🧘 Mindfulness Break</strong></td>
+  <td>🎈 <strong>Balloon Breath</strong><br>Breathe in for 4 counts; hold for 2; breathe out slowly — trace the letter S in the air as you exhale</td><td>⭐ <strong>Starfish Breath</strong><br>Trace your hand on paper; breathe in as the finger traces up, out as it traces down — 5 finger breaths</td><td>🌊 <strong>Ocean Breath</strong><br>Breathe in like a wave rolling in; breathe out like a wave rolling back — feel the gentle rhythm</td><td>🕊️ <strong>Feather Breath</strong><br>Hold up one finger; breathe out so gently the 'feather' barely flickers — 5 slow, soft breaths</td><td>💙 <strong>'I Am' Breath</strong><br>Breathe in silently saying 'I am'; breathe out 'special' — repeat 5 times with a warm smile</td>
+</tr>
+
+<tr class="row-math">
+  <td>10:15–11:00<br><strong>🔢 Math / ELA</strong></td>
+  <td><strong>Count to 100</strong> — whole-class 100-count number song · pause and predict the next number · 100 chart display</td>
+  <td>Self-portrait sketch — observe features in a mirror · label: eyes, nose, mouth, hair · add favourite colour details</td>
+  <td><strong>One-to-One Correspondence</strong> — match counters to objects on a mat · count classroom objects accurately to 20 · 'Did you count each one?'</td>
+  <td>Review <strong>s</strong> and <strong>a</strong> phonics — segment spoken words · dictate words: <em>sat, as, sap</em> · read decodable word cards · introduce word family <em>-at</em></td>
+  <td><strong>Count Forward from Any Number</strong> — 'Start at 7, go!' · number line hop game · oral and written practice with partners</td>
+</tr>
+
+<tr class="row-lunch">
+  <td>11:00–11:50<br><strong>🍱 Lunch Break</strong></td>
+  <td colspan="5" class="all-day">Supervised lunch 11:00–11:30 &nbsp;·&nbsp; Self-Directed Centres 11:30–11:50</td>
+</tr>
+
+<tr class="row-centres">
+  <td>11:50–12:20<br><strong>🌱 Centres / Outdoor</strong></td>
+  <td><span class="cell-ctr">📦 Self-Directed Centres</span></td><td><span class="cell-ctr">📦 Self-Directed Centres</span></td>
+  <td><span class="cell-out">🌳 Outdoor Playtime</span></td><td><span class="cell-out">🌳 Outdoor Playtime</span></td><td><span class="cell-ctr">📦 Self-Directed Centres</span></td>
+</tr>
+
+<tr class="row-ela2ss">
+  <td>12:20–13:00<br><strong>📝 ELA 2 / SS / Math</strong></td>
+  <td>'I am special because…' — draw 3 things I love · write/dictate a sentence · share with the class</td><td>'I Belong To…' — identify classroom, grade, and school · draw the school building · 'What is a school community?'</td><td>'My Favourite Things' booklet — draw and label favourite food, animal, colour, and activity</td>
+  <td><strong>Count to 100 — Review</strong> · count objects in groups · represent quantities with numeral cards 1–20 · '100 days of school' chart introduction</td><td>Journal: 'I Am Unique' — free drawing and writing · share with a reading buddy</td>
+</tr>
+
+<tr class="row-specials">
+  <td>13:00–13:45<br><strong>🎨 Specials</strong></td>
+  <td><span class="cell-ph">🎵 Music content — to be completed by the Music teacher</span></td>
+  <td>🎨 <strong>My Self Portrait</strong> — observe features in a mirror · draw carefully with pencil on skin-tone paper · add hair colour, eye colour, and expressive details with coloured pencils</td>
+  <td><span class="cell-ph">💻 Computer content — to be completed by the Computer teacher</span></td>
+  <td>🔬 <strong>Same and Different</strong> — compare natural objects (leaves, shells, stones) · record observations in a T-chart drawing · STEM: build a 'me' figure using loose parts; share with class</td>
+  <td><span class="cell-ph">🏃 PHE content — to be completed by the PHE teacher</span></td>
+</tr>
+
+<tr class="row-snack2">
+  <td>13:45–14:00<br><strong>🍊 Snack Break</strong></td>
+  <td colspan="5" class="all-day">Afternoon snack · Tidy-up routine · Children prepare for afternoon activities</td>
+</tr>
+
+<tr class="row-afternoon">
+  <td>14:00–14:35<br><strong>🌟 Afternoon Block</strong></td>
+  <td><span class="cell-out">🌳 Outdoor Playtime — free exploration &amp; making new friends</span></td><td><span class="cell-out">🌳 Outdoor Playtime — cooperative games &amp; group challenges</span></td><td>🕺 <strong>MOVEMENT PHE</strong> — yoga poses: mountain, tree, warrior · body-shape exploration · 'Can you make a shape that is wide? Tall? Curved?'</td>
+  <td>🌟 <strong>Show &amp; Tell</strong> — share one thing that makes you special · classmates ask one question each</td><td>🏖 <strong>Sand Play</strong> — write own name in sand · create a 'face' using natural materials · invent a sand-story about yourself</td>
+</tr>
+
+<tr class="row-close">
+  <td>14:35–14:45<br><strong>👋 Closing Circle</strong></td>
+  <td colspan="5" class="all-day">Daily affirmation: <em>"I am unique, I am valued, and I am enough. ✨"</em> &nbsp;·&nbsp; Pack bags &nbsp;·&nbsp; Goodbye song &nbsp;·&nbsp; Dismissal</td>
+</tr>
+
+</tbody>
+</table>
+
+
+  <div class="note">
+    <strong>📚 Key Concepts:</strong> identity · uniqueness · personal strengths · self-portrait · features · individuality<br>
+    <strong>📖 Recommended Books:</strong> <em>The Name Jar</em> — Yangsook Choi &nbsp;·&nbsp; <em>Chrysanthemum</em> — Kevin Henkes &nbsp;·&nbsp; <em>All Are Welcome</em> — Alexandra Penfold<br>
+    <strong>🌍 Global Context Statement:</strong> OECD Global Competency — Self-Awareness &amp; Cultural Identity: celebrating what makes each person unique | SDG 4 Quality Education · SDG 10 Reduced Inequalities — Celebrating each person's uniqueness builds the confidence children need to engage as empathetic global citizens.
+  </div>
+
+  <div class="footer">
+    <strong>Week 1 · All About Me</strong> &nbsp;·&nbsp; Pan Asia International School &nbsp;·&nbsp; KG3 (Age 5)
+    &nbsp;·&nbsp; Teacher: __________________________ &nbsp;·&nbsp; Week of: __________________________
+  </div>
+
+</div><!-- /week1 -->
+
+<div class="week" id="week2">
+
+  <div class="school-header">
+    <h1>🌟 Pan Asia International School</h1>
+    <h2>KG3 — Unit 1 · "I Listen, I Imagine, I Care"</h2>
+    <span class="week-tag">📅 Week 2 · My Family</span>
+  </div>
+
+  <div class="meta-bar">
+    <span>📅 <strong>Week 2:</strong> My Family</span>
+    <span>👧 <strong>Grade:</strong> KG3 (Age 5)</span>
+    <span>🌍 <strong>Global Competency Focus:</strong> OECD Global Competency — Intercultural Understanding: recognising and respecting diverse family structures worldwide</span>
+    <span>📐 <strong>Frameworks:</strong> CCSS · NGSS · CASEL · C3 Social Studies · OECD Global Competency</span>
+  </div>
+
+  <div class="value-banner">
+    <div class="vt">💗 Love &amp; Belonging</div>
+    <div class="vs">
+      <strong>CASEL Connection:</strong> Social Awareness — recognising and appreciating diverse family structures<br>
+      <strong>Phonics / Sight Word Note:</strong> GPC: <strong>t</strong> · Blend s-a-t words · read and write simple CVC words (sat, tap, tag) &nbsp;·&nbsp; <strong>Sight Words:</strong> <strong>the · we</strong><br>
+      <strong>🧘 Mindfulness:</strong> Heart Hug Breathing<br>
+      <strong>🎯 Approach:</strong> Inquiry-Play Based Learning — children construct understanding through play, exploration, questioning, and creative expression
+    </div>
+  </div>
+
+  <div class="inquiry-banner">
+    <div class="iq-label">🔎 What I Wonder — Weekly Inquiry Question</div>
+    <div class="iq-q">"Who is in my family, and how do we care for each other?"</div>
+  </div>
+
+  <div class="goals-container">
+    <h3>🎯 Week 2 Learning Goals — By the End of the Week, Students Will:</h3>
+<div class="goal-subhead gs-read">📖 Reading — CCSS RF.K.2c · RF.K.3a</div><ul><li>RF.K.2c Isolate and pronounce initial phonemes in spoken words (Mm, Dd, Ss)</li><li>RF.K.3a Match letters to beginning sounds in family-themed books</li><li>RL.K.3 Identify characters, settings, and events in family stories</li></ul>
+<div class="goal-subhead gs-write">✏️ Writing — CCSS W.K.1 · W.K.3</div><ul><li>W.K.1 Opinion writing: 'My favourite family activity is ___ because ___'</li><li>W.K.3 Narrative drawing + label: my family doing something together</li></ul>
+<div class="goal-subhead gs-speak">🗣️ Speaking & Listening — CCSS SL.K.2 · SL.K.4</div><ul><li>SL.K.2 Retell 2+ details from a family read-aloud in order</li><li>SL.K.4 Describe family members using descriptive adjectives</li><li>L.K.5a Sort family vocabulary by category (people, places, actions)</li></ul>
+<div class="goal-subhead gs-math">🔢 Math — CCSS K.CC.5 · K.OA.2 · K.G.4</div><ul><li>K.CC.5 Count out objects to represent family members (1–10)</li><li>K.OA.2 Solve add/subtract word problems using family joining/leaving scenarios</li><li>K.G.4 Analyse and compare 2D shapes found in family portrait collages</li></ul>
+<div class="goal-subhead gs-sci">🔬 Science — NGSS K-LS1-1 · K-2-ETS1-1</div><ul><li>K-LS1-1 Compare the needs of plants, animals, and humans</li><li>K-2-ETS1-1 Define a simple problem: design a family-inspired structure</li><li>Inquiry study: 'What do animal families do?' — observations and drawings</li></ul>
+<div class="goal-subhead gs-ss">🌍 Social Studies</div><ul><li>Describe and respect diverse family structures</li><li>Identify roles and responsibilities of family members</li><li>Compare how different families live, celebrate, and care for one another</li></ul>
+<div class="goal-subhead gs-sel">❤️ SEL (CASEL)</div><ul><li>Recognise and express gratitude for the people who care for them</li><li>Show empathy by understanding that families look different for everyone</li><li>Practise saying 'thank you' and using kind words with family members</li></ul>
+<div class="goal-subhead gs-arts">🎨 Arts &amp; Crafts</div><ul><li>Represent family relationships through collage</li><li>Select and use materials (photos, fabric, drawn figures) purposefully</li><li>Describe artistic choices: 'I chose this because my family likes to…'</li></ul>
+<div class="goal-subhead gs-music">🎵 Music</div><ul><li><span class="cell-ph">🎵 Music content — to be completed by the Music teacher</span></li></ul>
+<div class="goal-subhead gs-pe">🏃 PHE &amp; Movement</div><ul><li><span class="cell-ph">🏃 PHE content — to be completed by the PHE teacher</span></li></ul>
+<div class="goal-subhead gs-comp">💻 Computer</div><ul><li><span class="cell-ph">💻 Computer content — to be completed by the Computer teacher</span></li></ul>
+<ul><li><span class="cell-ph">🌏 World Language content — to be completed by the World Language teacher</span></li></ul>
+<ul><li>Investigate family themes through dramatic play in the home corner</li><li>Collaborate with peers to build a 'family home' in the block area</li><li>Reflect on similarities and differences with curiosity and respect</li></ul>
+
+  </div>
+
+  
+<div class="tt-title">🗓 Week 2 Daily Schedule — My Family</div>
+<table class="tt">
+<thead><tr>
+  <th>Time &amp; Block</th>
+  <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th>
+</tr></thead>
+<tbody>
+<tr class="row-wlang"><td>8:10 – 9:00</td><td colspan="4" style="text-align:center; font-style:italic; color:#00838F;">🌍 Global Morning Meeting — greetings in 2+ languages, calendar math, cultural sharing, community circle (SEL + World Language + Global Competency)</td></tr>
+
+<tr class="row-arrival">
+  <td>7:30–8:00<br><strong>Arrival</strong></td>
+  <td colspan="5" class="all-day">School doors open · Children settle into morning exploration activities and welcome routines</td>
+</tr>
+
+<tr class="row-circle">
+  <td>8:00–8:10<br><strong>🌅 Circle Time</strong></td>
+  <td>'Who is in my family?' — partner share · introduce family vocabulary · whole-group share</td><td>Calendar and weather · 'How many people are in your family?' — class tally and compare groups</td><td>'Families are different, and all families share love' — discussion · poem reading together</td>
+  <td>Phonics warm-up: /t/ sound words · 'Tap it out!' clapping game · Assembly preparation</td><td>Family celebration circle — share collages · give one compliment to the class community</td>
+</tr>
+
+<tr class="row-snack">
+  <td>9:00–9:20<br><strong>🍎 Snack Break</strong></td>
+  <td colspan="5" class="all-day">Children enjoy morning snack · Supervised social time · Table manners &amp; independent self-care</td>
+</tr>
+
+<tr class="row-ela1">
+  <td>9:20–10:00<br><strong>📖 ELA 1 / World Lang</strong></td>
+  <td>GPC <strong>t</strong> — recognise /t/ sound · words: top, tip, tap · compare to s and a · trace and write letter Tt</td><td>Blend <strong>s-a-t</strong> words — sat, at, as, tab · Elkonin box blending · read sight word: <em>the</em></td><td>Read and write simple CVC words: sat, tap, tag · decode and encode with magnetic letter tiles</td>
+  <td><span class="cell-wl"><span class="cell-ph">🌏 World Language content — to be completed by the World Language teacher</span></span></td>
+  <td>Sight words: <em>the, we</em> — flash card practice · read decodable sentences using s, a, t · partner reading aloud</td>
+</tr>
+
+<tr class="row-mindful">
+  <td>10:00–10:15<br><strong>🧘 Mindfulness Break</strong></td>
+  <td>💗 <strong>Heart Hug Breath</strong><br>Cross arms over chest · breathe in and squeeze gently like a self-hug; breathe out slowly — 5 times</td><td>🌸 <strong>Flower Breath</strong><br>Cup hands like a flower · sniff in slowly as it blooms; breathe out gently as petals close — 5 breaths</td><td>☀️ <strong>Sunshine Breath</strong><br>Breathe in as arms rise wide like sunshine spreading warmth; breathe out as arms lower — 5 breaths</td><td>🫂 <strong>Family Hug Breath</strong><br>Hug yourself tightly · whisper 'I am loved' · breathe in, release gently out — 5 times</td><td>🌀 <strong>Belly Breath</strong><br>Place hand on belly · feel it rise on inhale, fall on exhale · count 5 slow, deep breaths</td>
+</tr>
+
+<tr class="row-math">
+  <td>10:15–11:00<br><strong>🔢 Math / ELA</strong></td>
+  <td><strong>Read Numerals 0–20</strong> — number flash cards · match numeral to quantity picture cards · 'What number do you see?'</td>
+  <td>'My Family Story' sentence — 'In my family there is/are ___' · draw each member · teacher scribes labels beneath each figure</td>
+  <td><strong>Write Numerals 1–10</strong> with correct formation — practice in sand trays and on whiteboards · number formation rhymes</td>
+  <td>Review <strong>s, a, t</strong> phonics — blend CVC words: sat, tap, tag · partner phoneme segmentation: 'How many sounds?' · word family <em>-at</em> extension</td>
+  <td><strong>Represent Numbers</strong> using objects, drawings, and ten frames — numbers to 20 · partner activity: show the same number three ways</td>
+</tr>
+
+<tr class="row-lunch">
+  <td>11:00–11:50<br><strong>🍱 Lunch Break</strong></td>
+  <td colspan="5" class="all-day">Supervised lunch 11:00–11:30 &nbsp;·&nbsp; Self-Directed Centres 11:30–11:50</td>
+</tr>
+
+<tr class="row-centres">
+  <td>11:50–12:20<br><strong>🌱 Centres / Outdoor</strong></td>
+  <td><span class="cell-ctr">📦 Self-Directed Centres</span></td><td><span class="cell-ctr">📦 Self-Directed Centres</span></td>
+  <td><span class="cell-out">🌳 Outdoor Playtime</span></td><td><span class="cell-out">🌳 Outdoor Playtime</span></td><td><span class="cell-ctr">📦 Self-Directed Centres</span></td>
+</tr>
+
+<tr class="row-ela2ss">
+  <td>12:20–13:00<br><strong>📝 ELA 2 / SS / Math</strong></td>
+  <td>Write/dictate family description · 'My family has ___ people. We love to ___.' · illustrate and share</td><td>'Different Families, Same Love' — compare family photos · discuss varied structures · begin class 'Family Tree' display</td><td>'My Family Does…' action book — draw 3 things the family does together · write/dictate captions for each picture</td>
+  <td><strong>Read &amp; Write Numbers 11–20</strong> · model using base-ten blocks and ten frames · match written numerals to pictured quantities</td><td>Letter to a family member — draw a picture · dictate: 'Dear ___, I love you because ___' · fold into a card to take home</td>
+</tr>
+
+<tr class="row-specials">
+  <td>13:00–13:45<br><strong>🎨 Specials</strong></td>
+  <td><span class="cell-ph">🎵 Music content — to be completed by the Music teacher</span></td>
+  <td>🎨 <strong>My Family Story Collage</strong> — cut and arrange photos or drawn figures of family · glue onto coloured backing · add decorative details</td>
+  <td><span class="cell-ph">💻 Computer content — to be completed by the Computer teacher</span></td>
+  <td>🔬 <strong>Building Homes</strong> — view photos of different home types · design and build a model home from blocks and loose parts · present: 'My home has ___ because ___'</td>
+  <td><span class="cell-ph">🏃 PHE content — to be completed by the PHE teacher</span></td>
+</tr>
+
+<tr class="row-snack2">
+  <td>13:45–14:00<br><strong>🍊 Snack Break</strong></td>
+  <td colspan="5" class="all-day">Afternoon snack · Tidy-up routine · Children prepare for afternoon activities</td>
+</tr>
+
+<tr class="row-afternoon">
+  <td>14:00–14:35<br><strong>🌟 Afternoon Block</strong></td>
+  <td><span class="cell-out">🌳 Outdoor Playtime — free exploration &amp; making new friends</span></td><td><span class="cell-out">🌳 Outdoor Playtime — cooperative games &amp; group challenges</span></td><td>🕺 <strong>MOVEMENT PHE</strong> — action songs about families · 'Mother May I?' movement game · cooperative relay with family roles</td>
+  <td>🌟 <strong>Show &amp; Tell</strong> — share one object or drawing that represents something special about their family</td><td>🏖 <strong>Sand Play</strong> — create a family scene in the sand using natural materials · tell a story about the family</td>
+</tr>
+
+<tr class="row-close">
+  <td>14:35–14:45<br><strong>👋 Closing Circle</strong></td>
+  <td colspan="5" class="all-day">Daily affirmation: <em>"My family loves me, and I am grateful for the people who care for me. 💗"</em> &nbsp;·&nbsp; Pack bags &nbsp;·&nbsp; Goodbye song &nbsp;·&nbsp; Dismissal</td>
+</tr>
+
+</tbody>
+</table>
+
+
+  <div class="note">
+    <strong>📚 Key Concepts:</strong> family · relationships · roles · diversity · caring · love · belonging<br>
+    <strong>📖 Recommended Books:</strong> <em>The Family Book</em> — Todd Parr &nbsp;·&nbsp; <em>Families</em> — Ann Morris &nbsp;·&nbsp; <em>In My Family</em> — Carmen Lomas Garza<br>
+    <strong>🌍 Global Context Statement:</strong> OECD Global Competency — Intercultural Understanding: recognising and respecting diverse family structures worldwide | SDG 10 Reduced Inequalities · SDG 16 Peace &amp; Justice — Honouring diverse family structures builds intercultural respect and a sense of shared humanity.
+  </div>
+
+  <div class="footer">
+    <strong>Week 2 · My Family</strong> &nbsp;·&nbsp; Pan Asia International School &nbsp;·&nbsp; KG3 (Age 5)
+    &nbsp;·&nbsp; Teacher: __________________________ &nbsp;·&nbsp; Week of: __________________________
+  </div>
+
+</div><!-- /week2 -->
+
+<div class="week" id="week3">
+
+  <div class="school-header">
+    <h1>🌟 Pan Asia International School</h1>
+    <h2>KG3 — Unit 1 · "I Listen, I Imagine, I Care"</h2>
+    <span class="week-tag">📅 Week 3 · My Feelings</span>
+  </div>
+
+  <div class="meta-bar">
+    <span>📅 <strong>Week 3:</strong> My Feelings</span>
+    <span>👧 <strong>Grade:</strong> KG3 (Age 5)</span>
+    <span>🌍 <strong>Global Competency Focus:</strong> OECD Global Competency — Perspective-Taking &amp; Empathy: understanding and expressing emotions across cultures</span>
+    <span>📐 <strong>Frameworks:</strong> CCSS · NGSS · CASEL · C3 Social Studies · OECD Global Competency</span>
+  </div>
+
+  <div class="value-banner">
+    <div class="vt">🌈 Emotional Literacy &amp; Empathy</div>
+    <div class="vs">
+      <strong>CASEL Connection:</strong> Self-Management — identifying emotions and using healthy coping strategies<br>
+      <strong>Phonics / Sight Word Note:</strong> GPC: <strong>p</strong> · Blend and segment words with s, a, t, p · CVC word building &nbsp;·&nbsp; <strong>Sight Words:</strong> <strong>see · like</strong><br>
+      <strong>🧘 Mindfulness:</strong> Feelings Weather Scan<br>
+      <strong>🎯 Approach:</strong> Inquiry-Play Based Learning — children construct understanding through play, exploration, questioning, and creative expression
+    </div>
+  </div>
+
+  <div class="inquiry-banner">
+    <div class="iq-label">🔎 What I Wonder — Weekly Inquiry Question</div>
+    <div class="iq-q">"How do I feel, and how can I express my emotions in healthy ways?"</div>
+  </div>
+
+  <div class="goals-container">
+    <h3>🎯 Week 3 Learning Goals — By the End of the Week, Students Will:</h3>
+<div class="goal-subhead gs-read">📖 Reading — CCSS RF.K.2d · RL.K.1</div><ul><li>RF.K.2d Blend and segment 3-phoneme words: mad, sad, glad, fear, calm</li><li>RL.K.1 Ask and answer 'who, what, where, why' about feelings books</li><li>RI.K.7 Describe the relationship between illustrations and text</li></ul>
+<div class="goal-subhead gs-write">✏️ Writing — CCSS W.K.3 · L.K.2</div><ul><li>W.K.3 Narrative: 'A time I felt ___ was when…' (draw + label + dictate)</li><li>L.K.2 Use capital letters for 'I' and feeling words in written sentences</li></ul>
+<div class="goal-subhead gs-speak">🗣️ Speaking & Listening — CCSS SL.K.4 · L.K.5b</div><ul><li>SL.K.4 Act out an emotion; classmates use feeling words to guess</li><li>L.K.5b Understand shades of meaning: happy → thrilled; sad → devastated</li><li>SL.K.1 Discuss: 'What do you do when you feel scared or angry?'</li></ul>
+<div class="goal-subhead gs-math">🔢 Math — CCSS K.CC.7 · K.OA.3 · K.NBT.1</div><ul><li>K.CC.7 Compare two numbers 1–10 using >, =, < with manipulatives</li><li>K.OA.3 Decompose numbers ≤ 10 into pairs (feelings + non-feelings graphs)</li><li>K.NBT.1 Compose/decompose 11–19 as ten ones and some more ones</li></ul>
+<div class="goal-subhead gs-sci">🔬 Science — NGSS K-PS3-1 · K-ESS3-1</div><ul><li>K-PS3-1 Explore how sunlight warms Earth's surface; warmth as a source of comfort</li><li>K-ESS3-1 Earth and Human Activity: explore how weather affects how people live</li><li>Emotional + scientific inquiry: 'How does weather make us feel?'</li></ul>
+<div class="goal-subhead gs-ss">🌍 Social Studies</div><ul><li>Understand that communities care for each other's wellbeing</li><li>Identify community helpers who support emotional and physical health</li><li>Discuss why empathy makes a community stronger</li></ul>
+<div class="goal-subhead gs-sel">❤️ SEL (CASEL)</div><ul><li>Name a range of emotions and identify what triggers them</li><li>Apply at least one coping strategy when experiencing a big emotion</li><li>Recognise and respond to others' emotions with empathy and kindness</li></ul>
+<div class="goal-subhead gs-arts">🎨 Arts &amp; Crafts</div><ul><li>Use warm and cool colours purposefully to communicate emotions</li><li>Explore paint techniques (blending, daubing, layering) for expressive marks</li><li>Explain the emotional meaning of their own artwork</li></ul>
+<div class="goal-subhead gs-music">🎵 Music</div><ul><li><span class="cell-ph">🎵 Music content — to be completed by the Music teacher</span></li></ul>
+<div class="goal-subhead gs-pe">🏃 PHE &amp; Movement</div><ul><li><span class="cell-ph">🏃 PHE content — to be completed by the PHE teacher</span></li></ul>
+<div class="goal-subhead gs-comp">💻 Computer</div><ul><li><span class="cell-ph">💻 Computer content — to be completed by the Computer teacher</span></li></ul>
+<ul><li><span class="cell-ph">🌏 World Language content — to be completed by the World Language teacher</span></li></ul>
+<ul><li>Reflect on emotional experiences during play and name the feeling</li><li>Show self-regulation by using a mindfulness strategy during free exploration</li><li>Support peers by noticing and naming their emotions with compassion</li></ul>
+
+  </div>
+
+  
+<div class="tt-title">🗓 Week 3 Daily Schedule — My Feelings</div>
+<table class="tt">
+<thead><tr>
+  <th>Time &amp; Block</th>
+  <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th>
+</tr></thead>
+<tbody>
+<tr class="row-wlang"><td>8:10 – 9:00</td><td colspan="4" style="text-align:center; font-style:italic; color:#00838F;">🌍 Global Morning Meeting — greetings in 2+ languages, calendar math, cultural sharing, community circle (SEL + World Language + Global Competency)</td></tr>
+
+<tr class="row-arrival">
+  <td>7:30–8:00<br><strong>Arrival</strong></td>
+  <td colspan="5" class="all-day">School doors open · Children settle into morning exploration activities and welcome routines</td>
+</tr>
+
+<tr class="row-circle">
+  <td>8:00–8:10<br><strong>🌅 Circle Time</strong></td>
+  <td>Feelings check-in — choose an emotion card to describe today's feeling · whole-group share</td><td>Calendar · 'Feelings Weather Report' — draw today's feeling as weather: sunny, cloudy, stormy</td><td>'When I feel ___, I can ___' — coping strategies brainstorm · introduce the traffic-light poster</td>
+  <td>Phonics warm-up: /p/ sound · 'Pop the Balloon!' — blend pat, tap, sap, tip, pit · Assembly preparation</td><td>'This week I felt…' reflection · share one coping strategy that helped · class affirmation</td>
+</tr>
+
+<tr class="row-snack">
+  <td>9:00–9:20<br><strong>🍎 Snack Break</strong></td>
+  <td colspan="5" class="all-day">Children enjoy morning snack · Supervised social time · Table manners &amp; independent self-care</td>
+</tr>
+
+<tr class="row-ela1">
+  <td>9:20–10:00<br><strong>📖 ELA 1 / World Lang</strong></td>
+  <td>GPC <strong>p</strong> — recognise /p/ sound · words: pin, pop, pan, pet · trace and write letter Pp in sand and on whiteboards</td><td>Blend and segment with <strong>s, a, t, p</strong> — words: tap, pat, tip, sat, sap · phoneme push activity with counters</td><td>Build and read CVC words with all 4 GPCs: s, a, t, p · 'Make a Word!' challenge with letter tiles · word sort game</td>
+  <td><span class="cell-wl"><span class="cell-ph">🌏 World Language content — to be completed by the World Language teacher</span></span></td>
+  <td>Sight words: <em>see, like</em> — read in sentences · 'I like ___. I can see ___.' · decode short passages · segment spoken words aloud</td>
+</tr>
+
+<tr class="row-mindful">
+  <td>10:00–10:15<br><strong>🧘 Mindfulness Break</strong></td>
+  <td>🌦️ <strong>Feelings Weather Scan</strong><br>Close eyes · 'What is my weather today?' · name the feeling quietly · place hand on heart</td><td>❤️ <strong>Heart Breath</strong><br>Place hand on heart · breathe in kindness for yourself; breathe out any worries — 5 slow breaths</td><td>🕯️ <strong>Candle Breath</strong><br>Hold up one finger like a candle flame · breathe out so gently the flame 'flickers' but stays lit</td><td>🌊 <strong>Wave Breath</strong><br>Sway gently side to side like a calm ocean wave · breathe in on left sway, out on right — 5 times</td><td>🧸 <strong>Comfort Breath</strong><br>Hug yourself or a comfort object · breathe in slowly, out slowly · say quietly: 'I am safe'</td>
+</tr>
+
+<tr class="row-math">
+  <td>10:15–11:00<br><strong>🔢 Math / ELA</strong></td>
+  <td><strong>Compare Two Groups</strong> — more, fewer, equal · counters and picture cards · math vocabulary: greater than, less than, same</td>
+  <td>'My Feelings Diary' — draw a face showing a feeling · complete: 'I feel ___ when ___' · partner share and respond</td>
+  <td><strong>Comparison Symbols</strong> — introduce &gt; &lt; = · 'alligator eats the bigger number' game · compare numeral pairs on flash cards</td>
+  <td>Review <strong>s, a, t, p</strong> — blending sprint · 'Make a Word!' with letter tiles · read decodable sentences · segment words into phonemes</td>
+  <td><strong>Compare Two Numbers</strong> — use number lines and ten frames · 'Which is bigger?' partner challenge · write a comparison sentence</td>
+</tr>
+
+<tr class="row-lunch">
+  <td>11:00–11:50<br><strong>🍱 Lunch Break</strong></td>
+  <td colspan="5" class="all-day">Supervised lunch 11:00–11:30 &nbsp;·&nbsp; Self-Directed Centres 11:30–11:50</td>
+</tr>
+
+<tr class="row-centres">
+  <td>11:50–12:20<br><strong>🌱 Centres / Outdoor</strong></td>
+  <td><span class="cell-ctr">📦 Self-Directed Centres</span></td><td><span class="cell-ctr">📦 Self-Directed Centres</span></td>
+  <td><span class="cell-out">🌳 Outdoor Playtime</span></td><td><span class="cell-out">🌳 Outdoor Playtime</span></td><td><span class="cell-ctr">📦 Self-Directed Centres</span></td>
+</tr>
+
+<tr class="row-ela2ss">
+  <td>12:20–13:00<br><strong>📝 ELA 2 / SS / Math</strong></td>
+  <td><em>The Color Monster</em> colour-feeling map — colour a jar for each emotion · write/dictate: 'Happiness feels like…'</td><td>'Communities Care' — who helps when we feel sad or scared? · name community helpers · create a class helper chart</td><td>'My Feelings' mini book — draw 4 feelings · use colour to show each emotion</td>
+  <td><strong>Comparison Story Problems</strong> — 'Which basket has more apples? How do you know?' · draw and explain answer · use &gt; &lt; = symbols</td><td>Letter to the Color Monster — draw a feeling · dictate: 'Dear Color Monster, today I feel ___. I can ___.'</td>
+</tr>
+
+<tr class="row-specials">
+  <td>13:00–13:45<br><strong>🎨 Specials</strong></td>
+  <td><span class="cell-ph">🎵 Music content — to be completed by the Music teacher</span></td>
+  <td>🎨 <strong>Feelings Through Color</strong> — explore warm and cool colour mixing · paint an emotion using only colour (no figures) · gallery share: explain colour choices</td>
+  <td><span class="cell-ph">💻 Computer content — to be completed by the Computer teacher</span></td>
+  <td>🔬 <strong>Body Signals Science</strong> — how does our body show feelings? · measure heart rate before/after star-jumps · draw a body diagram: 'When I am nervous, my body feels…'</td>
+  <td><span class="cell-ph">🏃 PHE content — to be completed by the PHE teacher</span></td>
+</tr>
+
+<tr class="row-snack2">
+  <td>13:45–14:00<br><strong>🍊 Snack Break</strong></td>
+  <td colspan="5" class="all-day">Afternoon snack · Tidy-up routine · Children prepare for afternoon activities</td>
+</tr>
+
+<tr class="row-afternoon">
+  <td>14:00–14:35<br><strong>🌟 Afternoon Block</strong></td>
+  <td><span class="cell-out">🌳 Outdoor Playtime — free exploration &amp; making new friends</span></td><td><span class="cell-out">🌳 Outdoor Playtime — cooperative games &amp; group challenges</span></td><td>🕺 <strong>MOVEMENT PHE</strong> — 'How Does This Music Make You Feel?' — respond to different music tempos with body movement · slow/fast · big/small</td>
+  <td>🌟 <strong>Show &amp; Tell</strong> — share a drawing of a time they felt a strong emotion · tell classmates the coping strategy used</td><td>🏖 <strong>Sand Play</strong> — build a 'Feelings Landscape' in sand: happy hills, calm valleys, stormy corners using loose parts</td>
+</tr>
+
+<tr class="row-close">
+  <td>14:35–14:45<br><strong>👋 Closing Circle</strong></td>
+  <td colspan="5" class="all-day">Daily affirmation: <em>"All my feelings are valid. I can name them, feel them, and manage them with care. 🌈"</em> &nbsp;·&nbsp; Pack bags &nbsp;·&nbsp; Goodbye song &nbsp;·&nbsp; Dismissal</td>
+</tr>
+
+</tbody>
+</table>
+
+
+  <div class="note">
+    <strong>📚 Key Concepts:</strong> emotions · feelings · expression · empathy · regulation · coping strategies · colour and mood<br>
+    <strong>📖 Recommended Books:</strong> <em>The Color Monster</em> — Anna Llenas &nbsp;·&nbsp; <em>In My Heart</em> — Jo Witek &nbsp;·&nbsp; <em>Today I Feel Silly</em> — Jamie Lee Curtis<br>
+    <strong>🌍 Global Context Statement:</strong> OECD Global Competency — Perspective-Taking &amp; Empathy: understanding and expressing emotions across cultures | SDG 3 Good Health &amp; Wellbeing · SDG 4 Quality Education — Emotional literacy is a universal skill that helps children become empathetic, globally minded individuals.
+  </div>
+
+  <div class="footer">
+    <strong>Week 3 · My Feelings</strong> &nbsp;·&nbsp; Pan Asia International School &nbsp;·&nbsp; KG3 (Age 5)
+    &nbsp;·&nbsp; Teacher: __________________________ &nbsp;·&nbsp; Week of: __________________________
+  </div>
+
+</div><!-- /week3 -->
+
+<div class="week" id="week4">
+
+  <div class="school-header">
+    <h1>🌟 Pan Asia International School</h1>
+    <h2>KG3 — Unit 1 · "I Listen, I Imagine, I Care"</h2>
+    <span class="week-tag">📅 Week 4 · My Community</span>
+  </div>
+
+  <div class="meta-bar">
+    <span>📅 <strong>Week 4:</strong> My Community</span>
+    <span>👧 <strong>Grade:</strong> KG3 (Age 5)</span>
+    <span>🌍 <strong>Global Competency Focus:</strong> OECD Global Competency — Collective Action: engaging with community roles and responsibilities locally and globally</span>
+    <span>📐 <strong>Frameworks:</strong> CCSS · NGSS · CASEL · C3 Social Studies · OECD Global Competency</span>
+  </div>
+
+  <div class="value-banner">
+    <div class="vt">🏘️ Respect &amp; Responsibility</div>
+    <div class="vs">
+      <strong>CASEL Connection:</strong> Relationship Skills — cooperating with others and appreciating community helpers<br>
+      <strong>Phonics / Sight Word Note:</strong> GPCs: <strong>i, n</strong> · Read and spell CVC words with i and n (pin, tin, nip, sit, nit) &nbsp;·&nbsp; <strong>Sight Words:</strong> <strong>a · to</strong><br>
+      <strong>🧘 Mindfulness:</strong> Community Gratitude Circle<br>
+      <strong>🎯 Approach:</strong> Inquiry-Play Based Learning — children construct understanding through play, exploration, questioning, and creative expression
+    </div>
+  </div>
+
+  <div class="inquiry-banner">
+    <div class="iq-label">🔎 What I Wonder — Weekly Inquiry Question</div>
+    <div class="iq-q">"Who are the helpers in our community, and how do they keep us safe?"</div>
+  </div>
+
+  <div class="goals-container">
+    <h3>🎯 Week 4 Learning Goals — By the End of the Week, Students Will:</h3>
+<div class="goal-subhead gs-read">📖 Reading — CCSS RF.K.3c · RI.K.1</div><ul><li>RF.K.3c Read common high-frequency words: I, my, we, can, see, like, the, a, is</li><li>RI.K.1 Ask and answer questions about community helper texts and photographs</li><li>RI.K.7 Connect photographs to informational text in non-fiction books</li></ul>
+<div class="goal-subhead gs-write">✏️ Writing — CCSS W.K.2 · L.K.2</div><ul><li>W.K.2 Informational text: 'Community helpers I know — A ___ helps by ___'</li><li>L.K.2 Use ending punctuation (. !) and capital letters at sentence starts</li></ul>
+<div class="goal-subhead gs-speak">🗣️ Speaking & Listening — CCSS SL.K.4 · SL.K.6</div><ul><li>SL.K.4 Present: 'When I grow up I want to help by…' with visuals</li><li>SL.K.6 Speak audibly and express thoughts clearly in sharing circle</li><li>L.K.1 Form complete question sentences to interview a community helper</li></ul>
+<div class="goal-subhead gs-math">🔢 Math — CCSS K.MD.1 · K.MD.3 · K.CC.5</div><ul><li>K.MD.1 Describe and compare measurable attributes: long/short, heavy/light</li><li>K.MD.3 Classify and count community helper tools by category; create graphs</li><li>K.CC.5 Count objects up to 20; write numerals to record totals</li></ul>
+<div class="goal-subhead gs-sci">🔬 Science — NGSS K-ESS2-1 · K-ESS3-3</div><ul><li>K-ESS2-1 Weather and Climate: observe local weather; compare to other global climates</li><li>K-ESS3-3 Communicate solutions that reduce impact on land, water, and air</li><li>Community helpers + environmental stewardship project</li></ul>
+<div class="goal-subhead gs-ss">🌍 Social Studies</div><ul><li>Identify and describe roles of community helpers</li><li>Explain why communities need people who help each other</li><li>Create a simple pictorial map showing community places</li></ul>
+<div class="goal-subhead gs-sel">❤️ SEL (CASEL)</div><ul><li>Show gratitude to helpers through words and actions</li><li>Demonstrate cooperation in a group task by sharing and listening</li><li>Identify ways to be a helper in the classroom community</li></ul>
+<div class="goal-subhead gs-arts">🎨 Arts &amp; Crafts</div><ul><li>Create artwork inspired by community members using printmaking</li><li>Design and use a foam stamp of a community helper tool</li><li>Print multiple impressions, experimenting with pressure and colour</li></ul>
+<div class="goal-subhead gs-music">🎵 Music</div><ul><li><span class="cell-ph">🎵 Music content — to be completed by the Music teacher</span></li></ul>
+<div class="goal-subhead gs-pe">🏃 PHE &amp; Movement</div><ul><li><span class="cell-ph">🏃 PHE content — to be completed by the PHE teacher</span></li></ul>
+<div class="goal-subhead gs-comp">💻 Computer</div><ul><li><span class="cell-ph">💻 Computer content — to be completed by the Computer teacher</span></li></ul>
+<ul><li><span class="cell-ph">🌏 World Language content — to be completed by the World Language teacher</span></li></ul>
+<ul><li>Investigate community roles through dramatic play</li><li>Collaborate to build a community structure in the block area</li><li>Connect learning to the real world: 'How do helpers make our school better?'</li></ul>
+
+  </div>
+
+  
+<div class="tt-title">🗓 Week 4 Daily Schedule — My Community</div>
+<table class="tt">
+<thead><tr>
+  <th>Time &amp; Block</th>
+  <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th>
+</tr></thead>
+<tbody>
+<tr class="row-wlang"><td>8:10 – 9:00</td><td colspan="4" style="text-align:center; font-style:italic; color:#00838F;">🌍 Global Morning Meeting — greetings in 2+ languages, calendar math, cultural sharing, community circle (SEL + World Language + Global Competency)</td></tr>
+
+<tr class="row-arrival">
+  <td>7:30–8:00<br><strong>Arrival</strong></td>
+  <td colspan="5" class="all-day">School doors open · Children settle into morning exploration activities and welcome routines</td>
+</tr>
+
+<tr class="row-circle">
+  <td>8:00–8:10<br><strong>🌅 Circle Time</strong></td>
+  <td>'Community Helpers' KWL chart — what do we Know? Want to know? · introduce vocabulary</td><td>Calendar · 'Community Jobs' mime — name a helper, act out their job · partner guess</td><td>'How can WE be helpers?' — brainstorm ways KG3 students help the school community</td>
+  <td>Phonics warm-up: /i/ and /n/ sounds · blend pin, tin, nip, nit · Assembly preparation</td><td>'Thank You, Community Helpers!' — share printmaking artwork · 'Who helps us most?'</td>
+</tr>
+
+<tr class="row-snack">
+  <td>9:00–9:20<br><strong>🍎 Snack Break</strong></td>
+  <td colspan="5" class="all-day">Children enjoy morning snack · Supervised social time · Table manners &amp; independent self-care</td>
+</tr>
+
+<tr class="row-ela1">
+  <td>9:20–10:00<br><strong>📖 ELA 1 / World Lang</strong></td>
+  <td>GPC <strong>i</strong> — recognise short /i/ sound · words: in, it, ink, tip · trace and write letter Ii in sand and on whiteboards</td><td>GPC <strong>n</strong> — recognise /n/ sound · words: nap, net, nip · trace and write letter Nn · compare /i/ and /n/ in words</td><td>Read and spell CVC words with <strong>i</strong> and <strong>n</strong>: pin, tin, nip, sit, nit, sin · word card matching · 'Build it! Read it! Write it!'</td>
+  <td><span class="cell-wl"><span class="cell-ph">🌏 World Language content — to be completed by the World Language teacher</span></span></td>
+  <td>Sight words: <em>a, to</em> — read in context · blend and segment review · read a decodable reader using all 5 learned GPCs (s, a, t, p, i, n)</td>
+</tr>
+
+<tr class="row-mindful">
+  <td>10:00–10:15<br><strong>🧘 Mindfulness Break</strong></td>
+  <td>🙏 <strong>Gratitude Breath</strong><br>Breathe in; think of one community helper you are grateful for · breathe out: 'Thank you, ___' — 5 helpers</td><td>🤝 <strong>Connection Breath</strong><br>Place hands gently on neighbour's shoulders (with consent) · breathe in and out together — feel the community</td><td>🌱 <strong>Growth Breath</strong><br>Breathe in slowly, arms reaching up like a growing plant; breathe out, float arms gently back down</td><td>💛 <strong>Helper Heart</strong><br>Think of someone who helps you · send them a silent 'thank you' breath · hold a warm smile for 5 breaths</td><td>🌍 <strong>Community Breath</strong><br>Breathe in 'I help'; breathe out 'my community' — repeat 5 mindful, steady breaths together</td>
+</tr>
+
+<tr class="row-math">
+  <td>10:15–11:00<br><strong>🔢 Math / ELA</strong></td>
+  <td><strong>Skip Count by 2s</strong> — count to 20 by 2s · clap every other count · mark 2s on the number line · 'What pattern do you notice?'</td>
+  <td>'Community Helper Report' — choose a helper · draw and dictate: 'A ___ helps people by ___. A ___ uses ___ to help.'</td>
+  <td><strong>Skip Count by 5s</strong> — count to 50 by 5s · hand-counting (5 fingers at a time) · trace multiples of 5 on the 100 chart</td>
+  <td>Review <strong>s, a, t, p, i, n</strong> — blending and segmenting practice · dictate words: pin, sat, tip, nap · partner decodable reading</td>
+  <td><strong>Skip Count by 10s</strong> — count to 100 by 10s · dimes game · colour multiples of 10 on the 100 chart · oral practice in unison</td>
+</tr>
+
+<tr class="row-lunch">
+  <td>11:00–11:50<br><strong>🍱 Lunch Break</strong></td>
+  <td colspan="5" class="all-day">Supervised lunch 11:00–11:30 &nbsp;·&nbsp; Self-Directed Centres 11:30–11:50</td>
+</tr>
+
+<tr class="row-centres">
+  <td>11:50–12:20<br><strong>🌱 Centres / Outdoor</strong></td>
+  <td><span class="cell-ctr">📦 Self-Directed Centres</span></td><td><span class="cell-ctr">📦 Self-Directed Centres</span></td>
+  <td><span class="cell-out">🌳 Outdoor Playtime</span></td><td><span class="cell-out">🌳 Outdoor Playtime</span></td><td><span class="cell-ctr">📦 Self-Directed Centres</span></td>
+</tr>
+
+<tr class="row-ela2ss">
+  <td>12:20–13:00<br><strong>📝 ELA 2 / SS / Math</strong></td>
+  <td>'My Community Map' — draw school, home, park, hospital, shop · label with teacher support · 'I go to ___ in my community'</td><td>'Maps and Places' — what is a community? · identify local places · create a pictorial map showing at least 4 community places</td><td>'Community Helpers' class book page — draw a helper, write/dictate job title and one sentence about their role</td>
+  <td><strong>Identify &amp; Extend Number Patterns</strong> — skip counting review using 100 chart · 'What comes next in the pattern?' · mixed practice: 2s, 5s, 10s</td><td>Thank-you letter — 'Dear ___, Thank you for ___. From, [name]' · illustrate the helper at work</td>
+</tr>
+
+<tr class="row-specials">
+  <td>13:00–13:45<br><strong>🎨 Specials</strong></td>
+  <td><span class="cell-ph">🎵 Music content — to be completed by the Music teacher</span></td>
+  <td>🎨 <strong>Community Helpers Printmaking</strong> — create a foam stamp of a helper's tool (badge, stethoscope, hard hat) · print onto coloured paper with tempera paint · experiment with pressure and repeat prints</td>
+  <td><span class="cell-ph">💻 Computer content — to be completed by the Computer teacher</span></td>
+  <td>🔬 <strong>Community in Action</strong> — sort community helper photos by role type · design a 'fire station' or 'clinic' from loose parts · present: 'My place needs ___ because ___'</td>
+  <td><span class="cell-ph">🏃 PHE content — to be completed by the PHE teacher</span></td>
+</tr>
+
+<tr class="row-snack2">
+  <td>13:45–14:00<br><strong>🍊 Snack Break</strong></td>
+  <td colspan="5" class="all-day">Afternoon snack · Tidy-up routine · Children prepare for afternoon activities</td>
+</tr>
+
+<tr class="row-afternoon">
+  <td>14:00–14:35<br><strong>🌟 Afternoon Block</strong></td>
+  <td><span class="cell-out">🌳 Outdoor Playtime — free exploration &amp; making new friends</span></td><td><span class="cell-out">🌳 Outdoor Playtime — cooperative games &amp; group challenges</span></td><td>🕺 <strong>MOVEMENT PHE</strong> — 'Community Helpers' movement game: act out how a doctor, firefighter, or teacher moves at work · partner mime challenge</td>
+  <td>🌟 <strong>Show &amp; Tell</strong> — dress up or bring a prop representing a community helper · present role to the class</td><td>🏖 <strong>Sand Play</strong> — build a mini community: school, hospital, park, fire station using natural materials</td>
+</tr>
+
+<tr class="row-close">
+  <td>14:35–14:45<br><strong>👋 Closing Circle</strong></td>
+  <td colspan="5" class="all-day">Daily affirmation: <em>"I am a helper. I make my community better every time I show kindness and care. 🏘️"</em> &nbsp;·&nbsp; Pack bags &nbsp;·&nbsp; Goodbye song &nbsp;·&nbsp; Dismissal</td>
+</tr>
+
+</tbody>
+</table>
+
+
+  <div class="note">
+    <strong>📚 Key Concepts:</strong> community · helpers · roles · responsibility · cooperation · safety · teamwork · gratitude<br>
+    <strong>📖 Recommended Books:</strong> <em>Helpers in My Community</em> — Bobbie Kalman &nbsp;·&nbsp; <em>What Do People Do All Day?</em> — Richard Scarry &nbsp;·&nbsp; <em>Our Community Garden</em> — Barbara Pollak<br>
+    <strong>🌍 Global Context Statement:</strong> OECD Global Competency — Collective Action: engaging with community roles and responsibilities locally and globally | SDG 11 Sustainable Cities · SDG 17 Partnerships — Community roles connect local belonging to global citizenship and collective responsibility.
+  </div>
+
+  <div class="footer">
+    <strong>Week 4 · My Community</strong> &nbsp;·&nbsp; Pan Asia International School &nbsp;·&nbsp; KG3 (Age 5)
+    &nbsp;·&nbsp; Teacher: __________________________ &nbsp;·&nbsp; Week of: __________________________
+  </div>
+
+</div><!-- /week4 -->
+
+<div class="week" id="week5">
+
+  <div class="school-header">
+    <h1>🌟 Pan Asia International School</h1>
+    <h2>KG3 — Unit 1 · "I Listen, I Imagine, I Care"</h2>
+    <span class="week-tag">📅 Week 5 · Caring for Others</span>
+  </div>
+
+  <div class="meta-bar">
+    <span>📅 <strong>Week 5:</strong> Caring for Others</span>
+    <span>👧 <strong>Grade:</strong> KG3 (Age 5)</span>
+    <span>🌍 <strong>Global Competency Focus:</strong> OECD Global Competency — Responsible Action for Collective Well-being: taking caring actions for people and the planet</span>
+    <span>📐 <strong>Frameworks:</strong> CCSS · NGSS · CASEL · C3 Social Studies · OECD Global Competency</span>
+  </div>
+
+  <div class="value-banner">
+    <div class="vt">🌍 Kindness &amp; Care</div>
+    <div class="vs">
+      <strong>CASEL Connection:</strong> Responsible Decision-Making — choosing kind and caring actions for others and the environment<br>
+      <strong>Phonics / Sight Word Note:</strong> GPCs: <strong>m, d</strong> · Apply all learned GPCs (s, a, t, p, i, n, m, d) to read and write simple sentences &nbsp;·&nbsp; <strong>Sight Words:</strong> <strong>you · do</strong><br>
+      <strong>🧘 Mindfulness:</strong> Loving-Kindness Meditation<br>
+      <strong>🎯 Approach:</strong> Inquiry-Play Based Learning — children construct understanding through play, exploration, questioning, and creative expression
+    </div>
+  </div>
+
+  <div class="inquiry-banner">
+    <div class="iq-label">🔎 What I Wonder — Weekly Inquiry Question</div>
+    <div class="iq-q">"How can I show care and kindness to others and to our world?"</div>
+  </div>
+
+  <div class="goals-container">
+    <h3>🎯 Week 5 Learning Goals — By the End of the Week, Students Will:</h3>
+<div class="goal-subhead gs-read">📖 Reading — CCSS RF.K.3c · RL.K.9</div><ul><li>RF.K.3c Review and master sight word list (10 words) — timed fluency practice</li><li>RL.K.9 Compare two texts with the same theme: caring and giving back</li><li>RI.K.1 Ask and answer questions about a non-fiction caring-for-earth book</li></ul>
+<div class="goal-subhead gs-write">✏️ Writing — CCSS W.K.1 · W.K.5</div><ul><li>W.K.1 Opinion writing: 'I can make the world better by…' (My Caring Pledge)</li><li>W.K.5 Revise writing with teacher and peer feedback before publishing</li><li>L.K.2 Correctly capitalise and punctuate the final published piece</li></ul>
+<div class="goal-subhead gs-speak">🗣️ Speaking & Listening — CCSS SL.K.4 · SL.K.5</div><ul><li>SL.K.4 Present Caring Pledge to class using voice, gesture, and eye contact</li><li>SL.K.5 Add illustration to presentation; describe what it shows</li><li>SL.K.1 Listen respectfully and respond to 2 classmates' presentations</li></ul>
+<div class="goal-subhead gs-math">🔢 Math — CCSS K.OA.1–3 · K.CC.1 · K.G.1–6</div><ul><li>K.OA.1–3 Review: addition and subtraction within 10 using a variety of strategies</li><li>K.CC.1 Count to 100 by ones and by tens</li><li>K.G.1–6 Geometry review: shape hunt in the environment; create a shape collage</li></ul>
+<div class="goal-subhead gs-sci">🔬 Science — NGSS K-ESS3-3 · K-2-ETS1-2</div><ul><li>K-ESS3-3 Identify specific actions that reduce our impact on the environment</li><li>K-2-ETS1-2 Develop and compare two solutions to a problem (caring for Earth)</li><li>Culminating STEM project: 'Our World Needs Us' — design a care pledge action</li></ul>
+<div class="goal-subhead gs-ss">🌍 Social Studies</div><ul><li>Explain how caring actions make communities healthier and happier</li><li>Identify ways to care for the environment: reduce, reuse, recycle</li><li>Develop and sign a class caring pledge for people and the natural world</li></ul>
+<div class="goal-subhead gs-sel">❤️ SEL (CASEL)</div><ul><li>Choose a kind and caring action to perform for a classmate or the school</li><li>Reflect on personal growth across Unit 1: 'I have grown by ___'</li><li>Set a caring intention: 'Next, I will show kindness by ___'</li></ul>
+<div class="goal-subhead gs-arts">🎨 Arts &amp; Crafts</div><ul><li>Collaborate to contribute a decorated hand to the class 'Caring Hands' mural</li><li>Trace, cut, and decorate own hand using patterns, colours, and symbols of care</li><li>Understand art's role in expressing community values</li></ul>
+<div class="goal-subhead gs-music">🎵 Music</div><ul><li><span class="cell-ph">🎵 Music content — to be completed by the Music teacher</span></li></ul>
+<div class="goal-subhead gs-pe">🏃 PHE &amp; Movement</div><ul><li><span class="cell-ph">🏃 PHE content — to be completed by the PHE teacher</span></li></ul>
+<div class="goal-subhead gs-comp">💻 Computer</div><ul><li><span class="cell-ph">💻 Computer content — to be completed by the Computer teacher</span></li></ul>
+<ul><li><span class="cell-ph">🌏 World Language content — to be completed by the World Language teacher</span></li></ul>
+<ul><li>Reflect on the whole unit: 'What did I learn about myself, my family, and my community?'</li><li>Transfer caring skills into play: share materials, include everyone, solve conflicts kindly</li><li>Celebrate growth as a learner and a member of the class community</li></ul>
+
+  </div>
+
+  
+<div class="tt-title">🗓 Week 5 Daily Schedule — Caring for Others</div>
+<table class="tt">
+<thead><tr>
+  <th>Time &amp; Block</th>
+  <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th>
+</tr></thead>
+<tbody>
+<tr class="row-wlang"><td>8:10 – 9:00</td><td colspan="4" style="text-align:center; font-style:italic; color:#00838F;">🌍 Global Morning Meeting — greetings in 2+ languages, calendar math, cultural sharing, community circle (SEL + World Language + Global Competency)</td></tr>
+
+<tr class="row-arrival">
+  <td>7:30–8:00<br><strong>Arrival</strong></td>
+  <td colspan="5" class="all-day">School doors open · Children settle into morning exploration activities and welcome routines</td>
+</tr>
+
+<tr class="row-circle">
+  <td>8:00–8:10<br><strong>🌅 Circle Time</strong></td>
+  <td>'Bucket filler or bucket dipper?' — introduce concept from the book · class kindness pledge</td><td>Calendar · 'Acts of Kindness Tally' — count kind acts spotted this week · ongoing class chart</td><td>'How can I care for my world?' — caring for people, animals, and the environment · brainstorm</td>
+  <td>Phonics Champion — blending challenge: read sentences using all 8 GPCs · Assembly preparation</td><td>'Caring Hands Mural' gallery walk · unit reflection: 'I showed care this week by…'</td>
+</tr>
+
+<tr class="row-snack">
+  <td>9:00–9:20<br><strong>🍎 Snack Break</strong></td>
+  <td colspan="5" class="all-day">Children enjoy morning snack · Supervised social time · Table manners &amp; independent self-care</td>
+</tr>
+
+<tr class="row-ela1">
+  <td>9:20–10:00<br><strong>📖 ELA 1 / World Lang</strong></td>
+  <td>GPC <strong>m</strong> — recognise /m/ sound · words: mat, map, man, mad · trace and write letter Mm · blend: man, mat, mad, mid</td><td>GPC <strong>d</strong> — recognise /d/ sound · words: dog, dip, den, dim · trace and write letter Dd · blend: dim, dip, den, dam</td><td>Apply all GPCs <strong>s, a, t, p, i, n, m, d</strong> — read and write simple sentences: 'I am a man. Dan can sit. The dog is mad.'</td>
+  <td><span class="cell-wl"><span class="cell-ph">🌏 World Language content — to be completed by the World Language teacher</span></span></td>
+  <td>Sight words: <em>you, do</em> — read and write · apply all GPCs in decodable sentences · phonics celebration: read a full mini-book</td>
+</tr>
+
+<tr class="row-mindful">
+  <td>10:00–10:15<br><strong>🧘 Mindfulness Break</strong></td>
+  <td>💛 <strong>Loving-Kindness Meditation</strong><br>Breathe in: 'May I be happy' · breathe out: 'May I be well' · then send the same wish to a friend</td><td>🌻 <strong>Sunflower Breath</strong><br>Breathe in, arms and face open wide like a sunflower blooming; breathe out, close gently — share warmth</td><td>🌍 <strong>Earth Care Breath</strong><br>Breathe in: 'I love the Earth' · breathe out: 'I will take care of it' — 5 mindful breaths</td><td>🤗 <strong>Compassion Breath</strong><br>Think of someone who needs kindness · breathe warmth towards them · send a silent good wish</td><td>✨ <strong>Thank-You Breath</strong><br>Think of 3 things to be grateful for · take one deep breath after each · end with a warm smile</td>
+</tr>
+
+<tr class="row-math">
+  <td>10:15–11:00<br><strong>🔢 Math / ELA</strong></td>
+  <td><strong>Review — Counting to 100</strong> · count forward from a given number · oral and written review · count-on partner challenge</td>
+  <td>'Kindness Letter' — write/draw a caring message for a classmate · 'Dear ___, I care about you because ___' · decorate with kind symbols</td>
+  <td><strong>Review — Read, Write &amp; Represent</strong> numbers to 100 · ten-frame match and sort · 'Show me 3 ways!' activity</td>
+  <td>Review all 8 GPCs — dictated word reading and writing · read decodable sentences: 'Can the big dog sit? Dan and Sam can nap.' · phonics partner games</td>
+  <td><strong>Unit Assessment</strong> — demonstrate mastery of counting and number relationships · counting celebration activity</td>
+</tr>
+
+<tr class="row-lunch">
+  <td>11:00–11:50<br><strong>🍱 Lunch Break</strong></td>
+  <td colspan="5" class="all-day">Supervised lunch 11:00–11:30 &nbsp;·&nbsp; Self-Directed Centres 11:30–11:50</td>
+</tr>
+
+<tr class="row-centres">
+  <td>11:50–12:20<br><strong>🌱 Centres / Outdoor</strong></td>
+  <td><span class="cell-ctr">📦 Self-Directed Centres</span></td><td><span class="cell-ctr">📦 Self-Directed Centres</span></td>
+  <td><span class="cell-out">🌳 Outdoor Playtime</span></td><td><span class="cell-out">🌳 Outdoor Playtime</span></td><td><span class="cell-ctr">📦 Self-Directed Centres</span></td>
+</tr>
+
+<tr class="row-ela2ss">
+  <td>12:20–13:00<br><strong>📝 ELA 2 / SS / Math</strong></td>
+  <td>'I can fill a bucket!' — draw 2 acts of kindness · write/dictate for each · share at the closing circle</td><td>'Caring for Our Environment' — introduce reduce, reuse, recycle · classroom sorting activity · create class caring pledge</td><td><em>Each Kindness</em> reader response — draw a scene · complete: 'I will show kindness by ___' · add to class book</td>
+  <td><strong>Review — Comparing &amp; Skip Counting</strong> · mixed practice: compare numbers, extend skip-counting sequences · review game</td><td>Unit 1 reflection — 'I learned that I ___. I care about ___. I am ___.' — draw + write/dictate · add page to class memory book</td>
+</tr>
+
+<tr class="row-specials">
+  <td>13:00–13:45<br><strong>🎨 Specials</strong></td>
+  <td><span class="cell-ph">🎵 Music content — to be completed by the Music teacher</span></td>
+  <td>🎨 <strong>Caring Hands Mural</strong> — trace own hand on coloured paper · cut out carefully · decorate with patterns, colours, and care symbols · arrange into collaborative class mural titled 'Caring Hands'</td>
+  <td><span class="cell-ph">💻 Computer content — to be completed by the Computer teacher</span></td>
+  <td>🔬 <strong>Eco Investigators</strong> — observe school grounds · sort: natural vs human-made · design a 'caring garden' plan on paper · present: 'My garden helps ___ because ___'</td>
+  <td><span class="cell-ph">🏃 PHE content — to be completed by the PHE teacher</span></td>
+</tr>
+
+<tr class="row-snack2">
+  <td>13:45–14:00<br><strong>🍊 Snack Break</strong></td>
+  <td colspan="5" class="all-day">Afternoon snack · Tidy-up routine · Children prepare for afternoon activities</td>
+</tr>
+
+<tr class="row-afternoon">
+  <td>14:00–14:35<br><strong>🌟 Afternoon Block</strong></td>
+  <td><span class="cell-out">🌳 Outdoor Playtime — free exploration &amp; making new friends</span></td><td><span class="cell-out">🌳 Outdoor Playtime — cooperative games &amp; group challenges</span></td><td>🕺 <strong>MOVEMENT PHE</strong> — 'Caring Bodies': gentle partner stretches with consent · mirror movements · cooperative balance challenges · slow-motion trust walks</td>
+  <td>🌟 <strong>Show &amp; Tell</strong> — share one way they showed care this week · class responds with a 'bucket-filling' compliment</td><td>🏖 <strong>Sand Play</strong> — create a 'caring world' in the sand: people helping each other, animals, and natural elements</td>
+</tr>
+
+<tr class="row-close">
+  <td>14:35–14:45<br><strong>👋 Closing Circle</strong></td>
+  <td colspan="5" class="all-day">Daily affirmation: <em>"I listen. I imagine. I care. I make the world a kinder, better place. 🌍💛"</em> &nbsp;·&nbsp; Pack bags &nbsp;·&nbsp; Goodbye song &nbsp;·&nbsp; Dismissal</td>
+</tr>
+
+</tbody>
+</table>
+
+
+  <div class="note">
+    <strong>📚 Key Concepts:</strong> kindness · care · empathy · community · giving · environment · responsibility · compassion<br>
+    <strong>📖 Recommended Books:</strong> <em>Have You Filled a Bucket Today?</em> — Carol McCloud &nbsp;·&nbsp; <em>Each Kindness</em> — Jacqueline Woodson &nbsp;·&nbsp; <em>The Invisible String</em> — Patrice Karst<br>
+    <strong>🌍 Global Context Statement:</strong> OECD Global Competency — Responsible Action for Collective Well-being: taking caring actions for people and the planet | SDG 3 Good Health · SDG 13 Climate Action · SDG 17 Partnerships — Caring actions connect individual kindness to global responsibility and sustainable futures.
+  </div>
+
+  <div class="footer">
+    <strong>Week 5 · Caring for Others</strong> &nbsp;·&nbsp; Pan Asia International School &nbsp;·&nbsp; KG3 (Age 5)
+    &nbsp;·&nbsp; Teacher: __________________________ &nbsp;·&nbsp; Week of: __________________________
+  </div>
+
+</div><!-- /week5 -->
+
+
+<script>
+function showWeek(n, btn) {
+  document.querySelectorAll('.week').forEach(w => w.classList.remove('show'));
+  document.querySelectorAll('.selector button:not(.print-btn)').forEach(b => b.classList.remove('active'));
+  document.getElementById('week' + n).classList.add('show');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

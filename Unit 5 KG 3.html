@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KG3 Unit 5 — I Travel, I Explore, I Connect | Pan Asia International School</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Open Sans',sans-serif;background:#ECECEC;color:#222;}
+.selector{position:sticky;top:0;z-index:100;background:linear-gradient(135deg,#6B3410,#C85C14);padding:8px 16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;box-shadow:0 2px 8px rgba(0,0,0,.3);}
+.sel-title{color:#fff;font-weight:800;font-size:13px;margin-right:6px;white-space:nowrap;}
+.sel-btn{background:rgba(255,255,255,.2);color:#fff;border:1.5px solid rgba(255,255,255,.5);border-radius:18px;padding:4px 14px;font-size:11.5px;font-weight:700;cursor:pointer;transition:.2s;}
+.sel-btn:hover,.sel-btn.active{background:#fff;color:#C85C14;border-color:#fff;}
+.print-btn{margin-left:auto;background:#1976D2;color:#fff;border:none;border-radius:18px;padding:4px 14px;font-size:11.5px;font-weight:700;cursor:pointer;}
+.print-btn:hover{background:#1565C0;}
+.week{display:none;max-width:1100px;margin:24px auto;background:#fff;border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,.13);overflow:hidden;}
+.week.active{display:block;}
+.school-header{background:linear-gradient(135deg,#6B3410 0%,#C85C14 50%,#E8742A 100%);color:#fff;padding:14px 24px;}
+.school-header h1{font-size:11px;font-weight:600;opacity:.85;letter-spacing:1px;text-transform:uppercase;}
+.school-header h2{font-size:20px;font-weight:800;margin:3px 0 1px;}
+.school-header .week-tag{display:inline-block;background:rgba(255,255,255,.25);border-radius:20px;padding:2px 14px;font-size:11px;font-weight:700;margin-top:4px;}
+.meta-bar{background:#3E2723;color:#fff;padding:7px 24px;font-size:11px;display:flex;gap:18px;flex-wrap:wrap;align-items:center;}
+.meta-bar span{opacity:.9;}
+.meta-bar strong{color:#E8742A;}
+.value-banner{background:#FFF3E0;border-left:5px solid #C85C14;padding:9px 24px;font-size:11.5px;display:flex;gap:20px;flex-wrap:wrap;align-items:center;}
+.vb-item{display:flex;flex-direction:column;}
+.vb-label{font-size:9px;text-transform:uppercase;letter-spacing:.7px;color:#888;font-weight:700;}
+.vb-val{font-weight:700;color:#6B3410;font-size:12px;}
+.scope-strip{display:flex;gap:0;border-top:2px solid #C85C14;}
+.scope-strip .phonics-half{flex:1;background:#FFF3E0;padding:8px 20px;border-right:2px solid #C85C14;}
+.scope-strip .math-half{flex:1;background:#E8F5E9;padding:8px 20px;}
+.scope-strip .sh-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:#888;margin-bottom:3px;}
+.scope-strip .sh-topic{font-size:12.5px;font-weight:700;color:#C85C14;}
+.scope-strip .math-half .sh-topic{color:#2E7D32;}
+.scope-strip .sh-sub{font-size:10.5px;color:#555;margin-top:2px;}
+.scope-table{margin:0 20px 10px;border-radius:8px;overflow:hidden;border:2px solid #C85C14;}
+.scope-table-header{background:#6B3410;color:#fff;padding:6px 12px;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;}
+.scope-table table{width:100%;border-collapse:collapse;}
+.scope-table th{background:#3E2723;color:#fff;padding:4px 8px;font-size:9.5px;border:1px solid #5D4037;}
+.scope-table td{border:1px solid #e0d0c0;padding:4px 8px;font-size:10px;}
+.scope-row-active{background:#C85C14;color:#fff;font-weight:800;}
+.inquiry-banner{background:linear-gradient(135deg,#FFF8F3,#FFE0CC);border-left:6px solid #C85C14;padding:12px 24px;font-size:14px;font-style:italic;color:#6B3410;font-weight:600;line-height:1.5;}
+.goals-container{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;margin:14px 20px;}
+.goal-card{border-radius:10px;padding:12px 15px;}
+.goal-card h3{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;}
+.goal-card ul{list-style:none;padding:0;}
+.goal-card ul li{font-size:11px;line-height:1.55;padding:2px 0 2px 12px;position:relative;}
+.goal-card ul li::before{content:"▸";position:absolute;left:0;opacity:.7;}
+.gc-ela{background:#FFF3E0;border-left:4px solid #C85C14;}.gc-ela h3{color:#C85C14;}
+.gc-math{background:#E8F5E9;border-left:4px solid #2E7D32;}.gc-math h3{color:#2E7D32;}
+.gc-sci{background:#E3F2FD;border-left:4px solid #1565C0;}.gc-sci h3{color:#1565C0;}
+.gc-ss{background:#F3E5F5;border-left:4px solid #6A1B9A;}.gc-ss h3{color:#6A1B9A;}
+.gc-arts{background:#FBE9E7;border-left:4px solid #BF360C;}.gc-arts h3{color:#BF360C;}
+.gc-music{background:#f5f5f5;border-left:4px solid #aaa;}.gc-music h3{color:#888;}
+.gc-thai{background:#f0fff0;border-left:4px solid #aaa;}.gc-thai h3{color:#888;}
+.tt-title{font-size:12px;font-weight:800;color:#6B3410;text-transform:uppercase;letter-spacing:.7px;margin:6px 24px 4px;}
+table.tt{width:calc(100% - 48px);margin:0 24px 14px;border-collapse:collapse;font-size:10.5px;}
+table.tt th{background:#6B3410;color:#fff;padding:5px 7px;text-align:center;}
+table.tt td{border:1px solid #E0E0E0;padding:5px 7px;vertical-align:top;}
+table.tt td:first-child{font-weight:700;color:#C85C14;background:#FFF8F3;white-space:nowrap;min-width:44px;}
+.tt-row-ela{border-left:3px solid #C85C14;}
+.tt-row-math{border-left:3px solid #2E7D32;}
+.tt-row-sci{border-left:3px solid #1565C0;}
+.tt-row-ss{border-left:3px solid #6A1B9A;}
+.tt-row-arts{border-left:3px solid #BF360C;}
+.tt-row-mind{border-left:3px solid #00897B;}
+em.ph{color:#999999;font-style:italic;font-size:10px;}
+.note{background:#FFF8F3;border-radius:8px;margin:0 20px 10px;padding:10px 16px;font-size:11px;border-left:4px solid #C85C14;}
+.note.note-green{background:#F1F8E9;border-left-color:#2E7D32;}
+.note h4{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;color:#C85C14;}
+.note.note-green h4{color:#2E7D32;}
+.footer{background:#6B3410;color:rgba(255,255,255,.7);font-size:10px;padding:8px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px;}
+@media print{
+  body{background:#fff;}
+  .selector{display:none!important;}
+  .week{display:none!important;box-shadow:none;}
+  .week.active{display:block!important;}
+}
+</style>
+</head>
+<body>
+<nav class="selector">
+  <span class="sel-title">🕰️ KG3 Unit 5: I Travel, I Explore, I Connect — Travel Through Time — Past, Present, and Future</span>
+  <button class="sel-btn active" onclick="showWeek(22,this)">Week 22</button><button class="sel-btn" onclick="showWeek(23,this)">Week 23</button><button class="sel-btn" onclick="showWeek(24,this)">Week 24</button><button class="sel-btn" onclick="showWeek(25,this)">Week 25</button><button class="sel-btn" onclick="showWeek(26,this)">Week 26</button>
+  <button class="print-btn" onclick="window.print()">🖨️ Print</button>
+</nav>
+
+<div class="week" id="w22">
+  <div class="school-header">
+    <h1>Pan Asia International School · KG3 · Age 5 · Unit 5: I Travel, I Explore, I Connect</h1>
+    <h2>🕰️ Week 22: Long Ago and Today</h2>
+    <span class="week-tag">Theme: Travel Through Time — Past, Present, and Future &nbsp;|&nbsp; Unit Week 1 of 5</span>
+  </div>
+  <div class="meta-bar">
+    <span><strong>Week:</strong> Week 22</span>
+    <span><strong>Grade:</strong> KG3 · Age 5</span>
+    <span><strong>Unit Theme:</strong> 🕰️ Travel Through Time — Past, Present, and Future</span>
+    <span><strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Historical Awareness — How Life Has Changed Over Time</span>
+    <span><strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vb-item"><span class="vb-label">Value / Skill</span><span class="vb-val">🌍 Curiosity &amp; Open-Mindedness</span></div>
+    <div class="vb-item"><span class="vb-label">CASEL</span><span class="vb-val">Social Awareness</span></div>
+    <div class="vb-item"><span class="vb-label">Maths Topic</span><span class="vb-val">🔢 Measuring Length</span></div>
+    <div class="vb-item"><span class="vb-label">Mindfulness</span><span class="vb-val">🧘 Daily practice (see timetable)</span></div>
+    <div class="vb-item"><span class="vb-label">Approach</span><span class="vb-val">🎯 Inquiry-Play Based Learning</span></div>
+  </div>
+  <div class="scope-strip">
+  <div class="phonics-half">
+    <div class="sh-label">🔤 Phonics — Unit 5: Complex Digraphs &amp; Long Vowels</div>
+    <div class="sh-topic">Digraph: <strong>th (unvoiced)</strong> — moth, bath, thin, thank, three</div>
+    <div class="sh-sub">Sight words: <strong>want</strong> · <strong>good</strong> &nbsp;|&nbsp; Recognize and produce the th sound.</div>
+  </div>
+  <div class="math-half">
+    <div class="sh-label">🔢 Maths — Unit 5: Measurement, Time, Money &amp; Data</div>
+    <div class="sh-topic" style="color:#2E7D32;">Measuring Length</div>
+    <div class="sh-sub">Measure objects using non-standard units (cubes, hands, paperclips) · Measure with standard tools (ruler, metre stick)</div>
+  </div>
+</div>
+  <div class="scope-table">
+  <div class="scope-table-header">📋 Unit 5 Scope at a Glance — Travel Through Time — Past, Present, and Future</div>
+  <table><thead>
+    <tr><th>Week</th><th>🔤 Phonics</th><th>👁️ Sight Words</th><th>🔢 Maths Topic</th><th>Key Concepts</th></tr>
+  </thead><tbody><tr class="scope-row-active"><td style="font-weight:700;">W22</td><td>th (unvoiced)</td><td>want, good</td><td style="font-weight:700;">Measuring Length</td><td style="font-style:italic;">Non-standard tools · Compare lengths</td></tr><tr class=""><td style="font-weight:700;">W23</td><td>th (voiced)</td><td>away, down</td><td style="font-weight:400;">Time</td><td style="font-style:italic;">Analog clocks · Hour and half-hour</td></tr><tr class=""><td style="font-weight:700;">W24</td><td>ng</td><td>help, make</td><td style="font-weight:400;">Money</td><td style="font-style:italic;">Identify coins · Count collections</td></tr><tr class=""><td style="font-weight:700;">W25</td><td>ai</td><td>yes, no</td><td style="font-weight:400;">Data and Graphing</td><td style="font-style:italic;">Picture graphs · Interpret data</td></tr><tr class=""><td style="font-weight:700;">W26</td><td>ee</td><td>after, again</td><td style="font-weight:400;">Measurement &amp; Data Projects</td><td style="font-style:italic;">Apply all measurement skills</td></tr></tbody></table>
+</div>
+  <div class="inquiry-banner">"  How has life changed from long ago to today, and what can we learn from the past?  "</div>
+  <div class="goals-container"><div class="goal-card gc-ela"><h3>ELA / Phonics</h3><ul><li>Recognise and produce the unvoiced /th/ digraph: moth, bath, thin, thank, three</li><li>Read and write sight words: <em>want</em>, <em>good</em></li><li>Read anchor text <em>Then and Now</em> — identify differences between past and present life</li><li>Use time vocabulary: <em>long ago</em>, <em>today</em>, <em>then</em>, <em>now</em> in oral sentences</li><li>Write and illustrate: 'Long ago, people ___. Today, people ___.'</li></ul></div><div class="goal-card gc-math"><h3>Mathematics</h3><ul><li style='font-weight:700;color:#2E7D32;list-style:none;padding-left:0;margin-bottom:2px;'>📊 Measuring Length</li><li style='color:#555;font-style:italic;'>Measure objects using non-standard units (cubes, hands, paperclips)</li><li style='color:#555;font-style:italic;'>Measure with standard tools (ruler, metre stick)</li><li style='color:#555;font-style:italic;'>Compare lengths: longer, shorter, same</li><li style='font-weight:700;color:#555;font-size:10px;list-style:none;padding-left:0;margin-top:3px;'>OBJECTIVES:</li><li>Measure objects using non-standard and standard tools</li><li>Compare lengths using appropriate vocabulary</li></ul></div><div class="goal-card gc-sci"><h3>Science</h3><ul><li>Explore how technology has changed over time — mystery bag activity</li><li>Compare old and modern objects: rotary phone vs. smartphone, VHS vs. streaming, Walkman vs. Bluetooth</li><li>Discuss: How does new technology make life easier?</li><li>Create a 'Past vs. Present Technology' T-chart with drawings and labels</li></ul></div><div class="goal-card gc-ss"><h3>Social Studies</h3><ul><li>Introduce Unit 5 theme: Travel Through Time — Past, Present, and Future</li><li>Discuss: What does 'long ago' mean? What clues can we find in old pictures and objects?</li><li>STREAM Fair celebration week — sharing and presenting our learning</li><li>Begin a class 'Time Travel Journal' — draw or write one thing that was different long ago</li></ul></div><div class="goal-card gc-arts"><h3>Arts &amp; Crafts</h3><ul><li>Cave Painting Adventure — create art inspired by ancient cave painting styles and storytelling</li><li>VA.K.Cn11.1 — Connect art to culture and history</li><li>VA.K.Re7.1 — Observe and describe artistic styles from different times</li></ul></div><div class="goal-card gc-music"><h3>Music</h3><ul><li><em class='ph'>Thai · Music · Computer · PHE — facilitator notes added each week</em></li></ul></div><div class="goal-card gc-thai"><h3>Thai</h3><ul><li><em class='ph'>คำศัพท์เกี่ยวกับอดีตและปัจจุบัน — ครูภาษาไทยเป็นผู้กำหนด</em></li></ul></div></div>
+  <p class="tt-title">📅 Weekly Timetable</p><table class="tt"><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr><tr class=""><td>7:30</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td></tr><tr class=""><td>8:00</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td></tr><tr class="tt-row-ela"><td>8:10</td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><strong>🎤 Assembly</strong></td><td><em class='ph'>Thai</em></td></tr><tr class=""><td>9:00</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class="tt-row-ela"><td>9:20</td><td>ELA: Introduce /th/ unvoiced · mouth placement · chant: 'thin, bath, thank'</td><td>ELA: Sight words <em>want / good</em> · 'I want a good ___' sentence frame</td><td>ELA: Blend /th/ words · word sort: beginning vs. ending th</td><td>ELA: Read /th/ sentences fluently · partner reading · choral</td><td>ELA: Write 'Long ago, people ___. Today, people ___.'</td></tr><tr class="tt-row-mind"><td>10:00</td><td>Time Travel Breath — breathe in curiosity, breathe out wonder</td><td>Gratitude for the Past — name one thing from long ago you are thankful for</td><td>Stillness — close your eyes and imagine what life was like long ago</td><td>Mindful Observation — look carefully at an old object and describe what you notice</td><td>Kindness across Time — how can we learn kindness from people in the past?</td></tr><tr class="tt-row-math"><td>10:15</td><td>Math: What is measurement? Explore long, short, tall with body</td><td>ELA: Then and Now — Read-Aloud · identify then vs. now in pictures</td><td>Math: Measure objects with cubes — which is longer?</td><td>Math: Compare lengths — longer, shorter, same · use measuring strips</td><td>Math: Class measurement chart — record and compare results</td></tr><tr class=""><td>11:00</td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td></tr><tr class=""><td>11:50</td><td>🎲 Centres</td><td>🎲 Centres</td><td>🌿 Outdoor Exploration</td><td>🌿 Outdoor Exploration</td><td>🎲 Centres</td></tr><tr class="tt-row-ss"><td>12:20</td><td>ELA: 'What does long ago mean?' — class anchor chart discussion</td><td>SS: STREAM Fair — celebrate and present our learning from the semester</td><td>ELA: Time words practice — sort sentences: long ago / today</td><td>Math: Compare lengths — longer, shorter, same · use measuring strips</td><td>ELA: Partner share — my Time Travel Journal entry</td></tr><tr class="tt-row-arts"><td>13:00</td><td><em class='ph'>🎵 Music</em></td><td>Arts &amp; Crafts: Cave Painting Adventure</td><td><em class='ph'>💻 Computer</em></td><td>Science: Technology Over the Years — mystery bag with old objects · past vs. present T-chart</td><td><em class='ph'>🏃 PHE</em></td></tr><tr class=""><td>13:45</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class=""><td>14:00</td><td>🌿 Outdoor Play</td><td>🌿 Outdoor Play</td><td>🏃 MOVE — PHE</td><td>🗣️ Show &amp; Tell</td><td>🏖️ Sand Play</td></tr><tr class=""><td>14:35</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td></tr></table>
+  <div class="note">
+    <h4>📚 Key Concepts · Books · Global Context</h4>
+    Concepts: past · present · long ago · today · technology change · measurement<br>
+    Books / Read-Alouds: <em>Then and Now — Robin Nelson (Epic Books)</em><br>
+    Statement of Inquiry: <em>When we travel through time and place, we discover how the past shapes who we are and how we are connected to people around the world.</em>
+  </div>
+  <div class="note note-green">
+    <h4>🇹🇭 Thai Language Note</h4>
+    คำศัพท์ภาษาไทย: อดีต · ปัจจุบัน · เมื่อนานมาแล้ว · วันนี้ · การเปลี่ยนแปลง — <em class="ph">ครูภาษาไทยเป็นผู้กำหนดเนื้อหาและกิจกรรมรายสัปดาห์</em>
+  </div>
+  <div class="footer">
+    <span>Week 22 · Unit 5: I Travel, I Explore, I Connect</span>
+    <span>Pan Asia International School · KG3 · Age 5</span>
+    <span>Facilitator: _____________ · Date: _____________</span>
+  </div>
+</div>
+<div class="week" id="w23">
+  <div class="school-header">
+    <h1>Pan Asia International School · KG3 · Age 5 · Unit 5: I Travel, I Explore, I Connect</h1>
+    <h2>🕰️ Week 23: Families Long Ago</h2>
+    <span class="week-tag">Theme: Travel Through Time — Past, Present, and Future &nbsp;|&nbsp; Unit Week 2 of 5</span>
+  </div>
+  <div class="meta-bar">
+    <span><strong>Week:</strong> Week 23</span>
+    <span><strong>Grade:</strong> KG3 · Age 5</span>
+    <span><strong>Unit Theme:</strong> 🕰️ Travel Through Time — Past, Present, and Future</span>
+    <span><strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Historical Awareness — How Families Lived in the Past</span>
+    <span><strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vb-item"><span class="vb-label">Value / Skill</span><span class="vb-val">🌍 Historical Curiosity &amp; Empathy</span></div>
+    <div class="vb-item"><span class="vb-label">CASEL</span><span class="vb-val">Social Awareness</span></div>
+    <div class="vb-item"><span class="vb-label">Maths Topic</span><span class="vb-val">🔢 Time</span></div>
+    <div class="vb-item"><span class="vb-label">Mindfulness</span><span class="vb-val">🧘 Daily practice (see timetable)</span></div>
+    <div class="vb-item"><span class="vb-label">Approach</span><span class="vb-val">🎯 Inquiry-Play Based Learning</span></div>
+  </div>
+  <div class="scope-strip">
+  <div class="phonics-half">
+    <div class="sh-label">🔤 Phonics — Unit 5: Complex Digraphs &amp; Long Vowels</div>
+    <div class="sh-topic">Digraph: <strong>th (voiced)</strong> — this, that, they, them, then, there</div>
+    <div class="sh-sub">Sight words: <strong>away</strong> · <strong>down</strong> &nbsp;|&nbsp; Distinguish between voiced and unvoiced th.</div>
+  </div>
+  <div class="math-half">
+    <div class="sh-label">🔢 Maths — Unit 5: Measurement, Time, Money &amp; Data</div>
+    <div class="sh-topic" style="color:#2E7D32;">Time</div>
+    <div class="sh-sub">Read an analog clock — hour hand and minute hand · Tell time to the hour (3 o'clock)</div>
+  </div>
+</div>
+  <div class="scope-table">
+  <div class="scope-table-header">📋 Unit 5 Scope at a Glance — Travel Through Time — Past, Present, and Future</div>
+  <table><thead>
+    <tr><th>Week</th><th>🔤 Phonics</th><th>👁️ Sight Words</th><th>🔢 Maths Topic</th><th>Key Concepts</th></tr>
+  </thead><tbody><tr class=""><td style="font-weight:700;">W22</td><td>th (unvoiced)</td><td>want, good</td><td style="font-weight:400;">Measuring Length</td><td style="font-style:italic;">Non-standard tools · Compare lengths</td></tr><tr class="scope-row-active"><td style="font-weight:700;">W23</td><td>th (voiced)</td><td>away, down</td><td style="font-weight:700;">Time</td><td style="font-style:italic;">Analog clocks · Hour and half-hour</td></tr><tr class=""><td style="font-weight:700;">W24</td><td>ng</td><td>help, make</td><td style="font-weight:400;">Money</td><td style="font-style:italic;">Identify coins · Count collections</td></tr><tr class=""><td style="font-weight:700;">W25</td><td>ai</td><td>yes, no</td><td style="font-weight:400;">Data and Graphing</td><td style="font-style:italic;">Picture graphs · Interpret data</td></tr><tr class=""><td style="font-weight:700;">W26</td><td>ee</td><td>after, again</td><td style="font-weight:400;">Measurement &amp; Data Projects</td><td style="font-style:italic;">Apply all measurement skills</td></tr></tbody></table>
+</div>
+  <div class="inquiry-banner">"  How did families live long ago, and how are their stories connected to our lives today?  "</div>
+  <div class="goals-container"><div class="goal-card gc-ela"><h3>ELA / Phonics</h3><ul><li>Recognise and produce the voiced /th/ digraph: this, that, they, them, then, there</li><li>Distinguish between voiced /th/ (this) and unvoiced /th/ (thin) — tongue placement</li><li>Read and write sight words: <em>away</em>, <em>down</em></li><li>Listen to <em>Stone Age Boy</em> and retell how the Stone Age family lived</li><li>Write: 'Long ago, families ___. Today, families ___.' — compare then and now</li></ul></div><div class="goal-card gc-math"><h3>Mathematics</h3><ul><li style='font-weight:700;color:#2E7D32;list-style:none;padding-left:0;margin-bottom:2px;'>📊 Time</li><li style='color:#555;font-style:italic;'>Read an analog clock — hour hand and minute hand</li><li style='color:#555;font-style:italic;'>Tell time to the hour (3 o'clock)</li><li style='color:#555;font-style:italic;'>Tell time to the half-hour (half past 3)</li><li style='font-weight:700;color:#555;font-size:10px;list-style:none;padding-left:0;margin-top:3px;'>OBJECTIVES:</li><li>Tell time to the hour on analog and digital clocks</li><li>Tell time to the half-hour on analog and digital clocks</li></ul></div><div class="goal-card gc-sci"><h3>Science</h3><ul><li>Explore how Stone Age people used tools, fire, and natural materials</li><li>Compare Stone Age tools to modern equivalents: flint knife → metal knife, cave → house</li><li>Discuss: Why did people live in caves? What materials did they use and why?</li><li>Draw and label a 'Stone Age Invention' — what would you create if you had only rocks and sticks?</li></ul></div><div class="goal-card gc-ss"><h3>Social Studies</h3><ul><li>Note: Makha Bucha Day — school holiday observed this week 🇹🇭</li><li>Explore how Stone Age families gathered food, made shelter, and lived together</li><li>Compare Stone Age family roles to family roles today</li><li>Create a 'Families Then and Now' comparison drawing — what stayed the same?</li></ul></div><div class="goal-card gc-arts"><h3>Arts &amp; Crafts</h3><ul><li>Then and Now Collage — compare past and present through a collage connecting personal and historical images</li><li>VA.K.Cn10.1 — Connect personal experiences to art and history</li><li>VA.K.Cn11.1 — Explore historical connections through art-making</li></ul></div><div class="goal-card gc-music"><h3>Music</h3><ul><li><em class='ph'>Thai · Music · Computer · PHE — facilitator notes added each week</em></li></ul></div><div class="goal-card gc-thai"><h3>Thai</h3><ul><li><em class='ph'>คำศัพท์เกี่ยวกับครอบครัวในอดีต — ครูภาษาไทยเป็นผู้กำหนด</em></li></ul></div></div>
+  <p class="tt-title">📅 Weekly Timetable</p><table class="tt"><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr><tr class=""><td>7:30</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td></tr><tr class=""><td>8:00</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td></tr><tr class="tt-row-ela"><td>8:10</td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><strong>🎤 Assembly</strong></td><td><em class='ph'>Thai</em></td></tr><tr class=""><td>9:00</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class="tt-row-ela"><td>9:20</td><td>ELA: Review unvoiced /th/ · introduce voiced /th/ · feel the buzz</td><td>ELA: Sight words <em>away / down</em> · 'They run away. They go down.' sentences</td><td>ELA: Sort voiced vs. unvoiced th words · whiteboard practice</td><td>ELA: Read voiced /th/ sentences fluently · thumbs up for voiced /th/</td><td>ELA: Write 'Long ago, families ___. Today, families ___.'</td></tr><tr class="tt-row-mind"><td>10:00</td><td>Empathy Breath — imagine how a child from the Stone Age felt each morning</td><td>Gratitude Circle — I am grateful for modern comforts (warm food, shelter, school)</td><td>Storytelling Stillness — close your eyes and picture a Stone Age family around a fire</td><td>Body Check — how would your body feel living outdoors in the Stone Age?</td><td>Kindness through Time — what would you share with a friend from long ago?</td></tr><tr class="tt-row-math"><td>10:15</td><td>Math: Introduce the clock — hour hand and minute hand (demo clock)</td><td>ELA: Stone Age Boy — Read-Aloud · retell Stone Age family life</td><td>Math: Tell time to the hour — what time is it? · show on mini clocks</td><td>Math: Tell time to the half-hour — half past ___ · partner clock activity</td><td>Math: Daily routine clock — 'At ___ o'clock, we ___'</td></tr><tr class=""><td>11:00</td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td></tr><tr class=""><td>11:50</td><td>🎲 Centres</td><td>🎲 Centres</td><td>🌿 Outdoor Exploration</td><td>🌿 Outdoor Exploration</td><td>🎲 Centres</td></tr><tr class="tt-row-ss"><td>12:20</td><td>ELA: 'How did Stone Age families live?' — class anchor chart</td><td>SS: Families Then and Now — Stone Age family roles vs. today's family roles</td><td>ELA: Compare tools: Stone Age vs. today · draw and label</td><td>Math: Tell time to the half-hour — half past ___ · partner clock activity</td><td>ELA: Partner retell — Stone Age Boy key events</td></tr><tr class="tt-row-arts"><td>13:00</td><td><em class='ph'>🎵 Music</em></td><td>Arts &amp; Crafts: Then and Now Collage</td><td><em class='ph'>💻 Computer</em></td><td>Science: Stone Age tools vs. modern tools — compare and discuss natural materials</td><td><em class='ph'>🏃 PHE</em></td></tr><tr class=""><td>13:45</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class=""><td>14:00</td><td>🌿 Outdoor Play</td><td>🌿 Outdoor Play</td><td>🏃 MOVE — PHE</td><td>🗣️ Show &amp; Tell</td><td>🏖️ Sand Play</td></tr><tr class=""><td>14:35</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td></tr></table>
+  <div class="note">
+    <h4>📚 Key Concepts · Books · Global Context</h4>
+    Concepts: Stone Age · families long ago · tools and materials · time telling · voiced and unvoiced th<br>
+    Books / Read-Alouds: <em>Stone Age Boy — Satoshi Kitamura</em><br>
+    Statement of Inquiry: <em>When we travel through time and place, we discover how the past shapes who we are and how we are connected to people around the world.</em>
+  </div>
+  <div class="note note-green">
+    <h4>🇹🇭 Thai Language Note</h4>
+    คำศัพท์ภาษาไทย: ครอบครัว · อดีต · เครื่องมือ · ถ้ำ · ยุคหิน · วันหยุดมาฆบูชา — <em class="ph">ครูภาษาไทยเป็นผู้กำหนดเนื้อหาและกิจกรรมรายสัปดาห์</em>
+  </div>
+  <div class="footer">
+    <span>Week 23 · Unit 5: I Travel, I Explore, I Connect</span>
+    <span>Pan Asia International School · KG3 · Age 5</span>
+    <span>Facilitator: _____________ · Date: _____________</span>
+  </div>
+</div>
+<div class="week" id="w24">
+  <div class="school-header">
+    <h1>Pan Asia International School · KG3 · Age 5 · Unit 5: I Travel, I Explore, I Connect</h1>
+    <h2>🕰️ Week 24: Clothes and Cultures Through Time</h2>
+    <span class="week-tag">Theme: Travel Through Time — Past, Present, and Future &nbsp;|&nbsp; Unit Week 3 of 5</span>
+  </div>
+  <div class="meta-bar">
+    <span><strong>Week:</strong> Week 24</span>
+    <span><strong>Grade:</strong> KG3 · Age 5</span>
+    <span><strong>Unit Theme:</strong> 🕰️ Travel Through Time — Past, Present, and Future</span>
+    <span><strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Historical Awareness — Traditional and Modern Cultures</span>
+    <span><strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vb-item"><span class="vb-label">Value / Skill</span><span class="vb-val">🌍 Cultural Respect &amp; Open-Mindedness</span></div>
+    <div class="vb-item"><span class="vb-label">CASEL</span><span class="vb-val">Social Awareness</span></div>
+    <div class="vb-item"><span class="vb-label">Maths Topic</span><span class="vb-val">🔢 Money</span></div>
+    <div class="vb-item"><span class="vb-label">Mindfulness</span><span class="vb-val">🧘 Daily practice (see timetable)</span></div>
+    <div class="vb-item"><span class="vb-label">Approach</span><span class="vb-val">🎯 Inquiry-Play Based Learning</span></div>
+  </div>
+  <div class="scope-strip">
+  <div class="phonics-half">
+    <div class="sh-label">🔤 Phonics — Unit 5: Complex Digraphs &amp; Long Vowels</div>
+    <div class="sh-topic">Digraph: <strong>ng</strong> — sing, ring, king, long, song, ping pong</div>
+    <div class="sh-sub">Sight words: <strong>help</strong> · <strong>make</strong> &nbsp;|&nbsp; Read and spell words ending in ng.</div>
+  </div>
+  <div class="math-half">
+    <div class="sh-label">🔢 Maths — Unit 5: Measurement, Time, Money &amp; Data</div>
+    <div class="sh-topic" style="color:#2E7D32;">Money</div>
+    <div class="sh-sub">Identify coins: penny, nickel, dime · Thai baht coins (1฿, 2฿, 5฿, 10฿) · Count collections of coins to find the total</div>
+  </div>
+</div>
+  <div class="scope-table">
+  <div class="scope-table-header">📋 Unit 5 Scope at a Glance — Travel Through Time — Past, Present, and Future</div>
+  <table><thead>
+    <tr><th>Week</th><th>🔤 Phonics</th><th>👁️ Sight Words</th><th>🔢 Maths Topic</th><th>Key Concepts</th></tr>
+  </thead><tbody><tr class=""><td style="font-weight:700;">W22</td><td>th (unvoiced)</td><td>want, good</td><td style="font-weight:400;">Measuring Length</td><td style="font-style:italic;">Non-standard tools · Compare lengths</td></tr><tr class=""><td style="font-weight:700;">W23</td><td>th (voiced)</td><td>away, down</td><td style="font-weight:400;">Time</td><td style="font-style:italic;">Analog clocks · Hour and half-hour</td></tr><tr class="scope-row-active"><td style="font-weight:700;">W24</td><td>ng</td><td>help, make</td><td style="font-weight:700;">Money</td><td style="font-style:italic;">Identify coins · Count collections</td></tr><tr class=""><td style="font-weight:700;">W25</td><td>ai</td><td>yes, no</td><td style="font-weight:400;">Data and Graphing</td><td style="font-style:italic;">Picture graphs · Interpret data</td></tr><tr class=""><td style="font-weight:700;">W26</td><td>ee</td><td>after, again</td><td style="font-weight:400;">Measurement &amp; Data Projects</td><td style="font-style:italic;">Apply all measurement skills</td></tr></tbody></table>
+</div>
+  <div class="inquiry-banner">"  How do the clothes people wear and the art they create tell us about their culture and history?  "</div>
+  <div class="goals-container"><div class="goal-card gc-ela"><h3>ELA / Phonics</h3><ul><li>Recognise and produce the /ng/ digraph at the end of words: sing, ring, king, long, song</li><li>Read and write sight words: <em>help</em>, <em>make</em></li><li>Read spelling sentences using /ng/ words: 'Help me sing. Make a ring. I saw the king sing.'</li><li>Use descriptive language to compare traditional and modern clothing</li><li>Write: 'Long ago, people wore ___. Today, people wear ___.'</li></ul></div><div class="goal-card gc-math"><h3>Mathematics</h3><ul><li style='font-weight:700;color:#2E7D32;list-style:none;padding-left:0;margin-bottom:2px;'>📊 Money</li><li style='color:#555;font-style:italic;'>Identify coins: penny, nickel, dime · Thai baht coins (1฿, 2฿, 5฿, 10฿)</li><li style='color:#555;font-style:italic;'>Count collections of coins to find the total</li><li style='color:#555;font-style:italic;'>Understand coin equivalencies: 5 pennies = 1 nickel</li><li style='font-weight:700;color:#555;font-size:10px;list-style:none;padding-left:0;margin-top:3px;'>OBJECTIVES:</li><li>Identify coins and state their values</li><li>Count collections of coins using Thai baht and US coins</li></ul></div><div class="goal-card gc-sci"><h3>Science</h3><ul><li>Build a pinhole camera using a cylindrical chip container and aluminium foil</li><li>Explore how light travels in straight lines through a small hole</li><li>Compare old cameras (box cameras, film cameras) to modern digital cameras and phones</li><li>Discuss: How has photography changed the way we remember the past?</li></ul></div><div class="goal-card gc-ss"><h3>Social Studies</h3><ul><li>Explore traditional clothing from Thailand 🇹🇭 (Chut Thai), China (Hanfu), and India (Sari)</li><li>Sort clothing pictures into 'Long Ago' and 'Today' — what changed, what stayed?</li><li>Discuss why traditional clothing is important for culture and identity</li><li>Create a 'Clothing Around the World' drawing — label one traditional outfit</li></ul></div><div class="goal-card gc-arts"><h3>Arts &amp; Crafts</h3><ul><li>Transportation Through Time — represent how transportation has changed over time through drawing and mixed media</li><li>VA.K.Cr2.1 — Represent ideas about change visually through drawing and mixed media</li><li>VA.K.Re7.1 — Observe and describe how transportation has changed over time</li></ul></div><div class="goal-card gc-music"><h3>Music</h3><ul><li><em class='ph'>Thai · Music · Computer · PHE — facilitator notes added each week</em></li></ul></div><div class="goal-card gc-thai"><h3>Thai</h3><ul><li><em class='ph'>คำศัพท์เกี่ยวกับเสื้อผ้าและวัฒนธรรม — ครูภาษาไทยเป็นผู้กำหนด</em></li></ul></div></div>
+  <p class="tt-title">📅 Weekly Timetable</p><table class="tt"><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr><tr class=""><td>7:30</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td></tr><tr class=""><td>8:00</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td></tr><tr class="tt-row-ela"><td>8:10</td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><strong>🎤 Assembly</strong></td><td><em class='ph'>Thai</em></td></tr><tr class=""><td>9:00</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class="tt-row-ela"><td>9:20</td><td>ELA: Introduce /ng/ · sing, ring, king · chant and tap noses (feel /ng/)</td><td>ELA: Sight words <em>help / make</em> · 'Help me make a ___' sentence frame</td><td>ELA: Spelling sentences — Help me sing. Make a ring. I saw the king sing.</td><td>ELA: Read /ng/ sentences · 'Play ping pong.' choral reading · fluency</td><td>ELA: Write 'Long ago, people wore ___. Today, people wear ___.'</td></tr><tr class="tt-row-mind"><td>10:00</td><td>Cultural Breath — breathe in respect, breathe out curiosity about other cultures</td><td>Gratitude for Clothes — I am thankful for the clothes that keep me safe and warm</td><td>Mindful Looking — observe a traditional costume and notice three details</td><td>Empathy Intention — how would it feel to wear traditional clothes at a festival?</td><td>Kindness — one way I can show respect for someone else's culture</td></tr><tr class="tt-row-math"><td>10:15</td><td>Math: Introduce coins — penny, nickel, dime · show and name each</td><td>ELA: Clothes Then and Now — Read and compare · traditional vs. modern clothing pictures</td><td>Math: Thai baht coins 1฿ 2฿ 5฿ 10฿ · Market Day sorting activity</td><td>Math: Coin equivalencies — 5 pennies = 1 nickel · trade and sort</td><td>Math: Count coin collections — how much do I have?</td></tr><tr class=""><td>11:00</td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td></tr><tr class=""><td>11:50</td><td>🎲 Centres</td><td>🎲 Centres</td><td>🌿 Outdoor Exploration</td><td>🌿 Outdoor Exploration</td><td>🎲 Centres</td></tr><tr class="tt-row-ss"><td>12:20</td><td>ELA: Clothing Around the World — observe and describe traditional costumes</td><td>SS: Clothes Then and Now — Chut Thai, Hanfu, Sari vs. modern clothes · sorting activity</td><td>ELA: Time words review — sort sentences into 'long ago' / 'today'</td><td>Math: Coin equivalencies — 5 pennies = 1 nickel · trade and sort</td><td>ELA: Draw and label one traditional outfit from Thailand or Asia</td></tr><tr class="tt-row-arts"><td>13:00</td><td><em class='ph'>🎵 Music</em></td><td>Arts &amp; Crafts: Transportation Through Time</td><td><em class='ph'>💻 Computer</em></td><td>Science: Pinhole Camera — build with chip container · observe how light travels</td><td><em class='ph'>🏃 PHE</em></td></tr><tr class=""><td>13:45</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class=""><td>14:00</td><td>🌿 Outdoor Play</td><td>🌿 Outdoor Play</td><td>🏃 MOVE — PHE</td><td>🗣️ Show &amp; Tell</td><td>🏖️ Sand Play</td></tr><tr class=""><td>14:35</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td></tr></table>
+  <div class="note">
+    <h4>📚 Key Concepts · Books · Global Context</h4>
+    Concepts: traditional clothing · cultural identity · coins and money · pinhole camera · ng digraph<br>
+    Books / Read-Alouds: <em>Then and Now — Robin Nelson (Epic Books)</em> · <em>Clothes Then and Now — Nadia Higgins</em><br>
+    Statement of Inquiry: <em>When we travel through time and place, we discover how the past shapes who we are and how we are connected to people around the world.</em>
+  </div>
+  <div class="note note-green">
+    <h4>🇹🇭 Thai Language Note</h4>
+    คำศัพท์ภาษาไทย: เสื้อผ้า · ชุดไทย · วัฒนธรรม · เหรียญ · ตลาด · การเปลี่ยนแปลง — <em class="ph">ครูภาษาไทยเป็นผู้กำหนดเนื้อหาและกิจกรรมรายสัปดาห์</em>
+  </div>
+  <div class="footer">
+    <span>Week 24 · Unit 5: I Travel, I Explore, I Connect</span>
+    <span>Pan Asia International School · KG3 · Age 5</span>
+    <span>Facilitator: _____________ · Date: _____________</span>
+  </div>
+</div>
+<div class="week" id="w25">
+  <div class="school-header">
+    <h1>Pan Asia International School · KG3 · Age 5 · Unit 5: I Travel, I Explore, I Connect</h1>
+    <h2>🕰️ Week 25: Transportation Through Time</h2>
+    <span class="week-tag">Theme: Travel Through Time — Past, Present, and Future &nbsp;|&nbsp; Unit Week 4 of 5</span>
+  </div>
+  <div class="meta-bar">
+    <span><strong>Week:</strong> Week 25</span>
+    <span><strong>Grade:</strong> KG3 · Age 5</span>
+    <span><strong>Unit Theme:</strong> 🕰️ Travel Through Time — Past, Present, and Future</span>
+    <span><strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Historical Awareness — How We Move: Past, Present, and Future</span>
+    <span><strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vb-item"><span class="vb-label">Value / Skill</span><span class="vb-val">🌍 Global Connection &amp; Innovation</span></div>
+    <div class="vb-item"><span class="vb-label">CASEL</span><span class="vb-val">Responsible Decision-Making</span></div>
+    <div class="vb-item"><span class="vb-label">Maths Topic</span><span class="vb-val">🔢 Data and Graphing</span></div>
+    <div class="vb-item"><span class="vb-label">Mindfulness</span><span class="vb-val">🧘 Daily practice (see timetable)</span></div>
+    <div class="vb-item"><span class="vb-label">Approach</span><span class="vb-val">🎯 Inquiry-Play Based Learning</span></div>
+  </div>
+  <div class="scope-strip">
+  <div class="phonics-half">
+    <div class="sh-label">🔤 Phonics — Unit 5: Complex Digraphs &amp; Long Vowels</div>
+    <div class="sh-topic">Vowel team: <strong>ai</strong> — rain, mail, nail, aim, train, sail</div>
+    <div class="sh-sub">Sight words: <strong>yes</strong> · <strong>no</strong> &nbsp;|&nbsp; Recognize the long a vowel team.</div>
+  </div>
+  <div class="math-half">
+    <div class="sh-label">🔢 Maths — Unit 5: Measurement, Time, Money &amp; Data</div>
+    <div class="sh-topic" style="color:#2E7D32;">Data and Graphing</div>
+    <div class="sh-sub">Collect data using a class survey · Create a picture graph using tally marks</div>
+  </div>
+</div>
+  <div class="scope-table">
+  <div class="scope-table-header">📋 Unit 5 Scope at a Glance — Travel Through Time — Past, Present, and Future</div>
+  <table><thead>
+    <tr><th>Week</th><th>🔤 Phonics</th><th>👁️ Sight Words</th><th>🔢 Maths Topic</th><th>Key Concepts</th></tr>
+  </thead><tbody><tr class=""><td style="font-weight:700;">W22</td><td>th (unvoiced)</td><td>want, good</td><td style="font-weight:400;">Measuring Length</td><td style="font-style:italic;">Non-standard tools · Compare lengths</td></tr><tr class=""><td style="font-weight:700;">W23</td><td>th (voiced)</td><td>away, down</td><td style="font-weight:400;">Time</td><td style="font-style:italic;">Analog clocks · Hour and half-hour</td></tr><tr class=""><td style="font-weight:700;">W24</td><td>ng</td><td>help, make</td><td style="font-weight:400;">Money</td><td style="font-style:italic;">Identify coins · Count collections</td></tr><tr class="scope-row-active"><td style="font-weight:700;">W25</td><td>ai</td><td>yes, no</td><td style="font-weight:700;">Data and Graphing</td><td style="font-style:italic;">Picture graphs · Interpret data</td></tr><tr class=""><td style="font-weight:700;">W26</td><td>ee</td><td>after, again</td><td style="font-weight:400;">Measurement &amp; Data Projects</td><td style="font-style:italic;">Apply all measurement skills</td></tr></tbody></table>
+</div>
+  <div class="inquiry-banner">"  How has the way we move and travel changed over time, and how might we travel in the future?  "</div>
+  <div class="goals-container"><div class="goal-card gc-ela"><h3>ELA / Phonics</h3><ul><li>Recognise the /ai/ vowel team — rain, mail, nail, aim, train, sail</li><li>Identify the long /a/ sound in the 'ai' pattern: r-ai-n, m-ai-l</li><li>Read and write sight words: <em>yes</em>, <em>no</em></li><li>Read spelling sentences: 'Yes, I can aim. The rain is here. There is no mail. My nail is red.'</li><li>Use adjectives to describe transport: fast, slow, big, loud, old, new</li></ul></div><div class="goal-card gc-math"><h3>Mathematics</h3><ul><li style='font-weight:700;color:#2E7D32;list-style:none;padding-left:0;margin-bottom:2px;'>📊 Data and Graphing</li><li style='color:#555;font-style:italic;'>Collect data using a class survey</li><li style='color:#555;font-style:italic;'>Create a picture graph using tally marks</li><li style='color:#555;font-style:italic;'>Interpret graphs — most, least, equal, more than, fewer than</li><li style='font-weight:700;color:#555;font-size:10px;list-style:none;padding-left:0;margin-top:3px;'>OBJECTIVES:</li><li>Collect and organise data into a picture graph</li><li>Interpret graphs to answer comparison questions</li></ul></div><div class="goal-card gc-sci"><h3>Science</h3><ul><li>Explore push and pull forces using a basket on wheels (vehicle simulation)</li><li>Demonstrate: push from behind vs. pull using a rope — how does the basket move?</li><li>Identify how wheels make objects easier to move — try sliding vs. rolling</li><li>Connect to transport: all vehicles use push or pull forces to move</li></ul></div><div class="goal-card gc-ss"><h3>Social Studies</h3><ul><li>Compare transport from the past and present: horse and cart, ship, train → car, plane, rocket</li><li>Begin preparing for International Day — learn about a country (Russia, India, or China) 🌍</li><li>Explore famous landmarks of the country represented: flag, traditional clothes, food, buildings</li><li>Start creating a craft or decoration for International Day classroom display</li></ul></div><div class="goal-card gc-arts"><h3>Arts &amp; Crafts</h3><ul><li>Future City Design — imagine and design a city of the future using creative materials</li><li>VA.K.Cr1.1 — Generate imaginative ideas about what future cities might look like</li><li>VA.K.Cr2.1 — Develop and create a design using available materials</li></ul></div><div class="goal-card gc-music"><h3>Music</h3><ul><li><em class='ph'>Thai · Music · Computer · PHE — facilitator notes added each week</em></li></ul></div><div class="goal-card gc-thai"><h3>Thai</h3><ul><li><em class='ph'>คำศัพท์เกี่ยวกับการเดินทางและการขนส่ง — ครูภาษาไทยเป็นผู้กำหนด</em></li></ul></div></div>
+  <p class="tt-title">📅 Weekly Timetable</p><table class="tt"><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr><tr class=""><td>7:30</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td></tr><tr class=""><td>8:00</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td></tr><tr class="tt-row-ela"><td>8:10</td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><strong>🎤 Assembly</strong></td><td><em class='ph'>Thai</em></td></tr><tr class=""><td>9:00</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class="tt-row-ela"><td>9:20</td><td>ELA: Introduce /ai/ · rain, mail, train · stretch the vowel team: r-ai-n</td><td>ELA: Sight words <em>yes / no</em> · 'Yes or No?' word game with ai words</td><td>ELA: Train Track Word Building — build ai words with letter pieces · read aloud</td><td>ELA: Read /ai/ sentences fluently · partner reading · highlight ai words</td><td>ELA: Spelling sentences: Yes, I can aim. The rain is here. There is no mail.</td></tr><tr class="tt-row-mind"><td>10:00</td><td>Explorer's Breath — breathe in the spirit of exploration, breathe out fear of the unknown</td><td>Gratitude for Transport — I am grateful for the ways we can travel today</td><td>Mindful Journey — close your eyes and imagine travelling somewhere special</td><td>Body Awareness — how does your body feel on a fast car? A slow boat?</td><td>Global Connection — name one country you would like to travel to and why</td></tr><tr class="tt-row-math"><td>10:15</td><td>Math: What is a survey? — conduct 'How do you come to school?' class survey</td><td>ELA: Transportation Then and Now — Read-Aloud · compare past and present transport</td><td>Math: Create a picture graph from our survey data · count and check</td><td>Math: Tally marks to picture graph — transfer data and label the graph</td><td>Math: Read the graph — which has most/least? How many more?</td></tr><tr class=""><td>11:00</td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td></tr><tr class=""><td>11:50</td><td>🎲 Centres</td><td>🎲 Centres</td><td>🌿 Outdoor Exploration</td><td>🌿 Outdoor Exploration</td><td>🎲 Centres</td></tr><tr class="tt-row-ss"><td>12:20</td><td>ELA: 'The ___ is fast/slow/big/old.' — transport adjective sentences</td><td>SS: International Day prep — learn about our country (flag, clothes, food, landmarks)</td><td>ELA: 'Describing Transportation' game — guess the transport from clues</td><td>Math: Tally marks to picture graph — transfer data and label the graph</td><td>ELA: 'In the future, we will travel by ___.' — creative writing + draw</td></tr><tr class="tt-row-arts"><td>13:00</td><td><em class='ph'>🎵 Music</em></td><td>Arts &amp; Crafts: Future City Design</td><td><em class='ph'>💻 Computer</em></td><td>Science: Push and Pull Forces — basket vehicle demo · wheels vs. no wheels experiment</td><td><em class='ph'>🏃 PHE</em></td></tr><tr class=""><td>13:45</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class=""><td>14:00</td><td>🌿 Outdoor Play</td><td>🌿 Outdoor Play</td><td>🏃 MOVE — PHE</td><td>🗣️ Show &amp; Tell</td><td>🏖️ Sand Play</td></tr><tr class=""><td>14:35</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td></tr></table>
+  <div class="note">
+    <h4>📚 Key Concepts · Books · Global Context</h4>
+    Concepts: transportation change · push and pull forces · data and graphing · ai vowel team · International Day<br>
+    Books / Read-Alouds: <em>Transportation Then and Now — Patricia Armentrout</em> · <em>Homes Then and Now — Nadia Higgins</em><br>
+    Statement of Inquiry: <em>When we travel through time and place, we discover how the past shapes who we are and how we are connected to people around the world.</em>
+  </div>
+  <div class="note note-green">
+    <h4>🇹🇭 Thai Language Note</h4>
+    คำศัพท์ภาษาไทย: การเดินทาง · รถยนต์ · รถไฟ · เรือ · เครื่องบิน · แรงผลัก · แรงดึง — <em class="ph">ครูภาษาไทยเป็นผู้กำหนดเนื้อหาและกิจกรรมรายสัปดาห์</em>
+  </div>
+  <div class="footer">
+    <span>Week 25 · Unit 5: I Travel, I Explore, I Connect</span>
+    <span>Pan Asia International School · KG3 · Age 5</span>
+    <span>Facilitator: _____________ · Date: _____________</span>
+  </div>
+</div>
+<div class="week" id="w26">
+  <div class="school-header">
+    <h1>Pan Asia International School · KG3 · Age 5 · Unit 5: I Travel, I Explore, I Connect</h1>
+    <h2>🕰️ Week 26: Time Traveler Gallery</h2>
+    <span class="week-tag">Theme: Travel Through Time — Past, Present, and Future &nbsp;|&nbsp; Unit Week 5 of 5</span>
+  </div>
+  <div class="meta-bar">
+    <span><strong>Week:</strong> Week 26</span>
+    <span><strong>Grade:</strong> KG3 · Age 5</span>
+    <span><strong>Unit Theme:</strong> 🕰️ Travel Through Time — Past, Present, and Future</span>
+    <span><strong>Global Context:</strong> Identities &amp; Relationships — Personal Identity &amp; Belonging + Historical Awareness — Celebrating Our Journey Through Time</span>
+    <span><strong>Transdisciplinary Theme:</strong> Who We Are</span>
+  </div>
+  <div class="value-banner">
+    <div class="vb-item"><span class="vb-label">Value / Skill</span><span class="vb-val">🌍 Global Citizenship &amp; Pride in Learning</span></div>
+    <div class="vb-item"><span class="vb-label">CASEL</span><span class="vb-val">Social Awareness</span></div>
+    <div class="vb-item"><span class="vb-label">Maths Topic</span><span class="vb-val">🔢 Measurement &amp; Data Projects</span></div>
+    <div class="vb-item"><span class="vb-label">Mindfulness</span><span class="vb-val">🧘 Daily practice (see timetable)</span></div>
+    <div class="vb-item"><span class="vb-label">Approach</span><span class="vb-val">🎯 Inquiry-Play Based Learning</span></div>
+  </div>
+  <div class="scope-strip">
+  <div class="phonics-half">
+    <div class="sh-label">🔤 Phonics — Unit 5: Complex Digraphs &amp; Long Vowels</div>
+    <div class="sh-topic">Vowel team: <strong>ee</strong> — see, bee, meet, sleep, green, tree</div>
+    <div class="sh-sub">Sight words: <strong>after</strong> · <strong>again</strong> &nbsp;|&nbsp; Recognize the long e vowel team.</div>
+  </div>
+  <div class="math-half">
+    <div class="sh-label">🔢 Maths — Unit 5: Measurement, Time, Money &amp; Data</div>
+    <div class="sh-topic" style="color:#2E7D32;">Measurement &amp; Data Projects</div>
+    <div class="sh-sub">Apply measuring length, time, money, and graphing skills · Solve real-world project tasks combining multiple skills</div>
+  </div>
+</div>
+  <div class="scope-table">
+  <div class="scope-table-header">📋 Unit 5 Scope at a Glance — Travel Through Time — Past, Present, and Future</div>
+  <table><thead>
+    <tr><th>Week</th><th>🔤 Phonics</th><th>👁️ Sight Words</th><th>🔢 Maths Topic</th><th>Key Concepts</th></tr>
+  </thead><tbody><tr class=""><td style="font-weight:700;">W22</td><td>th (unvoiced)</td><td>want, good</td><td style="font-weight:400;">Measuring Length</td><td style="font-style:italic;">Non-standard tools · Compare lengths</td></tr><tr class=""><td style="font-weight:700;">W23</td><td>th (voiced)</td><td>away, down</td><td style="font-weight:400;">Time</td><td style="font-style:italic;">Analog clocks · Hour and half-hour</td></tr><tr class=""><td style="font-weight:700;">W24</td><td>ng</td><td>help, make</td><td style="font-weight:400;">Money</td><td style="font-style:italic;">Identify coins · Count collections</td></tr><tr class=""><td style="font-weight:700;">W25</td><td>ai</td><td>yes, no</td><td style="font-weight:400;">Data and Graphing</td><td style="font-style:italic;">Picture graphs · Interpret data</td></tr><tr class="scope-row-active"><td style="font-weight:700;">W26</td><td>ee</td><td>after, again</td><td style="font-weight:700;">Measurement &amp; Data Projects</td><td style="font-style:italic;">Apply all measurement skills</td></tr></tbody></table>
+</div>
+  <div class="inquiry-banner">"  How do we share our journey through time, and how does connecting with the world make us better global citizens?  "</div>
+  <div class="goals-container"><div class="goal-card gc-ela"><h3>ELA / Phonics</h3><ul><li>Recognise and produce the /ee/ vowel team: see, bee, meet, sleep, green, tree</li><li>Read and write sight words: <em>after</em>, <em>again</em></li><li>Read spelling sentences: 'See you again. There is a bee. After I sleep. Good to meet you.'</li><li>Listen to <em>Mechanimals</em> and generate creative ideas for future inventions</li><li>Write and illustrate 'If I Built a Car…' narrative (beginning, middle, end)</li></ul></div><div class="goal-card gc-math"><h3>Mathematics</h3><ul><li style='font-weight:700;color:#2E7D32;list-style:none;padding-left:0;margin-bottom:2px;'>📊 Measurement &amp; Data Projects</li><li style='color:#555;font-style:italic;'>Apply measuring length, time, money, and graphing skills</li><li style='color:#555;font-style:italic;'>Solve real-world project tasks combining multiple skills</li><li style='color:#555;font-style:italic;'>Sequence events using a schedule — before, after, first, next, last</li><li style='font-weight:700;color:#555;font-size:10px;list-style:none;padding-left:0;margin-top:3px;'>OBJECTIVES:</li><li>Apply all Unit 5 measurement and data skills in project contexts</li><li>Read and interpret a daily schedule using sequencing vocabulary</li></ul></div><div class="goal-card gc-sci"><h3>Science</h3><ul><li>Explore robots and machines — how can they help us in the future?</li><li>Identify tasks robots can do: cleaning, building, helping, cooking</li><li>Build a simple 'robot' using blocks or recycled materials — what will your robot do?</li><li>Draw your robot and explain: 'My robot helps by ___'</li></ul></div><div class="goal-card gc-ss"><h3>Social Studies</h3><ul><li>International Day — celebrate the country our classroom represents (Russia, India, or China) 🌍</li><li>Helping Our Future World — discuss recycling, saving energy, clean Earth</li><li>Recyclng Sort activity — sort paper, plastic, and rubbish into the correct bins</li><li>Draw 'The Earth in the Future' — clean parks, recycling robots, solar panels</li></ul></div><div class="goal-card gc-arts"><h3>Arts &amp; Crafts</h3><ul><li>Time Traveler Gallery — prepare and present unit artwork for a gallery; express preferences</li><li>VA.K.Pr5.1 — Prepare artwork for exhibition with a clear title and explanation</li><li>VA.K.Re9.1 — Express opinions about artwork using 'I think…' and 'I like… because…'</li></ul></div><div class="goal-card gc-music"><h3>Music</h3><ul><li><em class='ph'>Thai · Music · Computer · PHE — facilitator notes added each week</em></li></ul></div><div class="goal-card gc-thai"><h3>Thai</h3><ul><li><em class='ph'>คำศัพท์เกี่ยวกับอนาคตและวันสากล — ครูภาษาไทยเป็นผู้กำหนด</em></li></ul></div></div>
+  <p class="tt-title">📅 Weekly Timetable</p><table class="tt"><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr><tr class=""><td>7:30</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td><td>Arrival &amp; Morning Activities</td></tr><tr class=""><td>8:00</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td><td><strong>Circle Time</strong> · Morning Meeting</td></tr><tr class="tt-row-ela"><td>8:10</td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><em class='ph'>Thai</em></td><td><strong>🎤 Assembly</strong></td><td><em class='ph'>Thai</em></td></tr><tr class=""><td>9:00</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class="tt-row-ela"><td>9:20</td><td>ELA: Introduce /ee/ · see, bee, sleep, meet · stretch the vowel: eeeeee</td><td>ELA: Sight words <em>after / again</em> · 'See you again after ___.' sentence frame</td><td>ELA: Sight Word Game — walk circle, music stops, find word in book</td><td>ELA: Read /ee/ sentences fluently · 'Good to meet you!' role play reading</td><td>ELA: Spelling test — See you again. There is a bee. After I sleep.</td></tr><tr class="tt-row-mind"><td>10:00</td><td>Time Traveler Breath — breathe in pride for our journey, breathe out with a smile</td><td>Gratitude Gallery — name one thing you learned this unit that surprised you</td><td>Celebration Stillness — close your eyes and visualise the past, present, and future</td><td>Global Connection Intention — one way I will connect with someone from a different country</td><td>Closing Reflection — how have I grown as a Time Traveler Explorer?</td></tr><tr class="tt-row-math"><td>10:15</td><td>Math: Unit project — measure 3 objects, record in a mini-book</td><td>ELA: Mechanimals — Read-Aloud · imagine a machine-animal · draw and label your own</td><td>Math: Make a schedule — sequence our school day · what comes before/after?</td><td>Math: Sequence days and months · 'What comes before Friday? After January?'</td><td>Math: Time Traveler Data Project — present graph findings to the class</td></tr><tr class=""><td>11:00</td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td><td><strong>🍱 Lunch</strong><br><span style='font-size:9.5px;color:#888;'>11:30 Centres</span></td></tr><tr class=""><td>11:50</td><td>🎲 Centres</td><td>🎲 Centres</td><td>🌿 Outdoor Exploration</td><td>🌿 Outdoor Exploration</td><td>🎲 Centres</td></tr><tr class="tt-row-ss"><td>12:20</td><td>ELA: 'If I Built a Car…' — plan the narrative: beginning, middle, end</td><td>SS: International Day celebration — explore country culture · craft and display</td><td>ELA: Write 'If I Built a Car…' narrative — illustrate and label</td><td>Math: Sequence days and months · 'What comes before Friday? After January?'</td><td>ELA: Sharing Circle — present 'If I Built a Car' story to the class</td></tr><tr class="tt-row-arts"><td>13:00</td><td><em class='ph'>🎵 Music</em></td><td>Arts &amp; Crafts: Time Traveler Gallery</td><td><em class='ph'>💻 Computer</em></td><td>Science: Robots and Machines — build a robot from recycled materials · draw and explain</td><td><em class='ph'>🏃 PHE</em></td></tr><tr class=""><td>13:45</td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td><td><strong>🍌 Snack</strong></td></tr><tr class=""><td>14:00</td><td>🌿 Outdoor Play</td><td>🌿 Outdoor Play</td><td>🏃 MOVE — PHE</td><td>🗣️ Show &amp; Tell</td><td>🏖️ Sand Play</td></tr><tr class=""><td>14:35</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td><td>Closing Circle · Pack Up</td></tr></table>
+  <div class="note">
+    <h4>📚 Key Concepts · Books · Global Context</h4>
+    Concepts: future world · robots and machines · International Day · ee vowel team · measurement projects · gallery presentation<br>
+    Books / Read-Alouds: <em>Mechanimals — Epic Books</em> · <em>Then and Now — Robin Nelson (revisit)</em> · <em>Stone Age Boy — Satoshi Kitamura (revisit)</em><br>
+    Statement of Inquiry: <em>When we travel through time and place, we discover how the past shapes who we are and how we are connected to people around the world.</em>
+  </div>
+  <div class="note note-green">
+    <h4>🇹🇭 Thai Language Note</h4>
+    คำศัพท์ภาษาไทย: อนาคต · หุ่นยนต์ · การรีไซเคิล · วันสากล · ความภาคภูมิใจ · นักสำรวจเวลา — <em class="ph">ครูภาษาไทยเป็นผู้กำหนดเนื้อหาและกิจกรรมรายสัปดาห์</em>
+  </div>
+  <div class="footer">
+    <span>Week 26 · Unit 5: I Travel, I Explore, I Connect</span>
+    <span>Pan Asia International School · KG3 · Age 5</span>
+    <span>Facilitator: _____________ · Date: _____________</span>
+  </div>
+</div>
+<script>
+function showWeek(n, btn) {
+  document.querySelectorAll('.week').forEach(w => w.classList.remove('active'));
+  document.querySelectorAll('.sel-btn').forEach(b => b.classList.remove('active'));
+  var el = document.getElementById('w' + n);
+  if (el) el.classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+window.onload = function() { showWeek(22, document.querySelector('.sel-btn.active')); };
+</script>
+</body>
+</html>
